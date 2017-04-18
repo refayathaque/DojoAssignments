@@ -1,0 +1,28 @@
+Mon Apr 17 ls -R
+MEAN		Python		Ruby		WebFundamentals
+
+./MEAN:
+about.txt
+
+./Python:
+about.txt
+
+./Ruby:
+about.txt
+
+./WebFundamentals:
+CSS		HTML		about.txt
+Git		JavaScript
+
+./WebFundamentals/CSS:
+about.txt
+
+./WebFundamentals/Git:
+about.txt
+
+./WebFundamentals/HTML:
+about.txt		indentation.html
+
+./WebFundamentals/JavaScript:
+about.txt
+Mon Apr 17
