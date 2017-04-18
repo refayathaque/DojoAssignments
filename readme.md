@@ -1,1 +1,1 @@
-Files are CodingDojo deliverables for each track.
+Files are deliverables for each track.
