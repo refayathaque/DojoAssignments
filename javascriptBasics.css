@@ -1,0 +1,80 @@
+body {
+  background-color: #1D355C;
+  font-family: serif;
+  width: 970px;
+}
+.header {
+  background-color: #CC323B;
+  color: #C3CDE2;
+  padding: 1px;
+  border-radius: 10px;
+}
+h1 {
+  margin-left: 20px;
+}
+.navbar {
+  background-color: #2F7D8B;
+  color: #B4E2FA;
+  padding: 1px;
+  border-radius: 20px;
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+  top: 20px;
+}
+#removedotfromhome {
+  list-style-type: none;
+  margin-left: -20px;
+}
+#navlinks {
+  text-decoration: underline;
+  padding-right: 10px;
+}
+.link {
+  text-decoration: underline;
+  color: #B4E2FA;
+}
+.bodydots {
+  color: #B4E2FA;
+  margin-left: -6px;
+  margin-right: 15px;
+}
+.bodydotsunderline {
+  text-decoration: underline;
+}
+p, h2, .bodydottext {
+  color: #C3CDE2;
+}
+.spacing {
+  margin-bottom: 10px;
+}
+.purpletext {
+  color: #6666FF;
+}
+.maincontent {
+  background-color: #0F1822;
+  padding: 8px;
+  border-radius: 20px;
+  display: inline-block;
+  width: 710px;
+  float: right;
+  margin-top: 20px;
+}
+#footerunderline {
+  text-decoration: underline;
+  color: #B4E2FA;
+}
+.footer {
+  background-color: #3C4C5B;
+  padding: 8px;
+  border-radius: 20px;
+  position: relative;
+  top: 350px;
+  white-space: nowrap; /* Prevents text from not spanning entire width */
+}
+.margin-right {
+  margin-right: 8px;
+}
+h2, p {
+  margin-left: 15px;
+}
