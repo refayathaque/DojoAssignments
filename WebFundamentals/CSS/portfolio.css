@@ -1,5 +1,5 @@
 * {
-	outline: 0.5px dashed red;
+	outline: 0; /* 0.5px dashed red; */
 	padding: 0;
 	margin: 0;
 	border: 0;
@@ -78,11 +78,13 @@ p {
 }
 .icons {
   display: inline;
-  padding: 10px;
+  padding: 15px;
   position: relative;
   top: 10px;
 }
 .cardheader, .cardlabel {
+  padding-top: 6px;
+  padding-bottom: 6px;
   color: white;
   background: #898895; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(#A3A1A5, #898895, #A3A1A5); /* For Safari 5.1 to 6.0 */
@@ -91,7 +93,7 @@ p {
   background: linear-gradient(#A3A1A5, #898895, #A3A1A5); /* Standard syntax */
 }
 .card {
-  height: 532.5px;
+  height: 555px;
   width: 369px;
   display: inline-block;
   background: #DCCDDB; /* For browsers that do not support gradients */
