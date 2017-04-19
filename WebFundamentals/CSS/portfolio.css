@@ -6,6 +6,7 @@
 	}
 .wrapper {
   width: 1200px;
+  height: 1024px;
   background: #6F5964; /* For browsers that do not support gradients */
   background: -webkit-radial-gradient(#6F5964, #1E0E13); /* Safari 5.1 to 6.0 */
   background: -o-radial-gradient(#6F5964, #1E0E13); /* For Opera 11.6 to 12.0 */
@@ -24,7 +25,23 @@
   left: 22.5px;
   display: inline-block;
 }
+.button {
+  text-align: center;
+  position: relative;
+  top: 20px;
+}
+.footer {
+  text-align: center;
+  position: relative;
+  top: 50px;
+  width: 1200px;
+  background-color: #F8F8F8;
+  padding-top: 12px;
+  padding-bottom: 12px;
+
+}
 .about {
+  height: 310px;
   width: 675px;
   display: inline-block;
   float: right;
@@ -50,15 +67,22 @@
   background: linear-gradient(#A3A1A5, #898895, #A3A1A5); /* Standard syntax */
 }
 .abouttext {
-  padding: 10px;
+  padding: 6px;
+  margin-left: 4px;
 }
 #abouttextunderline {
   text-decoration: underline;
 }
-h3 {
-  margin-left: 15px;
+p {
+  font-family: 'Raleway', sans-serif;
 }
-.cardheader {
+.icons {
+  display: inline;
+  padding: 10px;
+  position: relative;
+  top: 10px;
+}
+.cardheader, .cardlabel {
   color: white;
   background: #898895; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(#A3A1A5, #898895, #A3A1A5); /* For Safari 5.1 to 6.0 */
@@ -67,16 +91,25 @@ h3 {
   background: linear-gradient(#A3A1A5, #898895, #A3A1A5); /* Standard syntax */
 }
 .card {
-  width: 375px;
+  height: 532.5px;
+  width: 369px;
   display: inline-block;
   background: #DCCDDB; /* For browsers that do not support gradients */
   background: -webkit-linear-gradient(right, #DCCDDB , #FEFEFE); /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(left, #DCCDDB, #FEFEFE); /* For Opera 11.1 to 12.0 */
   background: -moz-linear-gradient(left, #DCCDDB, #FEFEFE); /* For Firefox 3.6 to 15 */
   background: linear-gradient(to left, #DCCDDB, #FEFEFE); /* Standard syntax */
+  position: relative;
+  top: 40px;
+  left: 13px;
+  margin: 10px;
 }
-p {
+h2, h3 {
   font-family: 'Raleway', sans-serif;
+  margin-left: 15px;
+}
+#mottomotto {
+  margin-left: -15px;
 }
 .footer {
   width: 1200px;
