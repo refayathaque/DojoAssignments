@@ -1,0 +1,53 @@
+* {
+	outline: 0.5px dashed red;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	}
+.wrapper {
+  width: 1200px;
+  background: #6F5964; /* For browsers that do not support gradients */
+  background: -webkit-radial-gradient(#6F5964, #1E0E13); /* Safari 5.1 to 6.0 */
+  background: -o-radial-gradient(#6F5964, #1E0E13); /* For Opera 11.6 to 12.0 */
+  background: -moz-radial-gradient(#6F5964, #1E0E13); /* For Firefox 3.6 to 15 */
+  background: radial-gradient(#6F5964, #1E0E13); /* Standard syntax */
+}
+.header {
+  width: 1200px;
+  background-color: #F8F8F8;
+}
+.photo {
+  width: 450px;
+}
+.about {
+  width: 675px;
+}
+.card {
+  width: 375px;
+}
+.footer {
+  width: 1200px;
+}
+.title {
+  width: 200px;
+  font-family: 'Ranga', cursive;
+  font-size: 25px;
+  position: relative;
+  left: 15px;
+  display: inline-block;
+}
+.motto {
+  width: 400px;
+  font-family: 'Raleway', sans-serif;
+  display: inline-block;
+  float: right;
+  position: relative;
+  top: 22px;
+  right: 45px;
+}
+.photo {
+  border: 5px solid #F8F8F8;
+  position: relative;
+  top: 20px;
+  left: 25px;
+}
