@@ -51,7 +51,7 @@ form {
   left: 126px;
   top: 4px;
 }
-#normallarge {
+.normallarge {
   color: #D5B300;
   text-decoration: underline;
 }
@@ -74,4 +74,120 @@ h3 {
   text-align: center;
   margin-left: 65px;
   margin-right: 40px;
+}
+.para {
+  width: 750px;
+  color: white;
+  text-align: center;
+  font-size: 13px;
+  line-height: 14px;
+  margin-bottom: 6px;
+  margin-top: 20px;
+  position: relative;
+  left: 160px;
+}
+.sections {
+  float: left;
+  position: relative;
+  top: 40px;
+  left: 100px;
+
+}
+.yellowarrows {
+  text-decoration: underline;
+  color: white;
+  list-style-type: none;
+  line-height: 30px;
+  text-align: center;
+  font-size: 85%;
+}
+.boxes {
+  color: black;
+  font-size: 30%;
+}
+.arrows {
+  color: #D5B300;
+}
+.quote {
+  position: relative;
+  left: 290px;
+}
+.toparea {
+  border-bottom: 2px solid black;
+}
+.whitearea {
+  background-color: white;
+  text-align: center;
+}
+.whitearea > div {
+  width: 400px;
+  display: inline-block;
+  padding-top: 4px;
+  border-top: 3px solid #70A6D4;
+  text-align: center;
+  height: 160px;
+}
+h4 {
+  width: 450px;
+  text-align: center;
+  color: #D5B300;
+  font-style: italic;
+  line-height: 30px;
+}
+.whitetext {
+  font-size: 75%;
+}
+h5 {
+  width: 450px;
+  text-align: center;
+  color: white;
+  line-height: 40px;
+  position: relative;
+  left: 65px;
+}
+.bluetext {
+  color: #73A7D5;
+  position: relative;
+  left: 30px;
+}
+.whiteul {
+  color: black;
+  font-size: 75%;
+  text-align: left;
+  list-style-type: square;
+  list-style-position: inside;
+}
+.started {
+  position: relative;
+  top: -25px;
+  right: 10px;
+}
+.applications {
+  position: relative;
+  top: 9px;
+  left: 10px;
+}
+#bluetext {
+  color: #73A7D5;
+}
+.footer {
+  width: 970px;
+  height: 110px;
+  background: linear-gradient(#245278, #3374AB);
+}
+.footer p {
+  font-size: 90%;
+  display: inline-flex;
+  color: #73A7D5;
+  padding: 20px;
+  position: relative;
+  top: 40px;
+  left: 180px;
+}
+#copyright {
+  display: block;
+  position: relative;
+  left: 380px;
+  top: 13px;
+  font-size: 50%;
 }
