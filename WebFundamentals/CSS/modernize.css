@@ -1,0 +1,171 @@
+* {
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	}
+.container {
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #1A1A1A;
+  width: 800px;
+}
+/* new div */
+.header {
+  background-color: #1A1A1A;
+}
+.logo {
+  width: 20%;
+  height: 20%;
+  padding: 12px;
+}
+.phone_number {
+  color: #CFCFCF;
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 60%;
+  float: right;
+  position: relative;
+  top: 20px;
+  right: 15px;
+}
+/* new div */
+.nav_bar {
+  background: linear-gradient(#575757, #242424);
+  font-family: sans-serif;
+  font-weight: bold;
+  font-size: 75%;
+  color: #A3A3A3;
+}
+#home {
+  color: #DBDBDB;
+}
+.vertical_line {
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.nav_elements li {
+  list-style-type: none;
+  padding: 12px;
+  display: inline-block;
+  position: relative;
+  left: 8px;
+}
+/* new div */
+.main_picture {
+  width: 800px;
+  height: 291px;
+  border-bottom: 4px solid #3B3B3B;
+}
+/* new div */
+.company_propositions {
+  display: flex;
+}
+.company_proposition_cards {
+  flex: 1;
+  padding: 15px;
+  margin-bottom: 4px;
+  margin-top: 10px;
+}
+.company_proposition_cards img {
+  width: 35px;
+  height: auto;
+  float: left;
+  padding-bottom: 40px;
+  padding-right: 10px;
+}
+.company_proposition_headings {
+  color: #EF7F2A;
+  font-family: 'Slabo 27px', serif;
+  font-size: 93%;
+}
+.company_proposition_text {
+  color: #CFCFCC;
+  font-family: sans-serif;
+  font-size: 70%;
+}
+/* new div */
+.bibendum_bar {
+  background: repeating-linear-gradient(-45deg, #1A1A1A, #050505 1px, #050505 3px, #050505 2px);
+  color: #CFCFCC;
+  display: flex;
+}
+.bibendum_header_text {
+  flex 1;
+  padding: 27px;
+}
+.bibendum_header {
+  font-family: 'Muli', sans-serif;
+  font-size: 110%;
+}
+.bibendum_text {
+  font-family: sans-serif;
+  font-size: 70%;
+  margin-right: 180px;
+  padding-top: 6px;
+}
+.buy_now_button {
+  flex 1;
+  width: 80%;
+  height: auto;
+  position: relative;
+  top: 37px;
+  right: 14px;
+}
+/* new div */
+.portfolio {
+  overflow: hidden;
+}
+.portfolio_heading {
+  color: white;
+  font-family: 'Slabo 27px', serif;
+  display: inline-block;
+  padding: 18px;
+}
+.all_projects {
+  font-family: sans-serif;
+  color: #EF7F2A;
+  font-size: 60%;
+  display: inline-block;
+  float: right;
+  padding: 25px;
+  position: relative;
+  left: 12px;
+}
+.portfolio_box_container {
+  display: inline-flex;
+}
+.portfolio_boxes {
+  flex: 1;
+  padding-left: 8px;
+  padding-right: 10px;
+  margin-left: 9px;
+}
+.boxes_two_three_four {
+  margin-left: -7px;
+}
+.portfolio_boxes img {
+  width: 96%;
+  height: auto;
+  border: 2px solid #363636;
+}
+.box_heading {
+  color: #EF7F2A;
+  font-family: 'Slabo 27px', serif;
+  font-size: 93%;
+  padding-top: 7px;
+  padding-bottom: 7px;
+}
+.box_text {
+  color: #CFCFCC;
+  font-family: sans-serif;
+  font-size: 70%;
+}
+.back_top {
+  color: #787C78;
+  font-family: sans-serif;
+  font-size: 60%;
+  float: right;
+  padding-top: 35px;
+  padding-right: 20px;
+}
