@@ -388,7 +388,7 @@ console.log('----');
 //Pushing in a value to a given array from the front
 function pushFront(arr, val) {
   for(var i = arr.length - 1; i >= 0; i--) {
-    arr[i + 1] = arr[i];
+    arr[i + 1] = arr[i]; //'Adds' elements to array
   }
   arr[0] = val;
   console.log(arr); //Outputs [4, 1, 2, 3]
