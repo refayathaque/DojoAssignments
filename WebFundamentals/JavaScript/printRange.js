@@ -11,4 +11,4 @@ function printRange(startPnt = 0, endPnt = 10, skipAmt = 1) { //Added default
     }
   }
 }
-printRange(2, 10, 2);
+printRange(-3, -12, 2);
