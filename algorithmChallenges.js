@@ -388,9 +388,23 @@ console.log('----');
 //Pushing in a value to a given array from the front
 function pushFront(arr, val) {
   for(var i = arr.length - 1; i >= 0; i--) {
-    arr[i + 1] = arr[i]; //'Adds' elements to array
+    arr[i + 1] = arr[i]; //'Adds' elements to array, used to move elements right
   }
   arr[0] = val;
   console.log(arr); //Outputs [4, 1, 2, 3]
 }
 pushFront([1, 2, 3], 4);
+
+console.log('----');
+
+//Populating arrays using FOR loop
+function populatingArray() {
+  var arr = []; //declaring empty array
+  for(var x = 1; x <= 100; x *= 3) {
+    arr.push(x);
+  }
+  console.log(arr); //Outputs[ 1, 3, 9, 27, 81 ]
+}
+populatingArray();
+
+console.log('----');
