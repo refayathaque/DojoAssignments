@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>modernize</title>
+  <meta name="description" content="modernize">
+  <meta name="author" content="Refayat Haque">
+  <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+  <link rel="stylesheet" href="modernize.YB.template.css">
+  <link href="https://fonts.googleapis.com/css?family=Slabo+27px|Muli" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+    $('.bibendum_bar').click(function() {
+      $('.bibendum_header').hide();
+    });
+
+    $('.main_picture').click(function() {
+      $('.bibendum_header').show();
+    });
+    //Example of a 'setter'. ALSO, .text() is NOT blank so there are PARAMETERS
+    $('.logo').hover(function() {
+      $('.bibendum_header').text('YOU HOVERED OVER THE LOGO');
+    }, function() {$('.bibendum_header').text('Bibendum Fusce Vehicula Ullamcorper Fermentum')});
+
+    $('.portfolio_heading').click(function() {
+      $('.portfolio_heading').append('<p style="display: inline-block;">Portfolio</p>');
+    });
+
+    $('li').click(function() {
+      $('.vertical_line').css('color', 'yellow');
+    });
+    //Example of 'getter'. ALSO .text() is blank so there are NO PARAMETERS
+    $('.company_proposition_headings').hover(function() {
+      var myText = $('.bibendum_header').text();
+      $('.portfolio_heading').text(myText);
+    }, function() {$('.portfolio_heading').text('Portfolio')});
+
+    });
+  </script>
+</head>
+
+<body>
+<div class="container">
+
+  <div class="header">
+    <img class="logo" src="modernizeImages/logo.png" alt="Logo">
+    <p class="phone_number">Call Us: (66)8 234 678</p>
+  </div>
+
+  <div class="nav_bar">
+    <ul class="nav_elements">
+      <li id="home">Home</li>
+      <li class="vertical_line">|</li>
+      <li>Blog <i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+      <li class="vertical_line">|</li>
+      <li>Portfolio <i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+      <li class="vertical_line">|</li>
+      <li>Shortcodes <i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+      <li class="vertical_line">|</li>
+      <li>Features <i class="fa fa-angle-double-right" aria-hidden="true"></i></li>
+      <li class="vertical_line">|</li>
+      <li>Contact</li>
+    </ul>
+  </div>
+
+  <img class="main_picture" src="modernizeImages/main_pic.png" alt="Main Picture">
+
+  <div class="company_propositions">
+    <div class="company_proposition_cards">
+      <img class="cloud_img" src="modernizeImages/content_icon1.png" alt="Cloud Image">
+      <p class="company_proposition_headings">Ridiculus Ornare</p>
+      <p class="company_proposition_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent</p>
+    </div>
+    <div class="company_proposition_cards">
+      <img class="clock_img" src="modernizeImages/content_icon2.png" alt="Clock Image">
+      <p class="company_proposition_headings">Ipsum Purus</p>
+      <p class="company_proposition_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent</p>
+    </div>
+    <div class="company_proposition_cards">
+      <img class="location_pin_img" src="modernizeImages/content_icon3.png" alt="Location Pin Image">
+      <p class="company_proposition_headings">Tellus Quam</p>
+      <p class="company_proposition_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent</p>
+    </div>
+    <div class="company_proposition_cards">
+      <img class="arrow_loop_img" src="modernizeImages/content_icon4.png" alt="Arrow Loop Image">
+      <p class="company_proposition_headings">Sem Egestas</p>
+      <p class="company_proposition_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent</p>
+    </div>
+  </div>
+
+  <div class="bibendum_bar">
+    <div class="bibendum_header_text">
+      <p class="bibendum_header">Bibendum Fusce Vehicula Ullamcorper Fermentum</p>
+      <p class="bibendum_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed risus libero. Integer volutpat lobortis quam, hendrerit ornare ex pellentesque at.</p>
+    </div>
+    <a href="#"><img class="buy_now_button" alt="Buy Now Button" src="button_buy-now.png"></a>
+  </div>
+
+  <div class="portfolio">
+    <p class="portfolio_heading">Portfolio</p>
+    <p class="all_projects"><em>View All Projects</em> <i class="fa fa-long-arrow-right" aria-hidden="true"></i></p>
+    <div class="portfolio_box_container">
+      <div class="portfolio_boxes">
+        <img class="dancing_lady" src="modernizeImages/portfolio1.png" alt="Dancing Lady">
+        <p class="box_heading">Built-in Shortcode</p>
+        <p class="box_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed risus libero. Integer volutpat lobortis quam, hendrerit</p>
+      </div>
+      <div class="portfolio_boxes boxes_two_three_four">
+        <img class="old_bus" src="modernizeImages/portfolio2.png" alt="Old Bus">
+        <p class="box_heading">New Page Builder</p>
+        <p class="box_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed risus libero. Integer volutpat lobortis quam, hendrerit</p>
+      </div>
+      <div class="portfolio_boxes boxes_two_three_four">
+        <img class="might_kiss" src="modernizeImages/portfolio3.png" alt="Might Kiss">
+        <p class="box_heading">Access Elements Color</p>
+        <p class="box_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed risus libero. Integer volutpat lobortis quam, hendrerit</p>
+      </div>
+      <div class="portfolio_boxes boxes_two_three_four">
+        <img class="city" src="modernizeImages/portfolio4.png" alt="City">
+        <p class="box_heading">3 Custom Post Types</p>
+        <p class="box_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent sed risus libero. Integer volutpat lobortis quam, hendrerit</p>
+      </div>
+    </div>
+    <p class="back_top">Back To Top</p>
+  </div>
+
+</div>
+</body>
+</html>
