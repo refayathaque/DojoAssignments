@@ -19,7 +19,7 @@
     $('.main_picture').click(function() {
       $('.bibendum_header').show();
     });
-    //Example of a 'setter'. ALSO, .text() is NOT blank so there are PARAMETERS
+    //Example of a 'SETTER', as function .text() has PARAMETERS
     $('.logo').hover(function() {
       $('.bibendum_header').text('YOU HOVERED OVER THE LOGO');
     }, function() {$('.bibendum_header').text('Bibendum Fusce Vehicula Ullamcorper Fermentum')});
@@ -31,7 +31,8 @@
     $('li').click(function() {
       $('.vertical_line').css('color', 'yellow');
     });
-    //Example of 'getter'. ALSO .text() is blank so there are NO PARAMETERS
+    
+    //Example of 'GETTER', as function .text() has NO PARAMETERS
     $('.company_proposition_headings').hover(function() {
       var myText = $('.bibendum_header').text();
       $('.portfolio_heading').text(myText);

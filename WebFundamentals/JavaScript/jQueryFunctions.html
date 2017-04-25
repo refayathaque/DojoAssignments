@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>jQuery Functions</title>
+  <meta name="description" content="jQuery Functions">
+  <meta name="author" content="Refayat Haque">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+
+
+    });
+    //Example of 'GETTER', as function .text() has NO PARAMETERS
+    $('.company_proposition_headings').hover(function() {
+      var myText = $('.bibendum_header').text();
+      $('.portfolio_heading').text(myText);
+    }, function() {$('.portfolio_heading').text('Portfolio')});
+
+    });
+  </script>
+</head>
+<style>
+* {
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	}
+.container {
+  color: black;
+  font-family: sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  background-color: #f7f7f7;
+  width: 800px;
+}
+</style>
+<body>
+<div class="container">
+
+
+
+</div>
+</body>
+</html>
