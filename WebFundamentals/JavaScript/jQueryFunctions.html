@@ -9,14 +9,65 @@
   <script>
     $(document).ready(function() {
 
-
-
+    $('.hidebutton').click(function() {
+      $('.hideshowtext').hide()
     });
-    //Example of 'GETTER', as function .text() has NO PARAMETERS
-    $('.company_proposition_headings').hover(function() {
-      var myText = $('.bibendum_header').text();
-      $('.portfolio_heading').text(myText);
-    }, function() {$('.portfolio_heading').text('Portfolio')});
+
+    $('.showbutton').click(function() {
+      $('.hideshowtext').show()
+    });
+
+    $('.togglebutton').click(function() {
+      $('.toggletext').toggle()
+    });
+
+    $('.slideDownbutton').click(function() {
+      $('.slidetext').slideDown()
+    });
+
+    $('.slideUpbutton').click(function() {
+      $('.slidetext').slideUp()
+    });
+
+    $('.slideTogglebutton').click(function() {
+      $('.slidetext').slideToggle()
+    });
+
+    $('.fadeInbutton').click(function() {
+      $('.fadetext').fadeIn()
+    });
+
+    $('.fadeOutbutton').click(function() {
+      $('.fadetext').fadeOut()
+    });
+
+    $('.addClassbutton').click(function() {
+      $('.addremoveClasstext').addClass('crazy')
+    });
+
+    $('.removeClassbutton').click(function() {
+      $('.addremoveClasstext').removeClass('crazy')
+    });
+
+    $('.beforebutton').click(function() {
+      $('.beforeaftertext').before('<h3>before</h3>')
+    });
+
+    $('.afterbutton').click(function() {
+      $('.beforeaftertext').after('<h3>after</h3>')
+    });
+
+    $('.appendbutton').click(function() {
+      $('.appendtext').append(' APPENDING TO THE END. ')
+    });
+
+    $('.htmlbutton').click(function() {
+      $('.htmltext').html(' OVERWRITING CONTENT. ')
+    });
+
+    $('.attrbutton').click(function() {
+      $('.attrtext').attr('')
+    });
 
     });
   </script>
@@ -33,15 +84,115 @@
   font-family: sans-serif;
   margin-right: auto;
   margin-left: auto;
-  background-color: #f7f7f7;
   width: 800px;
+  text-align: center;
+}
+.button {
+  background-color: #4CAF50;
+  border-radius: 5px;
+  color: white;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 15px;
+  margin: 10px 10px;
+}
+.heading {
+  padding: 10px 10px;
+}
+.text {
+  padding: 10px 10px;
+}
+.crazy {
+  font-family: fantasy;
+  color: #FF69B4;
+  font-size: 20px;
+}
+.block {
+  margin: 10px;
+  background-color: #f2f2f2;
 }
 </style>
 <body>
-<div class="container">
+  <div class="container">
 
+    <div class="block">
+      <h1 class="heading">.hide / .show</h1>
+      <p class="text hideshowtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button hidebutton">hide</button>
+      <button class="button showbutton">show</button>
+    </div>
 
+    <div class="block">
+      <h1 class="heading">.toggle</h1>
+      <p class="text toggletext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button togglebutton">toggle</button>
+    </div>
 
-</div>
+    <div class="block">
+      <h1 class="heading">.slideDown / .slideUp / .slideToggle</h1>
+      <p class="text slidetext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button slideDownbutton">slideDown</button>
+      <button class="button slideUpbutton">slideUp</button>
+      <button class="button slideTogglebutton">slideToggle</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.fadeIn / .fadeOut</h1>
+      <p class="text fadetext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button fadeInbutton">fadeIn</button>
+      <button class="button fadeOutbutton">fadeOut</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.addClass / .removeClass</h1>
+      <p class="text addremoveClasstext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button addClassbutton">addClass</button>
+      <button class="button removeClassbutton">removeClass</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.before / .after</h1>
+      <p class="text beforeaftertext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button beforebutton">before</button>
+      <button class="button afterbutton">after</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.append</h1>
+      <p class="text appendtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button appendbutton">append</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.html</h1>
+      <p class="text htmltext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button htmlbutton">html</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.attr</h1>
+      <p class="text attrtext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button attrbutton">attr</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.val</h1>
+      <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button">val</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.text</h1>
+      <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button">text</button>
+    </div>
+
+    <div class="block">
+      <h1 class="heading">.data</h1>
+      <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button">data</button>
+    </div>
+
+  </div>
 </body>
 </html>
