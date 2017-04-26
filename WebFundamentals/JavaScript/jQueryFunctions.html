@@ -62,11 +62,27 @@
     });
 
     $('.htmlbutton').click(function() {
-      $('.htmltext').html(' OVERWRITING CONTENT. ')
+      $('.htmltext').html(' <b>OVERWRITING CONTENT & ADDING HTML STRONG TAG.</b> ')
     });
 
     $('.attrbutton').click(function() {
-      $('.attrtext').attr('')
+      $('.attrtext').attr('align', 'left')
+    });
+
+    $('.valinput').keyup(function() {
+      var value = $(this).val();
+    $('.valtext').text( value );
+    }).keyup();
+
+    $('.textbutton').click(function() {
+      $('.texttext').text('SETS TEXT.')
+    });
+
+    $(".btn1").click(function(){
+      $("div").data("greeting", "Hello World");
+    });
+      $(".btn2").click(function(){
+      alert($("div").data("greeting"));
     });
 
     });
@@ -101,6 +117,10 @@
 }
 .text {
   padding: 10px 10px;
+}
+.input {
+  padding: 10px 10px;
+  margin: 10px 10px;
 }
 .crazy {
   font-family: fantasy;
@@ -177,20 +197,20 @@
 
     <div class="block">
       <h1 class="heading">.val</h1>
-      <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <button class="button">val</button>
+      <input class ="input valinput" type="text" size="36" value="Type here and see text below.">
+      <p class="text valtext"></p>
     </div>
 
     <div class="block">
       <h1 class="heading">.text</h1>
-      <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <button class="button">text</button>
+      <p class="text texttext">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+      <button class="button textbutton">text</button>
     </div>
 
     <div class="block">
       <h1 class="heading">.data</h1>
-      <p class="text">Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
-      <button class="button">data</button>
+      <button class="button btn1">Attach data to div element</button>
+      <button class="button btn2">Get data attached to div element</button>
     </div>
 
   </div>
