@@ -1,33 +1,32 @@
-var glazedDonuts = [
-  {
-    frosting: 'glazed',
-    style: 'cake',
-    type: 'old fashioned',
-    age: '45',
-    time: 'minutes'
-  },
-  {
-    frosting: 'glazed',
-    style: 'yeast raised',
-    type: 'regular',
-    age: '5',
-    time: 'minutes'
-  },
-  {
-    frosting: 'glazed',
-    style: 'yeast raised',
-    type: 'jelly filled',
-    age: '1',
-    time: 'seconds'
+function creditCard(arr) {
+  var temp = arr[arr.length - 1]; var i = 0; var sum = 0; var final_value = 0;
+  for(var x = arr.length - 2; x <= 0; x--) {
+    if (x === arr.length - 2) {
+      arr[x] *= 2;
+      console.log(arr[x]);
+    }
+    if (x === arr.length - (4 + i)) {
+      i += 2;
+      arr[x] *= 2;
+    }
   }
-];
-var numPurchase = 0;
-for (var x = 0; x < glazedDonuts.length; x++) {
-  if((glazedDonuts[x].age < 25 && glazedDonuts[x].time == 'minutes') || glazedDonuts[x].time == 'seconds'){
-    numPurchase++;
+  for(var x = arr.length - 2; x<= 0; x--) {
+    if (arr[x] > 9) {
+      arr[x] - 9;
+    }
+  }
+  for(var x = arr.length - 2; x<= 0; x--) {
+    sum += arr[x]
+  }
+  console.log(arr);
+  final_value = sum + temp;
+  console.log(final_value);
+  if (final_value % 10 === 0) {
+    console.log(true);
   }
   else {
-    console.log('not this donut...');
+    console.log(false);
   }
 }
-console.log(numPurchase);
+
+creditCard([5, 2, 2, 8, 2]);

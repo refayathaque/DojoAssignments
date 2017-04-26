@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>dojoArena</title>
+  <meta name="description" content="dojoArena">
+  <meta name="author" content="Refayat Haque">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+    $(document).ready(function() {
+
+      $('.beachbutton').hover(function() {
+        $('.container').css({'background-image': 'url(beach.jpg)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+      });
+      $('.planetbutton').hover(function() {
+        $('.container').css({'background-image': 'url(earth.jpg)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+      });
+      $('.dojobutton').hover(function() {
+        $('.container').css({'background-image': 'url(dojo.jpg)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+      });
+      $('.forestbutton').hover(function() {
+        $('.container').css({'background-image': 'url(forest.jpg)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+      });
+      $('.matrixbutton').hover(function() {
+        $('.container').css({'background-image': 'url(matrix.jpg)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+      });
+      $('.snowbutton').hover(function() {
+        $('.container').css({'background-image': 'url(snow.jpg)', 'background-repeat': 'no-repeat', 'background-size': 'cover'});
+      });
+
+      $('.beachbutton').click(function() {
+        $('.arena').css({'visibility': 'hidden'});
+          $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('.planetbutton').click(function() {
+        $('.arena').css({'visibility': 'hidden'});
+          $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('.dojobutton').click(function() {
+        $('.arena').css({'visibility': 'hidden'});
+          $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('.forestbutton').click(function() {
+        $('.arena').css({'visibility': 'hidden'});
+          $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('.matrixbutton').click(function() {
+        $('.arena').css({'visibility': 'hidden'});
+          $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('.snowbutton').click(function() {
+        $('.arena').css({'visibility': 'hidden'});
+          $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+
+      $('#leftdonnybutton').change(function() {
+        $('#leftdonnypic').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#leftleobutton').change(function() {
+        $('#leftleopic').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#leftmikeybutton').change(function() {
+        $('#leftmikeypic').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#leftraphaelbutton').change(function() {
+        $('#leftraphaelpic').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#rightdonnybutton').click(function() {
+        $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#rightleobutton').click(function() {
+        $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#rightmikeybutton').click(function() {
+        $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+      $('#rightraphaelbutton').click(function() {
+        $('.players').css({'visibility': 'visible', 'display': 'position', 'top': '15px'});
+      });
+
+    });
+  </script>
+</head>
+
+<style>
+* {
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	}
+.container {
+  font-family: sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  width: 1200px;
+  height: 700px;
+  text-align: center;
+  background-color: black;
+  border: 10px solid #808080;
+  margin-top: 10px;
+}
+.arena {
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 150px;
+  text-align: center;
+  background-color: #A3A4A6;
+  border: 5px solid #7F7F7F;
+  border-radius: 10px;
+  position: relative;
+  top: 175px;
+}
+.players {
+  margin-right: auto;
+  margin-left: auto;
+  width: 300px;
+  height: 150px;
+  text-align: center;
+  background: rgba(230, 227, 215, .7);
+  border: 5px solid #7F7F7F;
+  border-radius: 10px;
+  position: relative;
+  top: 175px;
+}
+h2 {
+  position: relative;
+  top: 18px;
+  color: #EDA400;
+  text-shadow: 2px 2px white;
+}
+.button {
+  border-radius: 5px;
+  position: relative;
+  top: 37px;
+}
+.dropdown {
+  position: relative;
+  top: 25px;
+  display: inline-block;
+}
+.players {
+  visibility: hidden;
+}
+.turtles {
+  visibility: hidden;
+}
+</style>
+
+<!-- <img src="" alt=""> -->
+<!-- <a href=""><img alt="" src=""></a> -->
+<!-- <a href="">text_goes_here</a> -->
+
+<body>
+<div class="container">
+
+  <div class="arena">
+    <h2>Select Arena</h2>
+    <a href="#"><img class="button beachbutton" alt="button" src="button_beach.jpg"></a>
+    <a href="#"><img class="button planetbutton" alt="button" src="button_planet.jpg"></a>
+    <a href="#"><img class="button dojobutton" alt="button" src="button_dojo.jpg"></a>
+    <a href="#"><img class="button forestbutton" alt="button" src="button_forest.jpg"></a>
+    <a href="#"><img class="button matrixbutton" alt="button" src="button_matrix.jpg"></a>
+    <a href="#"><img class="button snowbutton" alt="button" src="button_snow.jpg"></a>
+  </div>
+
+  <div class="players">
+    <h2>Select Players</h2>
+    <div id="dropdown_left" class="dropdown">
+      <form>
+        <select name="Turtles">
+          <option value="Select Ninja">Select Ninja</option>
+          <option id="leftdonnybutton" value="Donny">Donny</option>
+          <option id="leftleobutton" value="Leo">Leo</option>
+          <option id="leftmikeybutton" value="Mike">Mikey</option>
+          <option id="leftraphaelbutton" value="Raphael">Raphael</option>
+        </select>
+      </form>
+    </div>
+    <div id="dropdown_right" class="dropdown">
+      <form>
+        <select name="Turtles">
+          <option value="Select Ninja">Select Ninja</option>
+          <option id="rightdonnybutton" value="Donny">Donny</option>
+          <option id="rightleobutton" value="Leo">Leo</option>
+          <option id="rightmikeybutton" value="Mike">Mikey</option>
+          <option id="rightraphaelbutton" value="Raphael">Raphael</option>
+        </select>
+      </form>
+    </div>
+  </div>
+
+<div class="turtles">
+  <img id="leftdonnypic" src="donny.png" alt="Donny">
+  <img id="leftleopic" src="leo.png" alt="Leo">
+  <img id="leftmikeypic" src="mikey.png" alt="Mikey">
+  <img id="leftraphaelpic" src="raphael.png" alt="Raphael">
+  <img id="rightdonnypic" src="donny.png" alt="Donny">
+  <img id="rightleopic" src="leo.png" alt="Leo">
+  <img id="rightmikeypic" src="mikey.png" alt="Mikey">
+  <img id="rightraphaelpic" src="raphael.png" alt="Raphael">
+</div>
+
+</div>
+</body>
+</html>
