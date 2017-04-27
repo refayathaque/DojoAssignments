@@ -7,19 +7,20 @@
   <meta name="author" content="Refayat Haque">
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <script>
-    $(document).ready(function() {
-
-    $('#button').click(function(){
-    $('form').submit();
+  $(document).ready(function() {
+    $('form').submit(function() { //this is explicit and better than 'click', but for this to work must have 'type=submit' in input, button not mandatory
+      //assigning values from html fields to variables
+      var fname = $('#firstname').val();
+      var lname = $('#lastname').val();
+      var email = $('#emailaddress').val();
+      var contactnum = $('#contactnumber').val();
+      //appending data from variables to table with concatenation
+      $('tbody').append('<tr><td>' + fname + '</td><td>' + lname + '</td><td>' + email + '</td><td>' + contactnum + '</td></tr>');
+      //^format is the way it is because we are not simply passing in static text, we are passing in variables with changing values
+      $('input[type=text]').val(''); //clearing input fields after passing in info
+      return false;
     });
-
-    $('form').on('submit', function (e) {
-    e.preventDefault();
-    var newName = $('form').find('input[value="First Name"]').val();
-    $("table").append('<tr><td>' + newName + '</td></tr>');
-    });
-
-    });
+  });
   </script>
 </head>
 <style>
@@ -48,7 +49,7 @@ input[type=text] {
     padding: 2px 8px 2px 4px;
     margin: 4px 0px 4px 0px;
 }
-button {
+.button {
   padding: 6px;
   border: 1px solid black;
   border-radius: 4px;
@@ -60,37 +61,31 @@ table td {
   padding: 0px 10px 0px 10px;
 }
 </style>
-
 <!-- <img src="" alt=""> -->
 <!-- <a href=""><img alt="" src=""></a> -->
 <!-- <a href="">text_goes_here</a> -->
-
 <body>
 <div class="container">
-
   <table>
+    <thead>
     <tr>
       <th>First Name</th>
       <th>Last Name</th>
       <th>Email Address</th>
       <th>Contact #</th>
     </tr>
-    <!-- <tr>
-      <td>first_name_goes_here</td>
-      <td>last_name_goes_here</td>
-      <td>email_goes_here</td>
-      <td>address_goes_here</td>
-    </tr> -->
+    </thead>
+    <tbody>
+    </tbody>
   </table>
-
   <div class="formdiv">
     <h1>Add User</h1>
     <form class="form" action="" method="">
-      First Name: <input type="text" value="First Name"><br>
-      Last Name: <input type="text" value="Last Name"><br>
-      Email Address: <input type="text" value="Email Address"><br>
-      Contact #: <input type="text" value="Contact"><br>
-      <button>Add User</button>
+      First Name: <input type="text" id="firstname"><br>
+      Last Name: <input type="text" id="lastname"><br>
+      Email Address: <input type="text" id="emailaddress"><br>
+      Contact #: <input type="text" id="contactnumber"><br>
+      <input class="button" type="submit" value="Add User">
     </form>
   </div>
 </div>
