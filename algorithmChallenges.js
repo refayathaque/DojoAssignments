@@ -427,6 +427,31 @@ function skylineHeights(arr) {
       a++;
     }
   }
-  console.log(new_arr);
+  console.log(new_arr); //Doesn't work...output should be[1, 7]
 }
-skylineHeights([1, 2, 3, 4, 5]); //Doesn't work...
+skylineHeights([-1, 1, 1, 7, 3]);
+
+console.log('----');
+
+//Credit Card Validation pg. 43
+function isCCvalid(arr) {
+    var sum = 0, len = arr.length - 2, last = arr[arr.length - 1];
+    if (((arr.length >= 13) && (arr.length <= 19)) !== true)
+      console.log(false);
+    for(var i = len; i >= 0; i--) {
+      if (i % 2 === 1) {
+        arr[i] = arr[i] * 2; }
+      if (arr[i] > 9) {
+        arr[i] = arr[i]-9;
+        sum = sum + arr[i]; }
+    }
+    console.log(sum);
+    console.log(arr);
+    sum += last;
+    console.log(sum)
+    if (sum % 10 === 0) {
+      console.log(true); }
+    else {
+      console.log(false);}
+}
+isCCvalid([5, 2, 2, 8, 2]); //Doesn't work...output should be 'true'
