@@ -33,14 +33,14 @@
       photo = face.results[0].picture.thumbnail;
       console.log('in:' + photo);
 
-        outputCard  += `<div class="hero_box" id=${counter}>
-                        <div class="I${counter}"><img src="${photo}" alt="random image" height="100px" width="100px"></div>
-                        <span class="hero_name">${fname} ${lname}</span>
-                        <span class="click_msg">Click box for description.</span>
-                        <span class="details"> ${story} </span>
-                        </div>`;
-        $('.heroes').append(outputCard);
-        }});
+      outputCard  += `<div class="hero_box" id=${counter}>
+                      <div class="I${counter}"><img src="${photo}" alt="random image" height="100px" width="100px"></div>
+                      <span class="hero_name">${fname} ${lname}</span>
+                      <span class="click_msg">Click box for description.</span>
+                      <span class="details"> ${story} </span>
+                      </div>`;
+      $('.heroes').append(outputCard);
+      }});
     };
 
     $(document).on('click','.hero_box', function () {
