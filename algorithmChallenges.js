@@ -433,7 +433,7 @@ skylineHeights([-1, 1, 1, 7, 3]);
 
 console.log('----');
 
-//Credit Card Validation pg. 43
+//Credit Card Validation pg. 43 (Luhn Algorithm)
 function isCCvalid(arr) {
     var sum = 0, len = arr.length - 2, last = arr[arr.length - 1];
     if (((arr.length >= 13) && (arr.length <= 19)) !== true)
