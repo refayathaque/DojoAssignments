@@ -1,0 +1,68 @@
+<!-- 12082016 daniel@codingdojo.com-->
+
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Contact Card</title>
+        <link rel="stylesheet" href="../css/contact_card.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+        <script type="text/javascript">
+            //I want to make a unique variable to be able to grab each contact card.
+            var counter  = 0;
+            $(document).on("click", ".add_user", function () {
+                //initialize each run.
+                var first, last, detail = '';
+                first = $('#fname').val();
+                last = document.forms["info"]["lname"].val;
+                detail = document.forms["info"]["hero_details"].val;
+                createCard(first, last, detail, counter);
+                counter++;
+                //clear the form
+                $('#info')[0].reset();
+            });
+
+            function createCard(fname, lname, story, counter) {
+                var puddin = '';
+                var outputCard = '';
+
+                $.ajax({
+                    url: 'https://randomuser.me/api/',
+                    dataType: 'json',
+                    success: function ( face ) {
+                        puddin = face.results[0].picture.thumbnail;
+                        console.log('in:'  + puddin);
+                    //notice the ticks... interpolation, and helps to preserve your html.
+                    outputCard  += `<div class="hero_box" id=${counter}>;
+                                        <div class="I${counter}"><img src="${puddin}" alt="random image"></div>
+                                        <span class="hero_name">${fname} ${lname}</span>
+                                        <span class="click_msg">Click box for description.</span>
+                                        <span class="details"> ${story} </span>
+                                    </div>`;
+                    $('.heroes').append(outputCard);
+                }});
+            };
+
+            $(document).on('click','.hero_box', function () {
+                $(this).children('.hero_name').toggle();
+                $(this).children('.click_msg').toggle();
+                $(this).children('.details').toggle();
+            });
+        </script>
+    </head>
+    <body>
+        <div class="wrapper">
+            <div class="left_side">
+                <form class="hero" id="info">
+                    <label>First Name :&nbsp;<input type="text" id="fname"></label>
+                    <label>Last Name :&nbsp;<input type="text" id="lname"></label>
+                    <label class="description"> Description :&nbsp;<input class="text_area" type="textarea" id="hero_details" placeholder="Enter Description"</label>
+                    <button type="button" class="add_user">Add User</button>
+                </form>
+            </div>
+            <div class="right_side">
+                <div class="heroes"></div>
+            </div>
+        </div>
+    </body>
+</html>

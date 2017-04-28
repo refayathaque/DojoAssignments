@@ -1,0 +1,91 @@
+/*12052016 daniel@codingdojo.com*/
+
+*{
+    margin: 0px;
+    padding: 0px;
+}
+/***********************************************/
+/*Layout*/
+/***********************************************/
+.wrapper{
+    margin: 2em auto 2em auto;
+    width: 55%;
+    display: flex;
+}
+
+.left_side{
+    flex: 1;
+    display: inline-block;;
+    height: auto;
+}
+
+.right_side{
+    flex: 1;
+    display: inline-block;;
+    height: auto;
+}
+
+/***********************************************/
+/*Inputs*/
+/***********************************************/
+form{
+    display: inline-block;
+    padding: 2em 2em 1em 0.5em;
+    width: 90%;
+    text-align: left;
+}
+
+label{
+    display: block;
+    padding: 1em;
+}
+
+.description{
+    text-align: left;
+    font-size: 1em;
+    font-weight: bolder;
+}
+
+.text_area{
+    display: block;
+    width: 90%;
+    height: 4em;
+}
+
+.add_user{
+    padding: 1em 1.2em 1em 1.2em;
+    margin: 0.5em;
+}
+
+/***********************************************/
+/*Contact card*/
+/***********************************************/
+
+#click_msg{
+    display: block;
+    text-align: center;
+    font-size: 0.75em;
+}
+
+.hero_box{
+    height: auto;
+    width: 88%;
+    border: 1px solid black;
+    margin: 1em;
+    padding: 0.25em;
+    text-align: center;
+}
+
+.hero_name{
+    text-align: center;
+    margin-bottom: 1em;
+    font-weight: bold;
+    font-size: 2em;
+    display: block;
+}
+.details{
+    display:none;
+    text-align: center;
+    font-size: 1.5em;
+    font-weight: bold;
+}

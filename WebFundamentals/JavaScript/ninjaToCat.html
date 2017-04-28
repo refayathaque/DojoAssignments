@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>ninjaToCat</title>
+    <link rel="stylesheet" type="text/css" href="ninjaToCat.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script>
+    $(document).ready(function() {
+
+      //https://gaurangdabhi.wordpress.com/2014/02/13/change-image-source-on-mousehover-using-jquery/
+      var sourceSwap = function() {
+        var $this = $(this);
+        var newSource = $this.data('alt-src');
+        $this.data('alt-src', $this.attr('src'));
+        $this.attr('src', newSource);
+      }
+
+      $(function () {
+        $('img').click(sourceSwap, sourceSwap);
+      });
+
+    });
+    </script>
+  </head>
+  <body>
+    <div id="container">
+      <div id="sectionOne">
+        <img src='ninjaToCatImages/ninja0.png' data-alt-src='ninjaToCatImages/cat0.png'/>
+      </div>
+      <div id="sectionTwo">
+        <img src='ninjaToCatImages/ninja1.png' data-alt-src='ninjaToCatImages/cat1.png'/>
+      </div>
+      <div id="sectionThree">
+        <img src='ninjaToCatImages/ninja2.png' data-alt-src='ninjaToCatImages/cat2.png'/>
+      </div>
+      <div id="sectionFour">
+        <img src='ninjaToCatImages/ninja3.png' data-alt-src='ninjaToCatImages/cat3.png'/>
+      </div>
+      <div id="sectionFive">
+        <img src='ninjaToCatImages/ninja4.png' data-alt-src='ninjaToCatImages/cat4.png'/>
+      </div>
+    </div>
+  </body>
+</html>

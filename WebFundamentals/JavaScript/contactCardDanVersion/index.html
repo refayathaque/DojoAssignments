@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Contact Card</title>
+        <link rel="stylesheet" href="style.css">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+
+        <script type="text/javascript">
+            $(document).ready(function(){
+                $(document).on('click', 'button', function(){
+                    var picture = "";
+                    var fname = $( "section" ).find('input[name="first"]').val();
+                    var lname = $( "section" ).find('input[name="last"]').val();
+                    var desc = $( "section" ).find('input[name="desc"]').val();
+                    // $.get('https://randomuser.me/api/', function (res){
+                    //     picture = res.results[0].picture.medium },"json");
+
+
+
+
+                    // console.log('First Name:',fname);
+                    // console.log('Last Name:',lname);
+                    // console.log('desc:',desc);
+                    function createCard(fname,lname,desc,picture){
+
+                        // GET
+                        $.get('https://randomuser.me/api/', function (res){
+                            picture = res.results[0].picture.medium
+
+                            var html_str = `
+                                            <div>
+                                                <img src="${picture}" alt="random image">
+                                                <span> ${fname} ${lname}</span><br>
+                                                <hr>
+                                                <span id="popup"> ${desc}</span><br>
+                                            </div>
+                                            `;
+
+                            $(".heroes").html(html_str);
+
+                        },"json");
+
+
+
+                                    // AJAX
+
+                                    $.ajax({
+                                    url: 'https://randomuser.me/api/',
+                                    dataType: 'json',
+                                    success: function( face ) {
+                                        var picture = face.results[0].picture.thumbnail;
+                                        console.log('in:'  + picture);
+
+                                        var html_str = `
+                                                        <div>
+                                                            <img src="${picture}" alt="random image">
+                                                            <span> ${fname} ${lname}</span><br>
+                                                            <hr>
+                                                            <span id="popup"> ${desc}</span><br>
+                                                        </div>
+                                                        `;
+
+                                    $(".heroes").html(html_str);
+
+                                    }
+                                    });
+
+                    }
+                    createCard(fname,lname,desc,picture);
+                });
+                $('.heroes').click(function (){
+                    $("#popup").css('visibility','visible');
+                });
+
+            });
+        </script>
+    </head>
+    <body>
+        <header>
+            Contact Card
+        </header>
+        <div class="container">
+            <section>
+                <label>First Name</label>
+                <input type="text" name="first" placeholder="ENTER">
+                <label>Last Name</label>
+                <input type="text" name="last">
+                <label>Description</label>
+                <input type="text" name="desc">
+                <button type="button" name="add_hero">Add User</button>
+            </section>
+            <aside class="heroes">
+            </aside>
+        </div>
+    </body>
+</html>
