@@ -8,7 +8,7 @@
                                                                                           //'appending' below
              color = '#' //this is what we'll return! must 'append' to #
              for(var i = 0; i < 6; i++) { //hexadecimal(6) color for loop, that's why conditional < 6
-                x = Math.floor((Math.random()*16)) //16 bc that's array rgb.length, will give random value from 0 to 15
+                x = Math.trunc((Math.random()*16)) //16 bc that's array rgb.length, will give random value from 0 to 15
                                                    //Math.floor() function returns the largest integer LESS than or equal to a given number
                                                    //can also use Math.trunc here, since must round DOWN to ensure nothing higher than 15
                 color += rgb[x]; } //'appending' to color var's # above
@@ -17,21 +17,26 @@
         $(document).ready(function(){
 
           $('#large_box').click(function(){
-            alert('You clicked the big box, now watch the big box and smaller boxes change colors!');
-            var colorsmallbox = random_color();
-            $('#large_box').children().css("background-color", colorsmallbox);
-            var colorlargebox = random_color();
-            $('#large_box').css("background-color", colorlargebox);
-         //comment this out when you have figured out what event.stopPropagation is used for
-            })
+            $(this).children().css("background-color", random_color()); //Can call functions from jQuery .css method!
+              $(this).css("background-color", random_color());
+          })
 
-            $('.side_box').click(function(event){
-              event.stopPropagation();
-            })
+          $('.middle_box').click(function(event){
+            event.stopPropagation(); //stops .click method from propagating from the child element to the parent element, allows us
+                                     //to target .click to smaller box exclusively and not the whole box
+              $(this).parent().css("background-color", random_color()); //traversing
+          })
 
-            $('.middle_box').click(function(event){
-              event.stopPropagation();
-            })
+          $('.side_box').click(function(event){
+            event.stopPropagation();
+              $(this).siblings().css("background-color", random_color()); //traversing
+          })
+
+/*event.stopPropagation() in the .click() method for the child elements of the large box.
+This function prevents the .click() method from propagating from the child element to the
+parent element because, technically, when you click the smaller boxes, you are also clicking
+the big box too. This function allows us to make the .click() event exclusively for the small
+boxes and not the big boxes.*/
 
         });
       </script>
