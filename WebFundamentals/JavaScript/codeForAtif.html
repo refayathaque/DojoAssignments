@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>jQueryCallbackExample</title>
+<script src="https://code.jquery.com/jquery-3.1.0.js"></script>
+<script>
+
+  function dynamicHandler() {
+    $('h3').click(function() {
+      alert('You clicked an H3!');});
+  }
+
+  $(document).ready(function() {
+    dynamicHandler(); //alert repeats itself based on # of times dynamic content below is generated. How do I stop this?
+      $('button').click(function() {
+        $('div').append('<h3>I am a dynamically generated H3</h3>');
+          dynamicHandler();
+    });
+  });
+
+</script>
+</head>
+<body>
+  <div>
+    <button>Click me to add a new H3 tag!</button>
+    <h3>Click me to see a message!</h3>
+  </div>
+</body>
+</html>
