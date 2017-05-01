@@ -1,11 +1,3 @@
-/*
-<link rel="stylesheet" href=".css">
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
-  </script>
-<img src=".jpg" alt="">
-<img src='.png' data-alt-src='.png'/>
-$(document).ready(function() {});
-*/
 * {
 	outline: 0.25px solid yellow;
 	padding: 0;
