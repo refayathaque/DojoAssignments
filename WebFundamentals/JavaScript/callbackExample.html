@@ -10,16 +10,19 @@
   function dynamicHandler() {
     $('h3').click(function() {
       alert('You clicked an H3!');});
-  }
+    }
 
   $(document).ready(function() {
     dynamicHandler(); //function replaces original code (DRY - Don't Repeat Yourself)
                       //$('h3').click(function(){alert('You clicked an H3!');});
-      $('button').click(function() {
-        $('div').append('<h3>I am a dynamically generated H3</h3>');
-          dynamicHandler();
+    $('button').click(function() {
+      $('div').append('<h3>I am a dynamically generated H3</h3>');
+      dynamicHandler();
     });
   });
+
+// $event.stopPropagation();
+// $callbacks.remove(dynamicHandler);
 
 </script>
 </head>
