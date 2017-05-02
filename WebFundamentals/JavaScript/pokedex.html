@@ -17,18 +17,26 @@
   //^Thanks to Dino Paskvan (http://codepen.io/dpskvn/pen/sxcAe/)
 
   var name_array = [];
-
+  //name
+  $.get("http://pokeapi.co/api/v2/pokemon/?limit=151", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      name_array.push(html_str_name);
+    }
+  }, "json");
+  //types
   $.get("http://pokeapi.co/api/v2/pokemon/", function(nameRes) {
     for (var i = 0; i < nameRes.results.length; i++) {
       var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
       name_array.push(html_str_name);
     }
-    console.log(name_array);
   }, "json");
 
   $('img').on('click', function(){
     var y = this.id; //HOW TO GET VALUES OF IDs!!!
     $('.info_box').html(name_array[y]);
+    var x = parseInt(y) + 1; //converting strings to numbers
+    $('.info_box').append("<img src='http://pokeapi.co/media/img/" + x + ".png'>")
   })
 
   });
