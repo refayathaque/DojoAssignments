@@ -11,65 +11,25 @@
   for (var i = 1; i <= 151; i++) {
     $image_tag = $("<img src='http://pokeapi.co/media/img/" + i + ".png'>");
     $('.pokemon_images').append($image_tag);
-    $image_tag.attr('id', i);
+    $image_tag.attr('id', i - 1);
   }
+
   //^Thanks to Dino Paskvan (http://codepen.io/dpskvn/pen/sxcAe/)
+
+  var name_array = [];
 
   $.get("http://pokeapi.co/api/v2/pokemon/", function(nameRes) {
     for (var i = 0; i < nameRes.results.length; i++) {
       var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
+      name_array.push(html_str_name);
     }
-  });
+    console.log(name_array);
+  }, "json");
 
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=20", function(nameRes) {
-    for (var i = 0; i < nameRes.results.length; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
-
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=40", function(nameRes) {
-    for (var i = 0; i < nameRes.results.length; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
-
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=60", function(nameRes) {
-    for (var i = 0; i < nameRes.results.length; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
-
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=80", function(nameRes) {
-    for (var i = 0; i < nameRes.results.length; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
-
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=100", function(nameRes) {
-    for (var i = 0; i < nameRes.results.length; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
-
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=120", function(nameRes) {
-    for (var i = 0; i < nameRes.results.length; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
-
-  $.get("http://pokeapi.co/api/v2/pokemon/?offset=140", function(nameRes) {
-    for (var i = 0; i < 11; i++) {
-      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
-      console.log(html_str_name);
-    }
-  });
+  $('img').on('click', function(){
+    var y = this.id; //HOW TO GET VALUES OF IDs!!!
+    $('.info_box').html(name_array[y]);
+  })
 
   });
   </script>
