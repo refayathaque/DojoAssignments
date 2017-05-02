@@ -486,4 +486,43 @@ function creditCard(arr) {
     console.log(false);
   }
 }
-creditCard([5, 2, 2, 8, 2]);
+creditCard([5, 2, 2, 8, 2]); //Need to check
+
+console.log('----');
+
+//Zip It pg. 44
+function zipper(first, second) {
+  var a = 0, x = 0;
+  var newArr = [];
+  var firstLength = first.length;
+  var secondLength = second.length;
+  if(x >= secondLength) {
+    while (x < secondLength) {
+        newArr[a] = first[x];
+        a++;
+        newArr[a] = second[x];
+        a++;
+        x++;
+    }
+    while (x < firstLength) {
+        newArr[a] = first[x];
+        a++;
+        x++;
+    }
+    console.log(newArr);
+  }
+  if (x = firstLength) {
+    while (x < firstLength) {
+      newArr[a] = first[x];
+      a++;
+      newArr[a] = second[x];
+      a++;
+    }
+    while (x < secondLength) {
+      newArr[a] = second[x];
+      a++;
+      x++;
+    }
+    console.log(newArr); //Need to check
+  }
+}
