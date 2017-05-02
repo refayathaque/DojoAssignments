@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Pokedex</title>
+    <link rel="stylesheet" href="pokedex.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  <script>
+  $(document).ready(function() {
+
+  for (var i = 1; i <= 151; i++) {
+    $image_tag = $("<img src='http://pokeapi.co/media/img/" + i + ".png'>");
+    $('.pokemon_images').append($image_tag);
+    $image_tag.attr('id', i);
+  }
+  //^Thanks to Dino Paskvan (http://codepen.io/dpskvn/pen/sxcAe/)
+
+  $.get("http://pokeapi.co/api/v2/pokemon/", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=20", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=40", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=60", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=80", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=100", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=120", function(nameRes) {
+    for (var i = 0; i < nameRes.results.length; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  $.get("http://pokeapi.co/api/v2/pokemon/?offset=140", function(nameRes) {
+    for (var i = 0; i < 11; i++) {
+      var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
+      console.log(html_str_name);
+    }
+  });
+
+  });
+  </script>
+  </head>
+  <body>
+    <div id="container">
+      <div class="pokemon_images">
+      </div>
+      <div class="info_box">
+        <h2>*Pokemon*</h2>
+      </div>
+    </div>
+  </body>
+</html>
