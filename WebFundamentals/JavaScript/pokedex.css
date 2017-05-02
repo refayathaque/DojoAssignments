@@ -20,7 +20,7 @@
 }
 .info_box {
   position: fixed;
-  left: 861px;
+  margin-left: 15px;
   width: 225px;
   border: 2px solid red;
   border-radius: 5px;

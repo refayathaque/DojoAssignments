@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Weather Forecast App</title>
+    <link rel="stylesheet" href="weatherForecastApp.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+      </script>
+    <script type="text/javascript">
+    $(document).ready(function() {
+
+      $('form').submit(function() {
+        var city = $("input:text").val();
+        console.log(city);
+        var url = "http://api.openweathermap.org/data/2.5/weather?q=" + city + "&&appid=6ae4507d555f1bc2f4e00792f1eaba1f"
+        console.log(url);
+        $.get(url, function(res) {
+          var temp = res.main.temp
+          var temp_converted = Math.round(temp - 273.15) + " °C";
+          var deg = "degrees Celsius"
+          var condition = res.weather[0].main
+          console.log(condition);
+          console.log(temp);
+          console.log(temp_converted);
+          $('.output').html(`<h1>${city}</h1><h2>${temp_converted}</h2><h3>${condition}</h3>`);
+        }, 'json');
+        return false; //so the page doesn't refresh
+    });
+
+    });
+    </script>
+  </head>
+  <body>
+    <div class="container">
+      <form>
+        <input type="text" name="city" value="Enter city here">
+        <input type="submit" value="Submit">
+      </form>
+      <div class="output">
+      </div>
+    </div>
+  </body>
+</html>

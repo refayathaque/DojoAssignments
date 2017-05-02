@@ -1,0 +1,10 @@
+.container {
+  color: black;
+  font-family: sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 1000px;
+  text-align: center;
+}

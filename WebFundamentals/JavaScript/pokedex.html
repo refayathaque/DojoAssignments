@@ -17,7 +17,7 @@
 
   var name_array = [];
 
-  $.get("http://pokeapi.co/api/v2/pokemon/?limit=151", function(nameRes) {
+  $.get("https://pokeapi.co/api/v2/pokemon/?limit=151", function(nameRes) {
     for (var i = 0; i < nameRes.results.length; i++) {
       var html_str_name = "<h2>" + nameRes.results[i].name + "</h2>";
       name_array.push(html_str_name);
