@@ -9,15 +9,23 @@
   $(document).ready(function() {
 
   for (var i = 1; i <= 151; i++) {
-      $('.pokemonimages').append("<img src='http://pokeapi.co/media/img/" + i + ".png'>");
-    }
+    $('.pokemon').append("<img src='http://pokeapi.co/media/img/" + i + ".png'>");
+    // $.get("http://pokeapi.co/api/v2/pokemon/", function(res) {
+    //   $('.pokemon').append("<p>" + res.results[i - 1].name + "</p>");
+    // }, 'json'); DOESN'T WORK!
+  }
+
+  $.get("http://pokeapi.co/api/v2/pokemon/", function(res) {
+    for (var i = 0; i < 151; i++) {
+    $('.pokemon').append("<p>" + res.results[i].name + "</p>");
+  }}, 'json'); //appends only a few, at bottom of entire .pokemon div
 
   });
   </script>
   </head>
   <body>
     <div id="container">
-      <div class="pokemonimages">
+      <div class="pokemon">
       </div>
     </div>
   </body>
