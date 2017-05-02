@@ -526,3 +526,19 @@ function zipper(first, second) {
     console.log(newArr); //Need to check
   }
 }
+
+console.log('----');
+
+//Array: Remove Negatives pg. 43
+function removeNegatives(arr) {
+  for(var i = 0; i < arr.length; i++) {
+    while(arr[i] < 0) {
+      for(var x = i; x < arr.length - 1; x++) {
+        arr[x] = arr[x + 1];
+      }
+    arr.length -= 1;
+    }
+  }
+  console.log(arr);
+}
+removeNegatives([1, 5, -3, -9, 10, 7, -2]); //Outputs [1, 5, 10, 7]

@@ -5,6 +5,9 @@
 <img src=".jpg" alt="">
 <img src='.png' data-alt-src='.png'/>
 $(document).ready(function() {});
+$(document).on('click', 'h3', function(){
+    alert('You clicked me!');
+  })
 */
 * {
 	outline: 0.25px solid yellow;
