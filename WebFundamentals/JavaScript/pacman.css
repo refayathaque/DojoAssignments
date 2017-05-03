@@ -1,0 +1,48 @@
+/*
+<link rel="stylesheet" href=".css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
+<img src=".jpg" alt="">
+<img src='.png' data-alt-src='.png'/>
+$(document).ready(function() {});
+$(document).on('click', 'h3', function(){
+    alert('You clicked me!');
+  })
+*/
+/** {
+	outline: 0;
+	padding: 0;
+	margin: 0;
+	border: 0;
+	}*/
+/*#container {
+  color: black;
+  font-family: sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 1000px;
+  text-align: center;
+}*/
+body {
+  background-color: black;
+}
+div.brick {
+  background-color: blue;
+}
+div.row div {
+  width: 20px;
+  height: 20px;
+  display: inline-block;
+}
+div.coin {
+  background: url('coin.gif') no-repeat center;
+}
+div.pacman {
+  background: url('pacman.gif') no-repeat center;
+  background-size: auto; /*gets image to fit in div*/
+}
+div.empty {
+  /*if you dont want anything just leave it empty*/
+}
