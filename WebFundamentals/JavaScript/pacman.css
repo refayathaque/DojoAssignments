@@ -27,9 +27,21 @@ $(document).on('click', 'h3', function(){
 }*/
 body {
   background-color: black;
+  margin: 0px;
 }
 div.brick {
   background-color: blue;
+}
+div#score {
+  border: 1px solid white;
+  width: 30px;
+  height: 20px;
+  color: white;
+  text-align: center;
+  padding: 7px;
+  position: absolute;
+  top: 8px;
+  left: 250px;
 }
 div.row div {
   width: 20px;
@@ -39,9 +51,12 @@ div.row div {
 div.coin {
   background: url('coin.gif') no-repeat center;
 }
-div.pacman {
+div#pacman {
   background: url('pacman.gif') no-repeat center;
   background-size: auto; /*gets image to fit in div*/
+  width: 20px;
+  height: 20px;
+  position: absolute;
 }
 div.empty {
   /*if you dont want anything just leave it empty*/
