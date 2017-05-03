@@ -542,3 +542,32 @@ function removeNegatives(arr) {
   console.log(arr);
 }
 removeNegatives([1, 5, -3, -9, 10, 7, -2]); //Outputs [1, 5, 10, 7]
+
+console.log('----');
+
+//Array: Remove At pg. 39
+function removeAt (arr, index) {
+  var output = arr[index];
+  for(var x = index; x < arr.length; x++) {
+    arr[x] = arr[x + 1];
+  }
+  arr.length -= 1;
+  console.log(output);
+}
+var myvar = [1, 2, -7, 9]
+removeAt(myvar, 2); //Outputs -7
+console.log(myvar); //Outputs [1, 2, 9]
+
+console.log('----');
+
+//Array: Insert At pg. 39
+function insertAt (arr, index, value) {
+  for(var x = arr.length; x >= 1; x--) {
+    arr[x] = arr[x - 1];
+  }
+  arr[index] = value;
+  console.log(arr); //Outputs [1, 1, -10, 3, -8]
+}
+insertAt([1, 2, 3, -8], 2, -10);
+
+console.log('----');
