@@ -6,88 +6,87 @@
     <link rel="stylesheet" href="pacman.css">
   </head>
   <body>
-
   <div id="container">
   <div id="world"></div>
   <div id="pacman"></div>
   <div id="score">0</div>
   </div>
 
-    <script type="text/javascript">
+  <script>
+  var world = [
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
+    [2, 1, 1, 1, 1, 1, 1, 1, 2, 1, 1, 2],
+    [2, 2, 2, 1, 1, 1, 1, 2, 2, 1, 1, 2],
+    [2, 1, 2, 1, 1, 1, 1, 1, 2, 1, 1, 2],
+    [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2],
+    [2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2],
+    [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+    [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
+    [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
+  ];
+  var score = 0;
 
-      var world = [
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-        [2, 2, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-        [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-        [2, 1, 1, 1, 2, 1, 1, 1, 1, 1, 1, 2],
-        [2, 1, 1, 1, 2, 2, 2, 2, 2, 2, 2, 2],
-        [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-        [2, 1, 2, 1, 1, 1, 1, 1, 1, 1, 1, 2],
-        [2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2]
-      ];
-      var score = 0;
+  var pacman = {
+    x: 1,
+    y: 1
+  };
 
-      var pacman = {
-        x: 1,
-        y: 1
-      };
+  function displayWorld() {
+    var output = '';
+    for(var i = 0; i<world.length; i++) {
+      output += "\n<div class='row'>\n";
+      for(var j = 0; j<world[i].length; j++) {
+          if(world[i][j] == 2)
+            output += "<div class='brick'></div>"; //concatenation,
+                                              //\n\t is NEW LINE and NEW TAB
+          if(world[i][j] == 1)
+            output += "<div class='coin'></div>";
+          if(world[i][j] == 0)
+            output += "<div class='empty'></div>";
+      }
+      console.log(output);
+      output += "\n</div>";
+    }
+    // console.log(output);
+    document.getElementById('world').innerHTML = output; //places content
+            //into element that method 'document.getElementById('#id')'
+            //targets, method 'innerHTML' targets INSIDE the HTML tags
+  }
+  function displayPacman(){
+    document.getElementById('pacman').style.top = pacman.y*24 + "px";
+    document.getElementById('pacman').style.left = pacman.x*20 + "px";
+  }
+  function displayScore(){
+    document.getElementById('score').innerHTML = score;
+  }
+  displayWorld();
+  displayPacman();
+  displayScore();
 
-      function displayWorld() {
-        var output = '';
-        for(var i = 0; i<world.length; i++) {
-          output += "\n<div class='row'>\n";
-          for(var j = 0; j<world[i].length; j++) {
-              if(world[i][j] == 2)
-                output += "<div class='brick'></div>"; //concatenation,
-                                                  //\n\t is NEW LINE and NEW TAB
-              if(world[i][j] == 1)
-                output += "<div class='coin'></div>";
-              if(world[i][j] == 0)
-                output += "<div class='empty'></div>";
-          }
-          console.log(output);
-          output += "\n</div>";
-        }
-        // console.log(output);
-        document.getElementById('world').innerHTML = output; //places content
-                //into element that method 'document.getElementById('#id')'
-                //targets, method 'innerHTML' targets INSIDE the HTML tags
-      }
-      function displayPacman(){
-        document.getElementById('pacman').style.top = pacman.y*24 + "px";
-        document.getElementById('pacman').style.left = pacman.x*20 + "px";
-      }
-      function displayScore(){
-        document.getElementById('score').innerHTML = score;
-      }
+  document.onkeydown = function(e){ //function gets executed when key is
+                                    //is pressed
+    if(e.keyCode == 37 && world[pacman.y][pacman.x-1] != 2) {
+      pacman.x--;
+    }
+    else if(e.keyCode == 39 && world[pacman.y][pacman.x+1] != 2) {
+      pacman.x++;
+    }
+    else if(e.keyCode == 38 && world[pacman.y-1][pacman.x] != 2) {
+      pacman.y--;
+    }
+    else if(e.keyCode == 40 && world[pacman.y+1][pacman.x] != 2) {
+      pacman.y++;
+    }
+    if(world[pacman.y][pacman.x] == 1) {
+      world[pacman.y][pacman.x] = 0;
+      score += 1;
       displayWorld();
-      displayPacman();
       displayScore();
+    }
+    console.log(e.keyCode);
+    displayPacman();
+  }
+  </script>
 
-      document.onkeydown = function(e){ //function gets executed when key is
-                                        //is pressed
-        if(e.keyCode == 37) {
-          pacman.x--;
-        }
-        else if(e.keyCode == 39) {
-          pacman.x++;
-        }
-        else if(e.keyCode == 38) {
-          pacman.y--;
-        }
-        else if(e.keyCode == 40) {
-          pacman.y++;
-        }
-        if(world[pacman.y][pacman.x] == 1) {
-          world[pacman.y][pacman.x] = 0;
-          score += 1;
-          displayWorld();
-          displayScore();
-        }
-        console.log(e.keyCode);
-        displayPacman();
-      }
-    </script>
   </body>
 </html>
