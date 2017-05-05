@@ -28,3 +28,6 @@ print y.isalpha() #False
 word = "Honduras"
 print word[1:7]
 print word[1:len(word)]
+
+import math
+print math.sqrt(25)
