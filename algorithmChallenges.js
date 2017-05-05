@@ -560,14 +560,14 @@ console.log(myvar); //Outputs [1, 2, 9]
 
 console.log('----');
 
-//Array: Insert At pg. 39
+//Array: Insert At pg. 39 //05.05.17 Practiced
 function insertAt (arr, index, value) {
-  for(var x = arr.length; x >= 1; x--) {
+  for(var x = arr.length; x >= index; x--) {
     arr[x] = arr[x - 1];
   }
   arr[index] = value;
-  console.log(arr); //Outputs [1, 1, -10, 3, -8]
+  console.log(arr); //Outputs [-1, 2, -10, -3, 45]
 }
-insertAt([1, 2, 3, -8], 2, -10);
+insertAt([-1, 2, -3, 45], 2, -10);
 
 console.log('----');
