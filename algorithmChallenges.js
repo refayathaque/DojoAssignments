@@ -409,27 +409,19 @@ populatingArray();
 
 console.log('----');
 
-//Skyline Heights pg. 41
-//var a is new_arr_index_counter
+//Skyline Heights pg. 41 //05.06.17 Practiced
 function skylineHeights(arr) {
-  var new_arr = []; a = 0;
-  for(var x = 0; x < arr.length; x++) {
-    if ((arr[x] > arr[x + 1]) || (arr[x] === arr[x + 1])) {
-      new_arr[a] = arr[x];
-      a++;
-    }
-    if (arr[0] > 0) {
-      new_arr[a] = arr[x];
-      a++;
-    }
-    if (arr[x] < arr[x + 1]) {
-      new_arr[a] = arr[x + 1];
-      a++;
+  var in_view = [];
+  var current_highest = 0;
+  for (var x = 0; x < arr.length; x++) {
+    if (arr[x] > current_highest) {
+      in_view.push(arr[x]);
+      current_highest = arr[x];
     }
   }
-  console.log(new_arr); //Doesn't work...output should be[1, 7]
+  console.log(in_view);
 }
-skylineHeights([-1, 1, 1, 7, 3]);
+skylineHeights([-1, 1, 1, 7, 3]); //[1, 7]
 
 console.log('----');
 
