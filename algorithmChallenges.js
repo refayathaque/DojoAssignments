@@ -468,42 +468,25 @@ creditCard([5, 2, 2, 8, 2]);
 
 console.log('----');
 
-//Zip It pg. 44
-function zipper(first, second) {
-  var a = 0, x = 0;
-  var newArr = [];
-  var firstLength = first.length;
-  var secondLength = second.length;
-  if(x >= secondLength) {
-    while (x < secondLength) {
-        newArr[a] = first[x];
-        a++;
-        newArr[a] = second[x];
-        a++;
-        x++;
-    }
-    while (x < firstLength) {
-        newArr[a] = first[x];
-        a++;
-        x++;
-    }
-    console.log(newArr);
+//Zip It pg. 44 //05.06.17 Practiced
+function zipIt(arrOne, arrTwo) {
+  var arrNew = [];
+  for(x = 0, y = 0; x < arrOne.length, y < arrTwo.length; x++, y++) {
+    arrNew.push(arrOne[x]);
+    arrNew.push(arrTwo[x]);
   }
-  if (x = firstLength) {
-    while (x < firstLength) {
-      newArr[a] = first[x];
-      a++;
-      newArr[a] = second[x];
-      a++;
+  console.log(arrNew); //[1, 10, 2, 20, undefined, 30, undefined, 40]
+  for(i = 0; i < arrNew.length; i++) {
+    if (typeof(arrNew[i]) == 'undefined') {
+      arrNew.splice(i, 1);
+      /* splice() method changes the contents of an array by removing existing
+      elements and/or adding new elements. array.splice(index, deleteCount); /
+      array.splice(index, 0, 'element_being_added'); */
     }
-    while (x < secondLength) {
-      newArr[a] = second[x];
-      a++;
-      x++;
-    }
-    console.log(newArr); //Need to check
   }
+  console.log(arrNew); //[1, 10, 2, 20, 30, 40]
 }
+zipIt([1, 2], [10, 20, 30, 40]);
 
 console.log('----');
 
