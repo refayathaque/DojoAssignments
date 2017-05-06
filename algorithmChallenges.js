@@ -433,60 +433,38 @@ skylineHeights([-1, 1, 1, 7, 3]);
 
 console.log('----');
 
-//Credit Card Validation pg. 43 (Luhn Algorithm)
-function isCCvalid(arr) {
-    var sum = 0, len = arr.length - 2, last = arr[arr.length - 1];
-    if (((arr.length >= 13) && (arr.length <= 19)) !== true)
-      console.log(false);
-    for(var i = len; i >= 0; i--) {
-      if (i % 2 === 1) {
-        arr[i] = arr[i] * 2; }
-      if (arr[i] > 9) {
-        arr[i] = arr[i]-9;
-        sum = sum + arr[i]; }
-    }
-    console.log(sum);
-    console.log(arr);
-    sum += last;
-    console.log(sum)
-    if (sum % 10 === 0) {
-      console.log(true); }
-    else {
-      console.log(false);}
-}
-isCCvalid([5, 2, 2, 8, 2]); //Doesn't work...output should be 'true'
-//Another version of what's above
-function creditCard(arr) {
-  var temp = arr[arr.length - 1]; var i = 0; var sum = 0; var final_value = 0;
-  for(var x = arr.length - 2; x <= 0; x--) {
-    if (x === arr.length - 2) {
-      arr[x] *= 2;
-      console.log(arr[x]);
-    }
-    if (x === arr.length - (4 + i)) {
-      i += 2;
-      arr[x] *= 2;
-    }
+//Credit Card Validation pg. 43 //05.06.17 Practiced
+function creditCard (arr) {
+  lastDigit = arr[arr.length - 1];
+  arr = arr.slice(0, arr.length - 1);
+  arr_sum = 0;
+  console.log(arr); //[ 5, 2, 2, 8 ]
+  for(var x = arr.length - 1; x >= 0; x--) {
+     if(x % 2 !== 0) {
+     arr[x] = arr[x] * 2;
+     }
   }
-  for(var x = arr.length - 2; x<= 0; x--) {
-    if (arr[x] > 9) {
-      arr[x] - 9;
-    }
+  console.log(arr); //[ 5, 4, 2, 16 ]
+  for(var i = 0; i < arr.length; i++) {
+     if(arr[i] > 9) {
+     arr[i] = arr[i] - 9;
+     }
   }
-  for(var x = arr.length - 2; x<= 0; x--) {
-    sum += arr[x]
+  console.log(arr); //[ 5, 4, 2, 7 ]
+  for(var y = 0; y < arr.length; y++) {
+     arr_sum += arr[y];
   }
-  console.log(arr);
-  final_value = sum + temp;
-  console.log(final_value);
-  if (final_value % 10 === 0) {
-    console.log(true);
+  console.log(arr_sum); //18
+  arr_sum += lastDigit;
+  console.log(arr_sum); //20
+  if(arr_sum % 10 === 0) {
+      console.log('Valid Credit Card!'); //Output
   }
   else {
-    console.log(false);
+      console.log('Invalid Credit Card...');
   }
 }
-creditCard([5, 2, 2, 8, 2]); //Need to check
+creditCard([5, 2, 2, 8, 2]);
 
 console.log('----');
 
