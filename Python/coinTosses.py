@@ -18,7 +18,7 @@ def coinTosses():
     tailscounter = 0;
     for count in range(1, 5001):
         from random import random #function import
-        g = random()
+        g = random() #returns random floats between 0.0 and 1.0, won't take arguments
         x = round(g)
         if x < 1:
             headscounter += 1
