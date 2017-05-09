@@ -15,6 +15,11 @@ list.remove(toreplace)
 newStr = (' ').join(list)
 print newStr #It's thanksgiving month. It's my birthday,too!
 
+#Find and Replace w/ REPLACE() method
+
+str = "It's thanksgiving day. It's my birthday,too!"
+print str.replace('day', "month", 1)
+
 #Min and Max
 x = [2, 54, -2, 7, 12, 98]
 
