@@ -22,3 +22,5 @@ def typeList(list):
         print strconcat
 
 typeList(['magical','unicorns'])
+
+# good.

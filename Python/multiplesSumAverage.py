@@ -1,6 +1,6 @@
 #Multiples
 
-for count in range(0, 1000):
+for count in range(0, 1000): # modulo is an good way of solving this problem, is there another way of solving this problem, perhaps saving your computer from having to count and %'ing all 999 numbers?
     if count % 2 != 0:
         print count
 for count in range(5, 1000000):
