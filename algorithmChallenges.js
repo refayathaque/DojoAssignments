@@ -524,3 +524,15 @@ function insertAt (arr, index, value) {
 insertAt([-1, 2, -3, 45], 2, -10);
 
 console.log('----');
+
+//Remove Blanks pg. 51 //05.08.17 Practiced
+function removeBlanks(string) { //defining function and parameter
+  var string2 = ""; //initializing variable to populate new string of no spaces
+  for(var x = 0; x < string.length; x++) { //iterating over original string
+    if(string[x] != " ") { //checking for spaces
+      string2 += string[x]; //CONCATENATING letters that are not spaces
+    }
+  }
+  console.log(string2); //logging our newly populated string of no spaces
+}
+removeBlanks("Pl ayTha tF u nkyM usi     c    "); //Outputs PlayThatFunkyMusic
