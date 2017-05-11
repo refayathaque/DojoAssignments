@@ -8,14 +8,14 @@ class Product(object):
         self.weight = weight
         self.brand = brand
         self.cost = cost
-        self.status = "for sale"
+        self.status = "for sale" #naming and passing DEFAULT parameters, not included ^
 
     def sell(self):
         self.status = "sold"
         return self
 
     def tax(self, tax_rate):
-        self.price *= (1 - tax_rate)
+        self.price *= (1 + tax_rate)
         return self
 
     def return_item(self, return_reason):
@@ -48,8 +48,8 @@ product6 = Product(51, "Monitor", 24, "Asus", 91)
 
 # Instantiation
 product1.sell().display_info()
-product2.tax(0.3).display_info() #tax_rate is wtv is passed ^
+product2.tax(0.3).display_info() #tax_rate is wtv we pass
 product3.return_item("defective").display_info() #works! price is 0!
 product4.display_info()
 product5.display_info()
-product6.tax(0.3).return_item("opened").display_info() #works! price reflects tax AND return_item!
+product6.tax(0.4).return_item("opened").display_info() #works! price reflects tax AND return_item!
