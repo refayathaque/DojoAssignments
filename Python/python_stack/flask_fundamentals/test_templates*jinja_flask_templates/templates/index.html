@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>My First Template</title>
+  </head>
+  <body>
+
+    <h3>My flask template with embedded Python-like code</h3>
+
+    <!-- this will output the value of our phrase variable -->
+    <p>Phrase: {{ phrase }}</p>
+
+    <!-- this will output the value of our times variable -->
+    <p>Times: {{ times }}</p>
+
+    <!-- here is an example of embedding a for-loop in our code -->
+    {% for x in range(0,times) %}
+    <p>{{ phrase }}</p>
+    {% endfor %}
+    <!-- MUST END W/ THIS WHEN INJECTING EXPRESSIONS! -->
+
+    <!-- here is an example of embedding an if statement in our code -->
+    {% if phrase == "Hello" %}
+    <p>The phrase says Hello</p>
+    {% endif %}
+    <!-- MUST END W/ THIS WHEN INJECTING EXPRESSIONS! -->
+
+  </body>
+</html>
+
+<!-- Although you technically can do a lot of logic in your templates, you should try to
+limit that logic as much as possible. Do the bulk of your logic in your Python code.
+If you put too much logic in your templates, you may slow down your server response time. -->
+
+<!-- http://jinja.pocoo.org/docs/dev/templates/ -->
