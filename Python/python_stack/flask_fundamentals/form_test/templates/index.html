@@ -1,0 +1,20 @@
+<html>
+    <head>
+       <title>Form Test Index</title>
+    </head>
+    <body>
+      <h1>Index Page</h1>
+      <h3>Create a User</h3>
+      <form action='/users' method='POST'>
+<!-- action attribute will be set equal to the route where the information, contained within the form, will be sent to. -->
+<!-- every request/route has a URL and an HTTP verb or method. -->
+          Name: <input type='text' name='name'>
+<!-- 'name' is recognized by server-side code! 'type' can be radiobutton/text/password/checkbox -->
+          Email: <input type='text' name='email'>
+          <input type='submit' value='create user'>
+      </form>
+    </body>
+</html>
+
+<!-- When the HTML form gathers up your data it will create a set of key/value pairs with the name attributes as the keys and
+the data the user enters as the values.  -->
