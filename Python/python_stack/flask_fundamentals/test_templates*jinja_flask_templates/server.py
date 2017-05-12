@@ -6,4 +6,6 @@ app = Flask(__name__)
 
 def index():
     return render_template('index.html', phrase="Hello", times=5)
+        #inserting Python-like code into our Flask templates
+        
 app.run(debug=True)
