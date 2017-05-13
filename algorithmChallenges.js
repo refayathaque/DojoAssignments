@@ -554,3 +554,53 @@ function getDigits(str) { //defines function
 }
 var new_number = getDigits(string_thing)
 console.log(new_number); //Outputs 123532
+
+console.log('----');
+
+//Palindrome pg. ??
+function isPalindrome(str) {
+//a word, phrase, or sequence that reads the same backward as forward, e.g., madam
+str = str.toLowerCase(); //ensures this works for capital letters too
+                         //.toLowerCase(); DOESN'T MUTATE THE CALLER
+  if(str.length <= 1) {
+    return false; //'FAST FAIL'
+  }
+  var start = 0, end = str.length - 1; //can initialize multiple VARs in one line...
+  for(; start < end; start++, end--) { //BI-DIRECTIONAL forloop
+  //forloop 'starting values' initialized ^, so don't need in forloop definition
+  //'start < end' stops forloop in middle, works for EVEN & ODD lengths
+    if(str[start] == str[end]) {
+      return true; //checks if letters (from oppsite ends going in) are the same!!!
+    }
+    else {
+      return false;
+    }
+  }
+}
+var x = isPalindrome('MAdam'); //Output: true
+console.log(x);
+var y = isPalindrome('anna'); //Output: true
+console.log(y);
+
+console.log('----');
+
+//Parens Valid pg. 53
+function validParens(str){
+  var countOpen = 0;
+  for (var i = 0; i < str.length; i++) {
+    if(str[i] == "(") {
+      countOpen++;
+    }
+    if(str[i] == ")") {
+      countOpen--;
+      if(countOpen < 0) return false //single return statements don't need {}s!
+    }
+  }
+  // if(countOpen == 0) return true
+  // else return false
+  return countOpen == 0 //new way to do if/else statements, examples ^ & below
+  // return countOpen == 0 ? true : false //ternary operator!
+}
+console.log(validParens("(hello))")); //Output: false
+
+console.log('----');
