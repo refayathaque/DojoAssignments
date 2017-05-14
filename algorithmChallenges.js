@@ -557,7 +557,7 @@ console.log(new_number); //Outputs 123532
 
 console.log('----');
 
-//Palindrome pg. ??
+//String: Is Palindrome pg. 53
 function isPalindrome(str) {
 //a word, phrase, or sequence that reads the same backward as forward, e.g., madam
 str = str.toLowerCase(); //ensures this works for capital letters too
@@ -572,14 +572,15 @@ str = str.toLowerCase(); //ensures this works for capital letters too
     if(str[start] == str[end]) {
       return true; //checks if letters (from oppsite ends going in) are the same!!!
     }
-    else {
-      return false;
-    }
+    // else { //
+    //   return false;
+    // }
+  return false; //same effect as having else statement after if statement above...
   }
 }
-var x = isPalindrome('MAdam'); //Output: true
+var x = isPalindrome('MaDam'); //Output: true
 console.log(x);
-var y = isPalindrome('anna'); //Output: true
+var y = isPalindrome('aNNa'); //Output: true
 console.log(y);
 
 console.log('----');
