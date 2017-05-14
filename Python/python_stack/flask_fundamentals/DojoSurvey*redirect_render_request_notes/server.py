@@ -23,3 +23,6 @@ def return_to_index():
     # REDIRECT only returning to ROOT (index.html)
 
 app.run(debug=True)
+
+#REDIRECT - for ROUTES only, CANNOT take in arguments
+#RENDER_TEMPLATE - for TEMPLATES only, CAN take in arguments
