@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Great Number Game</title>
+  </head>
+  <body style="width: 600px; text-align: center; margin-left: auto; margin-right: auto; font-family: sans-serif;">
+    <h1>Welcome to the Great Number Game!</h1>
+    <h2>I am thinking of a number between 1 and 100</h2>
+    <h3>Take a guess!</h3>
+    <form class="" action="/number_input" method="post">
+      <input type="text" name="answer" value="" placeholder="Don't enter letters please..." size="25">
+      <button type="submit" name="button">Submit</button>
+    </form>
+    <h2 style="color:red;">{{ too_high }}</h2>
+    <h2 style="color:green;">{{ correct }}{{ number }}</h2>
+    <h2 style="color:orange;">{{ too_low }}</h2>
+    <h1 style="color:blue;">{{ warning }}</h1>
+  </body>
+</html>
