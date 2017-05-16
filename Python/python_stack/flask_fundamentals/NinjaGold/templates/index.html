@@ -68,8 +68,12 @@
       </div>
       <h3>Activity Log:</h3>
       <div id="activities">
-        <p>{{ earned }}{{ golds }}</p>
+        <!-- <p>{{ earned }}{{ golds }}</p> -->
+        {% for activity in session['log'] %} <!-- jinja2 -->
+          <p>{{ activity }}</p>
+        {% endfor %}
       </div>
     </div>
+    <a href="/reset">Reset</a>
   </body>
 </html>
