@@ -94,3 +94,44 @@
 # Ex. If you have a books table with columns publisher_name and publisher_address, the publisher_address and publisher_name
 # should be separated into a separate table and linked to books with a foreign key. The publisher_address is dependent on
 # the publisher_name and neither column is a key column.
+
+####
+
+# CONVENTIONS
+
+# TABLE name PLURAL and ALL LOWERCASE - (ex. users, leads, sites, clients, chapters, courses, modules)
+
+# "id" as the PRIMARY KEY - name it ID (also make it auto-incremented)
+
+# Name FOREIGN KEYS with (singular_table_name)_id when REFERENCING a PRIMARY KEY in ANOTHER TABLE
+# (ex. user_id, lead_id, site_id, client_id, chapter_id, course_id, module_id)
+
+# Use 'created_at' and 'updated_at' as COLUMNS for TIMESTAMP in EVERY table you create
+
+####
+
+# DATA TYPES
+
+# VARCHAR : Used to store non-numeric values that can be up to 255 characters.
+    # Should be used for values with different character lengths like email, first_name, or last_name.
+
+# CHAR : Also used to store non-numeric values, however, it will use up all space for the set number of
+    # characters regardless of what value is added. Char is good to use for things that will always be
+    # a given number of characters. Char would work well for something like a state_abreviation.
+
+# INT : INT is good to use for most normal number values like a phone_number or a zip_code. Also ID!
+    # unsigned : positive numbers only
+    # signed : positive and negative numbers
+
+# BIGINT : if you wanted to store something like a Facebook id when using Facebook's API, since they
+    # have over a billion users the id will need to be a data type of BIGINT.
+
+# TINYINT : A good example of something that would use a TINYINT is user level identifier
+    # (0 - inactive user, 1 - active user, 9 - admin).
+
+# FLOAT : An example column for this would be like an item_cost.
+
+# TEXT : Used to store a large amount of text, like a description, message, or comment. Use this for
+    # any text that VARCHAR() is too small to handle. (So > 255 characters)
+
+# DATETIME : used to store a date and time in the format YYYY-MM-DD hh:mm:ss
