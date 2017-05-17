@@ -88,4 +88,4 @@
 
 # To summarize, JOIN will only include the intersection of the two tables, whereas LEFT JOIN will include
 # all records from the first table, plus the records from the second table that correspond. This is why the
-# JOIN is sometimes called the INNER JOIN, while all the other joins (including LEFT JOIN) are referred to as OUTER JOINs. 
+# JOIN is sometimes called the INNER JOIN, while all the other joins (including LEFT JOIN) are referred to as OUTER JOINs.
