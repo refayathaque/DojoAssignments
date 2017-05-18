@@ -1,0 +1,31 @@
+<html>
+<head>
+  <title>Full Friends</title>
+</head>
+<body>
+  <h1>Friends:</h1>
+
+  <table style="border: 2px solid green;">
+    <tr>
+      <th>Name</th>
+      <th>Age</th>
+      <th>Friend since...</th>
+    </tr>
+    {% for friend in full_friends: %}
+    <tr>
+      <td>{{ friend['name'] }}</td>
+      <td>{{ friend['age'] }}</td>
+      <td>{{ friend['created_at'] }}</td>
+    </tr>
+    {% endfor %}
+  </table>
+
+  <h2>Add a Friend!</h2>
+  <form action='/friends' method='POST'>
+    <label for="first_name">First Name:<input type="text" name="first_name" id="first_name"></label>
+    <label for="last_name">Last Name:<input type="text" name="last_name" id="last_name"></label>
+    <label for="age">Age:<input type="text" name="age" id="age"></label>
+    <input type="submit" value="Add">
+  </form>
+</body>
+</html>
