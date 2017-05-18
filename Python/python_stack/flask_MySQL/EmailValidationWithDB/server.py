@@ -11,43 +11,29 @@ mysql = MySQLConnector(app,'sakila')
 def index():
     return render_template('index.html')
 
-# @app.route('/friends', methods=['POST'])
-# def create():
-#     query = "INSERT INTO friends (first_name, last_name, age, created_at) VALUES (:first_name, :last_name, :age, NOW())"
-#     data = {
-#              'first_name': request.form['first_name'],
-#              'last_name': request.form['last_name'],
-#              'age': request.form['age']
-#            }
-#     # add a friend to the database!
-#     # Run query, with dictionary values injected into the query. YOU CAN SEE THIS IN MySQL Workbench!!!
-#     mysql.query_db(query, data)
-#     return redirect('/')
-#
+def email_addition():
+    query = "INSERT INTO same_emails (email, created_at) VALUES (:email, NOW())"
+    data = {
+             'email': request.form['email']
+           }
+    mysql.query_db(query, data)
 
 @app.route('/email_processing', methods=['POST'])
-def results():
+def email_processing():
     email = mysql.query_db('SELECT LCASE(email) FROM customer')
     print email
 
-    # {u'LCASE(email)': u'philip.causey@sakilacustomer.org'}
+    if {'LCASE(email)': request.form['email']} in email:
+        flash('Email is valid!')
 
-    for i in range(0, len(email)):
-        print i
-        if(request.form['email'] == email[i][u'LCASE(email)']):
-            flash('Email is valid!')
-            print request.form['email']
-            print email[i][u'LCASE(email)']
-            break
-        elif(request.form['email'] != email[i][u'LCASE(email)']):
-            flash('Email is not valid!')
-            print request.form['email']
-            print email[i][u'LCASE(email)']
-            break
+        email_addition()
 
-    return redirect('/')
+        display_emails = mysql.query_db('SELECT email, created_at FROM same_emails')
+        print display_emails
 
+        return render_template('success.html', display_emails = display_emails)
+    else:
+        flash('Email is NOT valid!')
+        return redirect('/')
 
 app.run(debug=True)
-
-# Remember never to render from a post route!

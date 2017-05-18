@@ -33,4 +33,4 @@ def delete(friend_id):
 
 app.run(debug=True)
 
-# Remember never to render from a post route!
+# Remember NEVER to RENDER from a POST route!
