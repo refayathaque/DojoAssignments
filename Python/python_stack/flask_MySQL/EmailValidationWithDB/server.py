@@ -1,7 +1,9 @@
-from flask import Flask, request, redirect, render_template, flash
+from flask import Flask, request, redirect, render_template, flash, session
 from mysqlconnection import MySQLConnector
 
 app = Flask(__name__)
+
+app.secret_key = "SecretKey!"
 
 mysql = MySQLConnector(app,'sakila')
 
@@ -23,15 +25,27 @@ def index():
 #     return redirect('/')
 #
 
-@app.route('/email_processing', methods=['POST'])
+@app.route('/email_processing')
 def results():
     email = mysql.query_db('SELECT LCASE(email) FROM customer')
-    # print email
+    print email
 
-    for i in email:
-        if(request.form['email'] != i['LCASE(email)']):
+    # {u'LCASE(email)': u'philip.causey@sakilacustomer.org'}
+
+    for i in range(0, len(email)):
+        print i
+        if(request.form['email'] == email[i][u'LCASE(email)']):
+            flash('Email is valid!')
+            print request.form['email']
+            print email[i][u'LCASE(email)']
+            break
+        elif(request.form['email'] != email[i][u'LCASE(email)']):
             flash('Email is not valid!')
-            return redirect('/')
+            print request.form['email']
+            print email[i][u'LCASE(email)']
+            break
+
+    return redirect('/')
 
 
 app.run(debug=True)
