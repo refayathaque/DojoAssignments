@@ -25,7 +25,7 @@ def index():
 #     return redirect('/')
 #
 
-@app.route('/email_processing')
+@app.route('/email_processing', methods=['POST'])
 def results():
     email = mysql.query_db('SELECT LCASE(email) FROM customer')
     print email
