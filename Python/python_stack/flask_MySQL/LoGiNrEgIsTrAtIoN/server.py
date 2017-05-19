@@ -25,11 +25,11 @@ def info_insertion():
         'email': request.form['email'],
         'password': md5.new(request.form['password']).hexdigest()
         }
-    mysql.query_db(query, data)
+    session['user_id'] = mysql.query_db(query, data) # store in session logged in users id
 
 @app.route('/signing_in', methods=['POST'])
 def signing_in():
-    es = mysql.query_db('SELECT email, password FROM users')
+    es = mysql.query_db('SELECT first_name, email, password FROM users')
     print es
     counter = 0
 
@@ -40,7 +40,6 @@ def signing_in():
     else:
         for i in range(0, len(es)):
             if es[i]['email'] == request.form['email_es']:
-                flash("Your email address was valid...")
                 counter += 1
                 break
 
@@ -52,20 +51,28 @@ def signing_in():
     else:
         for i in range(0, len(es)):
             if es[i]['password'] == md5.new(request.form['password_es']).hexdigest():
-                flash("Your password was valid...")
                 counter += 1
+                break
+            elif es[i]['password'] != md5.new(request.form['password_es']).hexdigest():
+                flash("PASSWORD NOT VALID!")
+                break
 
     if counter == 2:
-        flash("You are logged in!")
-        return render_template('success.html', es = es) # 'es = es' prints ALL email addresses... :(
-
-    return redirect('/')
+        flash("You are logged in")
+        query = "SELECT * FROM users WHERE id = :user_id"
+        data = {
+        'user_id': session['user_id']
+            }
+        logged_in_user = mysql.query_db(query, data) # ^ gets current user_id! SUPER USEFUL!
+        print logged_in_user
+        return render_template('success.html', logged_in_user = logged_in_user, greeting = 'Welcome back!')
+    else:
+        return redirect('/')
 
 @app.route('/registration', methods=['POST'])
 def processing():
     counter = 0
     if request.form['first_name'].isalpha() and len(request.form['first_name']) > 2:
-        flash('FIRST NAME VALID!')
         counter += 1
     elif request.form['first_name'].isalpha() and len(request.form['first_name']) < 2:
         flash('FIRST NAME NOT VALID!')
@@ -73,7 +80,6 @@ def processing():
         flash('FIRST NAME CANNOT BE BLANK!')
 
     if request.form['last_name'].isalpha() and len(request.form['last_name']) > 2:
-        flash('LAST NAME VALID!')
         counter += 1
     elif request.form['last_name'].isalpha() and len(request.form['last_name']) < 2:
         flash('LAST NAME NOT VALID!')
@@ -85,12 +91,10 @@ def processing():
     elif not EMAIL_REGEX.match(request.form['email']):
         flash("EMAIL NOT VALID!")
     else:
-        flash("EMAIL VALID!")
         counter += 1
 
     #PASSWORD
     if(len(request.form['password']) >= 8):
-        flash("PASSWORD VALID!")
         counter += 1
     elif(len(request.form['password']) < 8 and len(request.form['password']) >= 1):
         flash("PASSWORD IS TOO SHORT!")
@@ -98,16 +102,25 @@ def processing():
         flash("PASSWORD CANNOT BE BLANK!")
 
     if(request.form['password'] == request.form['password_confirmation'] and len(request.form['password']) > 0 and len(request.form['password_confirmation']) > 0 ):
-        flash('PASSWORDS MATCH!')
         counter += 1
     elif(request.form['password'] != request.form['password_confirmation']):
         flash('PASSWORDS DO NOT MATCH!')
 
     if counter == 5:
-        flash('YOU ARE REGISTERED! WELCOME TO LoginRegistration.com! :D')
+        flash('You are now a member of LoginRegistration.com')
         info_insertion()
+        return friendly_login()
 
     return redirect('/')
+
+def friendly_login():
+    query = "SELECT * FROM users WHERE id = :user_id"
+    data = {
+        'user_id': session['user_id']
+        }
+    logged_in_user = mysql.query_db(query, data)
+    print logged_in_user
+    return render_template("success.html", logged_in_user=logged_in_user, greeting = 'We are so excited to have you!')
 
 @app.route('/reset')
 def reset():

@@ -16,11 +16,11 @@
     }
   </style>
   <body>
-    <h1>Welcome back!</h1>
+    {% for i in logged_in_user %}
+      <h2>Hi {{ i['first_name'] }}!</h2>
+    {% endfor %}
 
-    {% for i in es %}
-      <h2>{{ i['email'] }}</h2>
-    {%endfor%}
+    <h1>{{ greeting }}</h1>
 
     {% with messages = get_flashed_messages() %}
       {% if messages %}
