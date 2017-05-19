@@ -11,6 +11,8 @@ app.secret_key = "SecretKey!"
 
 mysql = MySQLConnector(app,'login_registration')
 
+# print md5.new('password').hexdigest() # 5f4dcc3b5aa765d61d8327deb882cf99
+
 @app.route('/')
 def index():
     return render_template('index.html')
@@ -38,31 +40,24 @@ def signing_in():
     else:
         for i in range(0, len(es)):
             if es[i]['email'] == request.form['email_es']:
-                print '***********************EMAIL VALIDATED YAO~~~~~~~~~~~~~~~~~~~~~~~~~'
-                flash("EMAIL VALID!")
+                flash("Your email address was valid...")
                 counter += 1
                 break
 
-# {'password': request.form['password_es'], 'email': request.form['email_es']} in es:
-
-# [{u'password': u'password', u'email': u'refayathaque@gmail.com'}, {u'password': u'23b431acfeb41e15d466d75de822307c', u'email': u'jsmith@email.com'}]
-
     #PASSWORD
-    if(len(request.form['password_es']) < 8):
+    if(len(request.form['password_es']) < 8 and len(request.form['password_es']) >= 1):
         flash("PASSWORD NOT VALID!")
+    elif(len(request.form['password_es']) < 1):
+        flash("PASSWORD CANNOT BE BLANK!")
     else:
         for i in range(0, len(es)):
             if es[i]['password'] == md5.new(request.form['password_es']).hexdigest():
-                print '**********************PASSWORD VALIDATED YAO~~~~~~~~~~~~~~~~~~~~~~~'
-                flash("PASSWORD VALID!")
+                flash("Your password was valid...")
                 counter += 1
-                break
 
     if counter == 2:
-        flash("YOU ARE LOGGED IN! WELCOME BACK!")
-        print '***********************~~~~~~~~~~~~~~~~~~~~~~~~~'
-
-    # [{u'password': u'password', u'email': u'refayathaque@gmail.com'}, {u'password': u'23b431acfeb41e15d466d75de822307c', u'email': u'jsmith@email.com'}]
+        flash("You are logged in!")
+        return render_template('success.html', es = es) # 'es = es' prints ALL email addresses... :(
 
     return redirect('/')
 
@@ -74,12 +69,16 @@ def processing():
         counter += 1
     elif request.form['first_name'].isalpha() and len(request.form['first_name']) < 2:
         flash('FIRST NAME NOT VALID!')
+    elif len(request.form['first_name']) < 1:
+        flash('FIRST NAME CANNOT BE BLANK!')
 
     if request.form['last_name'].isalpha() and len(request.form['last_name']) > 2:
         flash('LAST NAME VALID!')
         counter += 1
     elif request.form['last_name'].isalpha() and len(request.form['last_name']) < 2:
         flash('LAST NAME NOT VALID!')
+    elif len(request.form['last_name']) < 1:
+        flash('LAST NAME CANNOT BE BLANK!')
 
     if(len(request.form['email']) < 1):
         flash("EMAIL CANNOT BE BLANK!")
@@ -93,19 +92,25 @@ def processing():
     if(len(request.form['password']) >= 8):
         flash("PASSWORD VALID!")
         counter += 1
-    elif(len(request.form['password']) < 8):
-        flash("PASSWORD NOT VALID!")
+    elif(len(request.form['password']) < 8 and len(request.form['password']) >= 1):
+        flash("PASSWORD IS TOO SHORT!")
+    elif(len(request.form['password']) < 1):
+        flash("PASSWORD CANNOT BE BLANK!")
 
-    if(request.form['password'] == request.form['password_confirmation']):
+    if(request.form['password'] == request.form['password_confirmation'] and len(request.form['password']) > 0 and len(request.form['password_confirmation']) > 0 ):
         flash('PASSWORDS MATCH!')
         counter += 1
     elif(request.form['password'] != request.form['password_confirmation']):
         flash('PASSWORDS DO NOT MATCH!')
 
     if counter == 5:
-        print '***********************VALIDATED~~~~~~~~~~~~~~~~~~~~~~~~~'
+        flash('YOU ARE REGISTERED! WELCOME TO LoginRegistration.com! :D')
         info_insertion()
 
+    return redirect('/')
+
+@app.route('/reset')
+def reset():
     return redirect('/')
 
 app.run(debug=True)

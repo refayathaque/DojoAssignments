@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Login Registration</title>
+    <title>LoginRegistration.com</title>
   </head>
   <style media="screen">
     body {
@@ -24,22 +24,33 @@
       color: green;
       font-family: sans-serif;
     }
+    .reset_button {
+      margin-top: 50px;
+      text-align: center;
+    }
+    h1 {
+      color: yellow;
+      font-family: sans-serif;
+      color: green;
+    }
   </style>
   <body>
 
+    <h1>Welcome to LoginRegistration.com!</h1>
+
     <h2>New user? Sign up here!</h2>
     <form class="" action="/registration" method="post">
-      First Name  |<input type="text" name="first_name" value="">
+      First Name .............. <input type="text" name="first_name" value="">
       <br>
-      Last Name  |<input type="text" name="last_name" value="">
+      Last Name .............. <input type="text" name="last_name" value="">
       <br>
-      Email  |<input type="text" name="email" value="">
+      Email .............. <input type="text" name="email" value="">
       <br>
-      Password  |<input type="password" name="password" value="">
+      Password .............. <input type="password" name="password" value="">
       <br>
-      Confirm Password  |<input type="password" name="password_confirmation" value="">
+      Confirm Password .............. <input type="password" name="password_confirmation" value="">
       <br>
-      <input type="submit" name="submit" value="submit">
+      <input type="submit" name="submit" value="Submit">
     </form>
 
     {% with messages = get_flashed_messages() %}
@@ -52,11 +63,15 @@
 
     <h2>Exisiting user? Sign in here!</h2>
     <form class="" action="/signing_in" method="post">
-      Email  |<input type="text" name="email_es" value="">
+      Email .............. <input type="text" name="email_es" value="">
       <br>
-      Password  |<input type="password" name="password_es" value="">
+      Password .............. <input type="password" name="password_es" value="">
       <br>
-      <input type="submit" name="submit" value="submit">
+      <input type="submit" name="submit" value="Submit">
+    </form>
+
+    <form class="reset_button" action="/reset" method="get">
+      <input type="submit" name="submit" value="Reset">
     </form>
 
   </body>
