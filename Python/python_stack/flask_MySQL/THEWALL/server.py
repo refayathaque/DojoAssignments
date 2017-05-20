@@ -26,14 +26,13 @@ def friendly_login():
         'user_id': session['user_id']
         }
     user = mysql.query_db(query, data)
-    print user
     return render_template("wall.html", user = user, greeting = 'We are so excited to have you!')
 
 #### ####
 
-#### ROUTES ####
+#### $$$$ ROUTES $$$$ ####
 
-#### INDEX ####
+#### INDEX / LOGIN PAGE ####
 
 @app.route('/')
 def index():
@@ -202,8 +201,6 @@ def registration():
 def reset():
     session.clear()
     return redirect('/')
-
-#### ####
 
 #### ####
 
