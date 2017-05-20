@@ -44,5 +44,9 @@
       <input type="submit" value="Post a message"/>
     </form>
 
+    {% for i in display_messages %}
+      <p>{{ i['message'] }} posted at {{ i['created_at'] }} by {{ i['user_id'] }}</p>
+    {% endfor %}
+
   </body>
 </html>

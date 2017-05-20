@@ -2,6 +2,7 @@ from flask import Flask, request, redirect, render_template, flash, session
 from mysqlconnection import MySQLConnector
 import re # REGEX (Regular Expression) module
 import md5
+import datetime
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 app = Flask(__name__)
 app.secret_key = "SecretKey!"
@@ -41,12 +42,9 @@ def index():
 
 @app.route('/wall')
 def wall():
-    display_messages = mysql.query_db('SELECT first_name, email, password FROM users')
-    print es
+    display_messages = mysql.query_db('SELECT message, created_at, updated_at, user_id FROM messages ORDER BY id DESC')
 
-
-
-    return render_template('wall.html')
+    return render_template('wall.html', display_messages = display_messages)
 
 
 
@@ -58,10 +56,11 @@ def wall():
 
 @app.route('/submit_message', methods=['POST'])
 def submit_message():
-    query = "INSERT INTO messages (message, user_id, created_at, updated_at) VALUES (:message, :user_id, NOW(), NOW())"
+    query = "INSERT INTO messages (message, user_id, created_at, updated_at) VALUES (:message, :user_id, :created_at, NOW())"
     data = {
         'message': request.form['message'],
         'user_id': session['user_id'] #FOREIGN KEY! MUST HAVE THIS!
+        'created_at': DATE_FORMAT(NOW(),'%b %d %Y %h:%i %p')
         }
     mysql.query_db(query, data)
     # session['user_id'] = mysql.query_db(query, data) # store in session logged in users id
