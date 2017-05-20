@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>Welcome to TheWall.com</title>
+    <title>TheWall.com</title>
   </head>
   <style media="screen">
     body {
@@ -17,9 +17,18 @@
     .message_heading {
       color: red;
     }
+    .created_at {
+      color: purple;
+    }
+    .posted_by {
+      color: maroon;
+    }
+    .message {
+      font-weight: bold;
+    }
   </style>
   <body>
-    {% for i in logged_in_user %}
+    {% for i in user %}
       <h2>Hi {{ i['first_name'] }}!</h2>
     {% endfor %}
 
@@ -45,7 +54,11 @@
     </form>
 
     {% for i in display_messages %}
-      <p>{{ i['message'] }} posted at {{ i['created_at'] }} by {{ i['user_id'] }}</p>
+      <p class='message'>{{ i['message'] }}</p>
+      <p>posted @</p>
+      <p class='created_at'>{{ i['created_at'] }}</p>
+      <p>by</p>
+      <p class="posted_by">{{ i['user_id'] }}</p>
     {% endfor %}
 
   </body>
