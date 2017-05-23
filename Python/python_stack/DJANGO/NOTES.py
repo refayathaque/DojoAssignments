@@ -97,3 +97,27 @@ def create(request):
 		return redirect("/")
 	else:
 		return redirect("/")
+
+# SESSION
+
+# need to be in same directory as manage.py file to enable session
+  > python manage.py makemigrations
+  > python manage.py migrate
+
+request.session # it's a dictionary, so you can attach key/value pairs
+
+request.session['name'] = request.POST['first_name'] # in VIEWS!
+
+{{ request.session.name }} # in HTML above form
+
+request.session['key']
+    # retrieve (get) the value stored in key
+
+request.session['key'] = 'value'
+    # set the value that will be store by key
+
+del request.session['key']
+    # deletes session key if it exists
+
+'key' in request.session
+    # returns a boolean of whether a key is in session or not
