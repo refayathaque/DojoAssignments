@@ -33,11 +33,12 @@
   </style>
   <body>
     <div id="container">
-      <h2>Your Gold: {{ session['current_gold'] }}</h2>
+      <h2>Your Gold: {{ request.session.current_gold }}</h2>
       <div class="box">
         <h3>Farm</h3>
         <p>(earns 10-20 golds)</p>
         <form action="/process_money" method="post">
+          {% csrf_token %}
           <input type="hidden" name="building" value="farm"/>
           <input type="submit" value="Find Gold!"/>
         </form>
@@ -46,6 +47,7 @@
         <h3>Cave</h3>
         <p>(earns 5-10 golds)</p>
         <form action="/process_money" method="post">
+          {% csrf_token %}
           <input type="hidden" name="building" value="cave"/>
           <input type="submit" value="Find Gold!"/>
         </form>
@@ -54,6 +56,7 @@
         <h3>House</h3>
         <p>(earns 2-5 golds)</p>
         <form action="/process_money" method="post">
+          {% csrf_token %}
           <input type="hidden" name="building" value="house"/>
           <input type="submit" value="Find Gold!"/>
         </form>
@@ -62,17 +65,19 @@
         <h3>Casino</h3>
         <p>(earns/loses 0-50 golds)</p>
         <form action="/process_money" method="post">
+          {% csrf_token %}
           <input type="hidden" name="building" value="casino"/>
           <input type="submit" value="Find Gold!"/>
         </form>
       </div>
       <h3>Activity Log:</h3>
+
       <div id="activities">
-        <!-- <p>{{ earned }}{{ golds }}</p> -->
-        {% for activity in session['log'] %} <!-- jinja2 -->
+        {% for activity in request.session.log %}
           <p>{{ activity }}</p>
         {% endfor %}
       </div>
+
     </div>
     <a href="/reset">Reset</a>
   </body>
