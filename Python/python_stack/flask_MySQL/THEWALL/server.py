@@ -6,7 +6,7 @@ import datetime
 EMAIL_REGEX = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 app = Flask(__name__)
 app.secret_key = "SecretKey!"
-mysql = MySQLConnector(app,'thewall')
+mysql = MySQLConnector(app,'refs_wall')
 
 #### FUNCTIONS ####
 
@@ -47,9 +47,11 @@ def index():
 
 @app.route('/wall')
 def wall():
-    display_messages = mysql.query_db('SELECT message, created_at, updated_at, user_id FROM messages ORDER BY id DESC')
+    display_messages = mysql.query_db('SELECT messages.message, messages.id AS message_id, messages.created_at, messages.updated_at, users.first_name, users.last_name, users.id AS user_id FROM messages LEFT JOIN users ON messages.user_id = users.id')
 
-    return render_template('wall.html', display_messages = display_messages)
+    display_comments = mysql.query_db('SELECT comments.comment, comments.message_id, comments.user_id, comments.id AS comment_id, users.first_name, users.last_name, users.id AS user_id FROM comments LEFT JOIN users ON comments.user_id = users.id')
+
+    return render_template('wall.html', display_messages = display_messages, display_comments = display_comments)
 
 #### ####
 
@@ -57,12 +59,12 @@ def wall():
 
 @app.route('/submit_message', methods=['POST'])
 def submit_message():
-    query = "INSERT INTO messages (message, user_id, created_at, created_at_MySQL_form, updated_at) VALUES (:message, :user_id, :created_at, NOW(), NOW())"
-    current_time = datetime.datetime.now().strftime("%B %d %Y at %I:%M %p")
+    query = "INSERT INTO messages (message, user_id, created_at, updated_at) VALUES (:message, :user_id, NOW(), NOW())"
+    # current_time = datetime.datetime.now().strftime("%B %d %Y at %I:%M %p")
     data = {
         'message': request.form['message'],
         'user_id': session['user_id'], #FOREIGN KEY! MUST HAVE THIS!
-        'created_at': current_time #CHANGE from DATETIME in MySQLWorkbench!
+        # 'created_at': current_time #CHANGE from DATETIME in MySQLWorkbench!
         }
     mysql.query_db(query, data)
     # session['user_id'] = mysql.query_db(query, data) # store in session logged in users id
@@ -194,6 +196,22 @@ def registration():
     return redirect('/')
 
 #### ####
+
+@app.route("/postComment/<message_id>", methods=['POST'])
+def postComment(message_id):
+    query = "INSERT into comments (comment, message_id, user_id, created_at, updated_at) VALUES (:comment, :message_id, :user_id, NOW(), NOW())"
+
+    data = {
+        "user_id": session['user_id'],
+        "message_id":message_id,
+        "comment": request.form['comment']
+    }
+
+    mysql.query_db(query, data)
+    return redirect("/wall")
+
+
+
 
 #### RESET / RETURN TO LOGIN PAGE ####
 
