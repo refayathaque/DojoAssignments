@@ -37,13 +37,13 @@
     from . import views
     urlpatterns = [
         url(r'^$', views.index)
-        # url(r'^<second route>$', views.<second route>)
+        # url(r'^<second route>$', views.<function for second route>)
             # ^ format for more than one route (anything other than index)
     ]
 
 # 10. open 'views.py' within the <name of your app> folder
     # add these lines:
-    from django.shortcuts import render, HttpResponse
+    from django.shortcuts import render, HttpResponse, redirect
     def index(request):
         print "*"*50
         return render(request, '<name of your app>/index.html')
@@ -77,7 +77,8 @@
     </body>
   </html>
 
- # CSRF TOKEN
+# CSRF TOKEN (REQUIRED FOR SESSIONS)
+    # goes inside FORM
 
 <form action="/new_user" method="post">
 	{% csrf_token %}
