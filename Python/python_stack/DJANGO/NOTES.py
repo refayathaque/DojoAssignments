@@ -12,6 +12,7 @@
 
 # 4. python ../manage.py startapp <name of your app>
     # this must be done INSIDE the 'apps' folder
+        # use naming convention <name of project>_app
 
 # 5. open 'settings.py', it's within the <name of your project> folder
     # add to the INSTALLED_APPS list 'apps.<name of your app>',
@@ -86,7 +87,7 @@
 	<input type="submit" value="submit">
 </form>
 
-# POST/GET LOGIC
+# POST/GET LOGIC AND SESSION LOGIC
 
 from django.shortcuts import render, redirect
 def create(request):
@@ -104,6 +105,7 @@ def create(request):
 # need to be in same directory as manage.py file to enable session
   > python manage.py makemigrations
   > python manage.py migrate
+# USE THIS WHEN GETTING 'DJANGO CAN'T FIND TABLE' ERROR!
 
 request.session # it's a dictionary, so you can attach key/value pairs
 
