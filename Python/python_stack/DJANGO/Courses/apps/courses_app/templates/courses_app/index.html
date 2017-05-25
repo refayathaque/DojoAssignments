@@ -26,13 +26,15 @@
       <th>Date Added</th>
       <th>Actions</th>
     </tr>
+
     {% for i in courses %}
     <tr>
       <td>{{i.name}}</td>
       <td>{{i.description}}</td>
       <td>{{i.date_added}}</td>
-      <td><a href="/remove">remove</a></td>
+      <td><a href="/remove/{{i.id}}">remove</a></td>
     </tr>
     {% endfor %}
+
   </body>
 </html>

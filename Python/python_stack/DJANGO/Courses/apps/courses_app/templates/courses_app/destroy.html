@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Destroy</title>
+  </head>
+  <body>
+    <h1>You are about to delete</h1>
+
+    {% for i in information %}
+      <h3>{{ i.name }}</h3>
+      <h3>{{ i.description }}</h3>
+    {% endfor %}
+
+    <form class="" action="/reset" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Do not delete">
+    </form>
+
+    {% for i in information %}
+    <form class="" action="/delete_course/{{i.id}}" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Delete">
+    </form>
+    {% endfor %}
+
+  </body>
+</html>
