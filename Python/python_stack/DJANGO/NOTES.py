@@ -61,6 +61,29 @@
 # 12. python manage.py runserver
     # run localhost:8000 again to make sure everything is working
 
+# 13. work on models.py, it's within the <name of your app> folder
+    # example below has FKs too
+    from __future__ import unicode_literals
+    from django.db import models
+    class User(models.Model):
+        first_name = models.CharField(max_length=255)
+        last_name = models.CharField(max_length=255)
+        email = models.CharField(max_length=255)
+        password = models.CharField(max_length=255)
+        created_at = models.DateField(auto_now_add=True)
+        updated_at = models.DateField(auto_now=True)
+    class Message(models.Model):
+        user_id = models.ForeignKey(User)
+        message = models.TextField(max_length=10000)
+        created_at = models.DateField(auto_now_add=True)
+        updated_at = models.DateField(auto_now=True)
+    class Comment(models.Model):
+        message_id = models.ForeignKey(Message)
+        user_id = models.ForeignKey(User)
+        comment = models.TextField(max_length=10000)
+        created_at = models.DateField(auto_now_add=True)
+        updated_at = models.DateField(auto_now=True)
+
 ################################################################################
 
 # STATIC FILES
@@ -124,3 +147,5 @@ del request.session['key']
 
 'key' in request.session
     # returns a boolean of whether a key is in session or not
+
+# c, d, b, a, d, c, a, c
