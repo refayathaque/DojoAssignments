@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Welcome to LoginRegistration.com</title>
+  </head>
+  <style media="screen">
+    body {
+      font-family: sans-serif;
+    }
+    h2 {
+      color: blue;
+    }
+    .reset_button {
+      margin-top: 20px;
+    }
+  </style>
+  <body>
+
+    <h1>{{ logged_in_user.1 }}</h1>
+
+    {% for i in registered_users %}
+      <p>{{ i.email }}</p>
+    {% endfor %}
+
+    <form class="reset_button" action="/reset" method="get">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Return to Login Page">
+    </form>
+  </body>
+</html>
