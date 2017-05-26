@@ -93,8 +93,8 @@ class UserManager(models.Manager):
 
         # FINAL CHECK
         if counter == 5:
-            user = User.objects.create(first_name = data['first_name'], last_name = data['last_name'], email = data['email'], password = data['password'])
-            return (True, user)
+            User.objects.create(first_name = data['first_name'], last_name = data['last_name'], email = data['email'], password = data['password'])
+            return (True, data['email'])
         else:
             return (False, errors)
         ####

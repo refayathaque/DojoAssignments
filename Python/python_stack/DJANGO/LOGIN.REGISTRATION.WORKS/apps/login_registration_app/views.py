@@ -23,11 +23,15 @@ def login(request):
               messages.error(request, err)
           return redirect('/')
 
-
 def registration(request):
     results = User.objects.registration(request.POST)
+    context = {
+          'logged_in_user' : results,
+          'registered_users' : User.objects.all()
+    }
+    print results
     if results[0]:
-        return redirect('/success')
+        return render(request, 'login_registration_app/success.html', context)
     else:
         for err in results[1]:
             messages.error(request, err)
