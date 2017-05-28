@@ -7,6 +7,13 @@
   <body>
     <h1>SUCCESS</h1>
 
+    {% if request.session.logged_in_user_object %}
+    <h2>Welcome {{ request.session.logged_in_user_object }}</h2>
+    {%  endif %}
+    {% if request.session.registered_user_object %}
+    <h2>Welcome {{ request.session.registered_user_object }}</h2>
+    {%  endif %}
+
     {% if messages %}
       {% for message in messages %}
         <h3 style="color: red">{{ message }}</h3>
@@ -29,6 +36,19 @@
       {% endfor %}
     </select>
     </form>
+
+    <h2>Teams</h2>
+
+    {% if request.session.logged_in_user_object %}
+    <h2>{{ request.session.logged_in_user_object }} your teams are</h2>
+
+    {%  endif %}
+    
+    {% if request.session.registered_user_object %}
+    <h2>{{ request.session.registered_user_object }} your teams are</h2>
+
+    {%  endif %}
+
 
   </body>
 </html>

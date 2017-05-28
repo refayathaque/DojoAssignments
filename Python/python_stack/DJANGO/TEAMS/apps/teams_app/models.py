@@ -35,8 +35,8 @@ class Team(models.Model):
 
 # JOIN TABLE
 class User_Team(models.Model):
-    team = models.ForeignKey(Team, related_name="team_name")
-    user = models.ForeignKey(User, related_name="user_name")
+    team_id = models.ForeignKey(Team, related_name="team_name")
+    user_id = models.ForeignKey(User, related_name="user_name")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
 ####

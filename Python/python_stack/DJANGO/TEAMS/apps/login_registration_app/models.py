@@ -44,6 +44,8 @@ class UserManager(models.Manager):
 
         # FINAL CHECK
         if counter == 2:
+            logged_in_user_object = User.objects.get(email = data['email'])
+            print logged_in_user_object # Refayat Haque refayathaque@gmail.com
             return (True, data['email'])
         else:
             return (False, errors)
@@ -96,6 +98,8 @@ class UserManager(models.Manager):
         # FINAL CHECK
         if counter == 5:
             User.objects.create(first_name = data['first_name'], last_name = data['last_name'], email = data['email'], password = data['password'])
+            registered_user_object = User.objects.get(last_name = data['last_name'])
+            print registered_user_object # Refayat Haque refayathaque@gmail.com
             return (True, data['email'])
         else:
             return (False, errors)
@@ -110,4 +114,6 @@ class User(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
+    def __str__(self):
+        return self.first_name + " " + self.last_name + " " + self.email
 ####
