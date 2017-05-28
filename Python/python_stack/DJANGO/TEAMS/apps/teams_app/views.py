@@ -19,7 +19,7 @@ def make_team(request):
             messages.error(request, err)
         return redirect('/success')
 
-def join_team(request):
+def join_team(request): # In progress...need to figure out sessions
     user_object = User.objects.filter(email = request.session['logged_in_user'])
     team_object = Team.objects.filter(name = request.POST['team_join'])
 
