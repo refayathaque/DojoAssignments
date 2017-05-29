@@ -33,6 +33,8 @@ def join_team(request):
     if results[0]:
         if request.session['logged_in_user_email']:
             user_object = User.objects.filter(email = request.session['logged_in_user_email'])
+            team_object = Team.objects.filter(id = request.POST['team_join'])
+            User_Team.objects.create(team_id = team_object[0], user_id = user_object[0])
             return redirect('/success')
         elif request.session['registered_user_email']:
             user_object = User.objects.filter(email = request.session['registered_user_email'])

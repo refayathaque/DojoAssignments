@@ -44,20 +44,24 @@
     {% if request.session.logged_in_user_email %}
     <h3>{{ request.session.logged_in_user_email }} your teams are</h3>
       {% for i in all_user_teams %}
-        {{ i.team_id.name }}
+      <ul>
+        <li>{{ i.team_id.name }}</li>
+      </ul>
       {% endfor %}
     {% endif %}
 
     {% if request.session.registered_user_email %}
     <h3>{{ request.session.registered_user_email }} your teams are</h3>
       {% for i in all_user_teams %}
-        {{ i.team_id.name }}
+      <ul>
+        <li>{{ i.team_id.name }}</li>
+      </ul>
       {% endfor %}
     {% endif %}
 
     <form class="" action="/teams_app/return_to_index" method="post">
       {% csrf_token %}
-      <input type="submit" name="submit" value="Return to home page">
+      <input type="submit" name="submit" value="Log out and return to home page">
     </form>
 
     <form class="" action="/teams_app/team_listings" method="post">
