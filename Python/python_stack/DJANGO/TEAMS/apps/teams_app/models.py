@@ -34,7 +34,7 @@ class UserManager(models.Manager):
         # NOT JOINING A TEAM MORE THAN ONCE
         if User_Team.objects.filter(team_id__name = data['team_join']):
             errors.append('YOU HAVE ALREADY JOINED THIS TEAM!')
-            return (False, errors)
+            return (False, errors) # Redundant bc of work with 'SETS'
         else:
             return (True, data['team_join'])
         ####

@@ -66,6 +66,7 @@ def join_team(request):
 def return_to_index(request):
     return render(request, 'login_registration_app/index.html')
 
+# TEAM LISTINGS
 def team_listings(request):
     if request.session['logged_in_user_email']:
         context = {
@@ -78,3 +79,13 @@ def team_listings(request):
                     'all_user_teams' : User_Team.objects.filter(team_id__name=request.POST['team_to_show'])
                     }
     return render(request, 'teams_app/team_listings.html', context)
+####
+
+# USER INFORMATION
+def user_information(request, last_name):
+    context = {
+        'user_information' : User.objects.filter(last_name=last_name),
+        'all_user_teams' : User_Team.objects.filter(user_id__last_name__contains = last_name)
+        }
+    return render(request, 'teams_app/user_information.html', context)
+####

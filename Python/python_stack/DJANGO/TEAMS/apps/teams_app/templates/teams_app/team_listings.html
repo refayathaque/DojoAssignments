@@ -22,7 +22,7 @@
     {% for i in all_user_teams %}
     <tr>
       <td>{{ i.team_id.name }}</td>
-      <td>{{ i.user_id.first_name }} {{ i.user_id.last_name }}</td>
+      <td>{{ i.user_id.first_name }} <a href="/teams_app/user_information/{{ i.user_id.last_name }}">{{ i.user_id.last_name }}</a></td>
     </tr>
     {% endfor %}
     </table>

@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>PLAYER INFORMATION</title>
+  </head>
+  <body>
+    <h1>PLAYER INFORMATION</h1>
+
+    {% for i in user_information %}
+      <h2><em>Name:</em> {{i.first_name}} {{i.last_name}}</h2>
+      <h2><em>Contact:</em> {{i.email}}</h2>
+      <h3><em>Joined on:</em> {{i.created_at}}</h3>
+    {% endfor %}
+
+    <h1>TEAMS:</h1>
+
+    {% for i in all_user_teams %}
+    <ul>
+      <li>{{ i.team_id.name }}</li>
+    </ul>
+    {% endfor %}
+
+  </body>
+</html>
