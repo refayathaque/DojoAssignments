@@ -4,15 +4,31 @@ from .models import User, Team, User_Team
 
 from django.contrib import messages
 
+from sets import Set
+
 # SUCCESS
 def success(request):
     if request.session['logged_in_user_email']:
+
+        a = set( Team.objects.all() ) # all teams
+        b = set( Team.objects.filter(team_name__user_id__email = request.session['logged_in_user_email']) ) # user teams
+
+        all_teams_minus_what_users_are_part_of = (a.difference(b))
+
         context = {
+                    'all_teams_minus_what_users_are_part_of' : all_teams_minus_what_users_are_part_of,
                     'all_teams' : Team.objects.all(),
                     'all_user_teams' : User_Team.objects.filter(user_id__email__contains = request.session['logged_in_user_email'])
                     }
     elif request.session['registered_user_email']:
+
+        a = set( Team.objects.all() ) # all teams
+        b = set( Team.objects.filter(team_name__user_id__email = request.session['registered_user_email']) ) # user teams
+
+        all_teams_minus_what_users_are_part_of = (a.difference(b))
+
         context = {
+                    'all_teams_minus_what_users_are_part_of' : all_teams_minus_what_users_are_part_of,
                     'all_teams' : Team.objects.all(),
                     'all_user_teams' : User_Team.objects.filter(user_id__email__contains = request.session['registered_user_email'])
                     }

@@ -31,7 +31,7 @@
     <form class="" action="/teams_app/join_team" method="post">
       {% csrf_token %}
       <select name="team_join">
-        {% for i in all_teams %}
+        {% for i in all_teams_minus_what_users_are_part_of %}
         <option value="{{ i.id }}">{{ i.name }}</option>
         <!-- VALUE used in views.py to match -->
         {% endfor %}

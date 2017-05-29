@@ -54,6 +54,6 @@ class User_Team(models.Model):
     user_id = models.ForeignKey(User, related_name="user_name")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
-    def __str__(self):
-        return "team_id: " + self.team_id + "user_id: " + self.user_id
+    # def __str__(self):
+        # return "team_id: " + self.team_id + "user_id: " + self.user_id
 ####
