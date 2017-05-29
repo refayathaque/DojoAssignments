@@ -27,18 +27,6 @@ class UserManager(models.Manager):
             return (True, data['team_name'])
         ####
 
-    def join_team(self, data):
-
-        errors = []
-
-        # NOT JOINING A TEAM MORE THAN ONCE
-        if User_Team.objects.filter(team_id__name = data['team_join']):
-            errors.append('YOU HAVE ALREADY JOINED THIS TEAM!')
-            return (False, errors) # Redundant bc of work with 'SETS'
-        else:
-            return (True, data['team_join'])
-        ####
-
 # TABLES
 class Team(models.Model):
     name = models.CharField(max_length = 255)
@@ -48,7 +36,7 @@ class Team(models.Model):
     def __str__(self):
         return self.name
 
-# JOIN TABLE
+# JOINED TABLE
 class User_Team(models.Model):
     team_id = models.ForeignKey(Team, related_name="team_name")
     user_id = models.ForeignKey(User, related_name="user_name")

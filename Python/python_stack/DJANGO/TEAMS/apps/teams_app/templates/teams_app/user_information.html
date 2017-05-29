@@ -4,22 +4,53 @@
     <meta charset="utf-8">
     <title>PLAYER INFORMATION</title>
   </head>
+  <style media="screen">
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+      width: 500px;
+      text-align: left;
+      font-family: sans-serif;
+    }
+    h1 {
+      color: green;
+    }
+  </style>
   <body>
+
+    {% if request.session.logged_in_user_email %}
+      {% for i in user_information %}
+        <h4>{{ i.first_name }} you are logged in</h4>
+      {% endfor %}
+    {%  endif %}
+
+    {% if request.session.registered_user_email %}
+      {% for i in user_information %}
+        <h4>{{ i.first_name }} you are logged in</h4>
+      {% endfor %}
+    {%  endif %}
+
     <h1>PLAYER INFORMATION</h1>
 
     {% for i in user_information %}
       <h2><em>Name:</em> {{i.first_name}} {{i.last_name}}</h2>
       <h2><em>Contact:</em> {{i.email}}</h2>
-      <h3><em>Joined on:</em> {{i.created_at}}</h3>
+      <h3><em>Joined:</em> {{i.created_at}}</h3>
     {% endfor %}
 
-    <h1>TEAMS:</h1>
+    <h1>TEAMS</h1>
 
     {% for i in all_user_teams %}
     <ul>
-      <li>{{ i.team_id.name }}</li>
+      <li><h3>{{ i.team_id.name }} - <em>joined:</em> {{ i.created_at }}</h3></li>
     </ul>
     {% endfor %}
+
+    <form class="" action="/teams_app/success" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Back to Dashboard">
+    </form>
 
   </body>
 </html>

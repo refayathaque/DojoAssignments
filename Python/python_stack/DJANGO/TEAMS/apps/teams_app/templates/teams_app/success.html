@@ -2,16 +2,54 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>SUCCESS</title>
+    <title>WLECOME to TEAMS.com</title>
   </head>
+  <style media="screen">
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+      width: 400px;
+      text-align: center;
+      font-family: sans-serif;
+    }
+    h2 {
+      color: black;
+    }
+    h3 {
+      color: red;
+    }
+    form {
+      color: black;
+    }
+    .reset_button {
+      margin-top: 50px;
+      text-align: center;
+    }
+    h1 {
+      color: green;
+    }
+    ul {
+      text-align: left;
+    }
+    .logout {
+      margin-top: 30px;
+      margin-bottom: 40px;
+    }
+  </style>
   <body>
-    <h1>SUCCESS</h1>
+    <h1>TEAMS.com</h1>
 
     {% if request.session.logged_in_user_email %}
-    <h2>Welcome {{ request.session.logged_in_user_email }}</h2>
+      {% for i in user_information %}
+        <h2>Welcome {{ i.first_name }}!</h2>
+      {% endfor %}
     {%  endif %}
+
     {% if request.session.registered_user_email %}
-    <h2>Welcome {{ request.session.registered_user_email }}</h2>
+      {% for i in user_information %}
+        <h2>Welcome {{ i.first_name }}!</h2>
+      {% endfor %}
     {%  endif %}
 
     {% if messages %}
@@ -20,13 +58,7 @@
       {% endfor %}
     {% endif %}
 
-    <form class="" action="/teams_app/make_team" method="post">
-      {% csrf_token %}
-      <input type="text" name="team_name" value="">
-      <input type="submit" name="submit" value="Make team">
-    </form>
-
-    <h2>Select team to join</h2>
+    <h2>Join a team</h2>
 
     <form class="" action="/teams_app/join_team" method="post">
       {% csrf_token %}
@@ -39,10 +71,18 @@
       <input type="submit" name="submit" value="Join">
     </form>
 
-    <h2>Teams</h2>
+    <h2>or Make your own team</h2>
+
+    <form class="" action="/teams_app/make_team" method="post">
+      {% csrf_token %}
+      <input type="text" name="team_name" value="">
+      <input type="submit" name="submit" value="Make team">
+    </form>
 
     {% if request.session.logged_in_user_email %}
-    <h3>{{ request.session.logged_in_user_email }} your teams are</h3>
+      {% if all_user_teams %}
+        <h2 style="color : blue">Your teams are:</h2>
+      {% endif %}
       {% for i in all_user_teams %}
       <ul>
         <li>{{ i.team_id.name }}</li>
@@ -51,7 +91,9 @@
     {% endif %}
 
     {% if request.session.registered_user_email %}
-    <h3>{{ request.session.registered_user_email }} your teams are</h3>
+      {% if all_user_teams %}
+        <h2 style="color : blue">Your teams are:</h2>
+      {% endif %}
       {% for i in all_user_teams %}
       <ul>
         <li>{{ i.team_id.name }}</li>
@@ -59,10 +101,7 @@
       {% endfor %}
     {% endif %}
 
-    <form class="" action="/teams_app/return_to_index" method="post">
-      {% csrf_token %}
-      <input type="submit" name="submit" value="Log out and return to home page">
-    </form>
+    <h2 style="color : blue">Pick a team to view listings</h2>
 
     <form class="" action="/teams_app/team_listings" method="post">
       {% csrf_token %}
@@ -73,6 +112,11 @@
         {% endfor %}
       </select>
       <input type="submit" name="submit" value="Show team listings">
+    </form>
+
+    <form class="logout" action="/teams_app/return_to_index" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Log out and return to home page">
     </form>
 
   </body>
