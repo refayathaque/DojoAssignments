@@ -7,11 +7,11 @@
   <body>
     <h1>SUCCESS</h1>
 
-    {% if request.session.logged_in_user_object %}
-    <h2>Welcome {{ request.session.logged_in_user_object }}</h2>
+    {% if request.session.logged_in_user_email %}
+    <h2>Welcome {{ request.session.logged_in_user_email }}</h2>
     {%  endif %}
-    {% if request.session.registered_user_object %}
-    <h2>Welcome {{ request.session.registered_user_object }}</h2>
+    {% if request.session.registered_user_email %}
+    <h2>Welcome {{ request.session.registered_user_email }}</h2>
     {%  endif %}
 
     {% if messages %}
@@ -28,27 +28,48 @@
 
     <h2>Select team to join</h2>
 
-    <form class="" action="/join_team" method="post">
-    <select name="team_join">
-      {% for i in all_teams %}
-      <option value="{{ i.id }}">{{ i.name }}</option>
-      <!-- VALUE used in views.py to match -->
-      {% endfor %}
-    </select>
+    <form class="" action="/teams_app/join_team" method="post">
+      {% csrf_token %}
+      <select name="team_join">
+        {% for i in all_teams %}
+        <option value="{{ i.id }}">{{ i.name }}</option>
+        <!-- VALUE used in views.py to match -->
+        {% endfor %}
+      </select>
+      <input type="submit" name="submit" value="Join">
     </form>
 
     <h2>Teams</h2>
 
-    {% if request.session.logged_in_user_object %}
-    <h2>{{ request.session.logged_in_user_object }} your teams are</h2>
+    {% if request.session.logged_in_user_email %}
+    <h3>{{ request.session.logged_in_user_email }} your teams are</h3>
+      {% for i in all_user_teams %}
+        {{ i.team_id.name }}
+      {% endfor %}
+    {% endif %}
 
-    {%  endif %}
-    
-    {% if request.session.registered_user_object %}
-    <h2>{{ request.session.registered_user_object }} your teams are</h2>
+    {% if request.session.registered_user_email %}
+    <h3>{{ request.session.registered_user_email }} your teams are</h3>
+      {% for i in all_user_teams %}
+        {{ i.team_id.name }}
+      {% endfor %}
+    {% endif %}
 
-    {%  endif %}
+    <form class="" action="/teams_app/return_to_index" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Return to home page">
+    </form>
 
+    <form class="" action="/teams_app/team_listings" method="post">
+      {% csrf_token %}
+      <select name="team_to_show">
+        {% for i in all_teams %}
+        <option value="{{ i.name }}">{{ i.name }}</option>
+        <!-- VALUE used in views.py to match -->
+        {% endfor %}
+      </select>
+      <input type="submit" name="submit" value="Show team listings">
+    </form>
 
   </body>
 </html>

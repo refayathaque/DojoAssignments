@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>TEAM LISTINGS</title>
+  </head>
+  <body>
+
+    {% if request.session.logged_in_user_email %}
+    <h2>{{ request.session.logged_in_user_email }} you are logged in</h2>
+    {%  endif %}
+    {% if request.session.registered_user_email %}
+    <h2>{{ request.session.registered_user_email }} you are logged in</h2>
+    {%  endif %}
+
+    <h1>TEAM LISTINGS</h1>
+    <table>
+    <tr>
+      <th>Team</th>
+      <th>Players</th>
+    </tr>
+    {% for i in all_user_teams %}
+    <tr>
+      <td>{{ i.team_id.name }}</td>
+      <td>{{ i.user_id.first_name }} {{ i.user_id.last_name }}</td>
+    </tr>
+    {% endfor %}
+    </table>
+
+  </body>
+</html>

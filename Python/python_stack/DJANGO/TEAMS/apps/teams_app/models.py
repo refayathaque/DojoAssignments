@@ -25,6 +25,19 @@ class UserManager(models.Manager):
         if counter == 1:
             Team.objects.create(name = data['team_name'])
             return (True, data['team_name'])
+        ####
+
+    def join_team(self, data):
+
+        errors = []
+
+        # NOT JOINING A TEAM MORE THAN ONCE
+        if User_Team.objects.filter(team_id__name = data['team_join']):
+            errors.append('YOU HAVE ALREADY JOINED THIS TEAM!')
+            return (False, errors)
+        else:
+            return (True, data['team_join'])
+        ####
 
 # TABLES
 class Team(models.Model):
@@ -32,6 +45,8 @@ class Team(models.Model):
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
+    def __str__(self):
+        return self.name
 
 # JOIN TABLE
 class User_Team(models.Model):
@@ -39,4 +54,6 @@ class User_Team(models.Model):
     user_id = models.ForeignKey(User, related_name="user_name")
     created_at = models.DateTimeField(auto_now_add = True)
     updated_at = models.DateTimeField(auto_now = True)
+    def __str__(self):
+        return "team_id: " + self.team_id + "user_id: " + self.user_id
 ####
