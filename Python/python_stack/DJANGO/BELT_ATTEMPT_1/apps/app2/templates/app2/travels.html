@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Travels</title>
+  </head>
+  <body>
+
+    <h2>Travels</h2>
+
+    <!-- GREETING -->
+    {% if request.session.logged_in_user_username %}
+      {% for i in user_information %}
+        <h3>Welcome {{ i.name }}!</h3>
+      {% endfor %}
+    {%  endif %}
+
+    {% if request.session.registered_user_username %}
+      {% for i in user_information %}
+        <h3>Welcome {{ i.name }}!</h3>
+      {% endfor %}
+    {%  endif %}
+
+    <!-- TRIP SCHEDULES -->
+    {% if request.session.logged_in_user_username %}
+      {% if all_user_trips %}
+      <h2 style="color : blue">Your trips are:</h2>
+      <table>
+        <tr>
+          <th>Destination</th>
+          <th>Plan</th>
+          <th>Travel Start Date</th>
+          <th>Travel End Date</th>
+        </tr>
+        {% for i in all_user_trips %}
+        <tr>
+          <td><a href="/app2/display_trip/{{ i.trip_id.destination }}">{{ i.trip_id.destination }}</a></td>
+          <td>{{ i.trip_id.description }}</td>
+          <td>{{ i.trip_id.travel_start }}</td>
+          <td>{{ i.trip_id.travel_end }}</td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    {% endif %}
+
+    {% if request.session.registered_user_username %}
+      {% if all_user_trips %}
+      <h2 style="color : blue">Your trips are:</h2>
+      <table>
+      <tr>
+        <th>Destination</th>
+        <th>Plan</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+      </tr>
+      {% for i in all_user_trips %}
+      <tr>
+        <td><a href="/app2/display_trip/{{ i.trip_id.destination }}">{{ i.trip_id.destination }}</a></td>
+        <td>{{ i.trip_id.description }}</td>
+        <td>{{ i.trip_id.travel_start }}</td>
+        <td>{{ i.trip_id.travel_end }}</td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+  {% endif %}
+
+    <!-- ALL TRIPS -->
+    {% if all_trips_minus_what_users_are_part_of %}
+    <h2>These are some other available trips:</h2>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Destination</th>
+        <th>Travel Start Date</th>
+        <th>Travel End Date</th>
+        <th>Do you want to join?</th>
+      </tr>
+      {% for i in all_trips_minus_what_users_are_part_of %}
+      <tr>
+        <td>{{ i.created_by }}</td>
+        <td><a href="/app2/display_trip/{{ i.destination }}">{{ i.destination }}</a></td>
+        <td>{{ i.travel_start }}</td>
+        <td>{{ i.travel_end }}</td>
+        <td><a href="/app2/join_trip/{{ i.destination }}">Join</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+    <a href='/app2/add'>Add Travel Plan</a>
+
+    <form class="" action="/app2/log_out" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Log out">
+    </form>
+
+  </body>
+</html>

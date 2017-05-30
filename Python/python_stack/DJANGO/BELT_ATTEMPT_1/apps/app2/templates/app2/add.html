@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Add</title>
+  </head>
+  <body>
+
+    {% if messages %}
+      {% for message in messages %}
+        <h3>{{ message }}</h3>
+      {% endfor %}
+    {% endif %}
+
+    <form class="" action="/app2/make_trip" method="post">
+      {% csrf_token %}
+      Destination<input type="text" name="destination" value="">
+      Travel Start<input type="date" name="travel_start" value="">
+      Travel End<input type="date" name="travel_end" value="">
+      Description<input type="text" name="description" value="">
+      Your username<input type="text" name="created_by" value="">
+      <input type="submit" name="submit" value="Add">
+    </form>
+
+    <form class="" action="/app2/travels" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Back to Dashboard">
+    </form>
+
+    <form class="" action="/app2/log_out" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Log out">
+    </form>
+
+  </body>
+</html>
