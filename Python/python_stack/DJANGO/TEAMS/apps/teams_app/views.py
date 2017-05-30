@@ -138,12 +138,12 @@ def user_information(request, last_name):
 ####
 
 # LEAVE TEAM (Removes user from a team)
-def leave_team(request, team_name):
+def leave_team(request, team_name): # team_name is what is 'caught' from the URL using REGEX
 
     if request.session['logged_in_user_email']:
         User_Team.objects.filter(user_id__email = request.session['logged_in_user_email']).filter(team_id__name = team_name).delete()
     elif request.session['registered_user_email']:
         User_Team.objects.filter(user_id__email = request.session['registered_user_email']).filter(team_id__name = team_name).delete()
 
-    return redirect('team_listings')
+    return redirect('/success')
 ####
