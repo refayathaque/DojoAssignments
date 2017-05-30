@@ -16,11 +16,24 @@
     h1 {
       color: green;
     }
-    th, td {
-      padding: 10px;
-    }
     th {
       color: blue;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+    input {
+      margin-top: 20px;
     }
   </style>
   <body>
@@ -41,6 +54,8 @@
 
     <p>*Click on last name to learn more about player</p>
 
+    <p>{{ team_name }} has {{ team_count }} players</p>
+
     <table>
     <tr>
       <th>Team</th>
@@ -53,7 +68,7 @@
       <td>{{ i.user_id.first_name }} <a href="/teams_app/user_information/{{ i.user_id.last_name }}">{{ i.user_id.last_name }}</a></td>
     </tr>
     {% endfor %}
-    
+
     </table>
 
     <form class="" action="/teams_app/success" method="post">

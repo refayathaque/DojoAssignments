@@ -2,7 +2,7 @@
 <html>
   <head>
     <meta charset="utf-8">
-    <title>WLECOME to TEAMS.com</title>
+    <title>WELCOME to TEAMS.com</title>
   </head>
   <style media="screen">
     body {
@@ -38,6 +38,7 @@
     }
   </style>
   <body>
+
     <h1>TEAMS.com</h1>
 
     {% if request.session.logged_in_user_email %}
@@ -85,7 +86,7 @@
       {% endif %}
       {% for i in all_user_teams %}
       <ul>
-        <li>{{ i.team_id.name }}</li>
+        <li>{{ i.team_id.name }} <a href="leave_team/{{ i.team_id.name }}">Leave team</a></li>
       </ul>
       {% endfor %}
     {% endif %}
@@ -96,7 +97,7 @@
       {% endif %}
       {% for i in all_user_teams %}
       <ul>
-        <li>{{ i.team_id.name }}</li>
+        <li>{{ i.team_id.name }} <a href="leave_team/{{ i.team_id.name }}">Leave team</a></li>
       </ul>
       {% endfor %}
     {% endif %}

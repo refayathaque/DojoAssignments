@@ -4,6 +4,8 @@ from .models import User, Team, User_Team
 
 from django.contrib import messages
 
+from django.db.models import Count
+
 from sets import Set
 
 # SUCCESS (Displays teams user is belongs to, and dispays teams they can join that they don't already belong to)
@@ -12,7 +14,7 @@ def success(request):
     if request.session['logged_in_user_email']:
 
         a = set( Team.objects.all() ) # all teams
-        b = set( Team.objects.filter(team_name__user_id__email = request.session['logged_in_user_email']) ) # user teams
+        b = set( Team.objects.filter(team_name__user_id__email = request.session['logged_in_user_email']).all() ) # user teams
 
         all_teams_minus_what_users_are_part_of = (a.difference(b))
 
@@ -47,9 +49,16 @@ def make_team(request):
 
     if results[0]:
 
+        # Adds user to the team they just made
         if request.session['logged_in_user_email']:
 
             user_object = User.objects.filter(email = request.session['logged_in_user_email'])
+            team_object = Team.objects.filter(name = request.POST['team_name'])
+            User_Team.objects.create(team_id = team_object[0], user_id = user_object[0])
+
+        elif request.session['registered_user_email']:
+
+            user_object = User.objects.filter(email = request.session['registered_user_email'])
             team_object = Team.objects.filter(name = request.POST['team_name'])
             User_Team.objects.create(team_id = team_object[0], user_id = user_object[0])
 
@@ -97,7 +106,9 @@ def team_listings(request):
         context = {
                     'all_teams' : Team.objects.all(),
                     'all_user_teams' : User_Team.objects.filter(team_id__name=request.POST['team_to_show']),
-                    'user' : User.objects.filter(email = request.session['logged_in_user_email'])
+                    'user' : User.objects.filter(email = request.session['logged_in_user_email']),
+                    'team_count' : User.objects.filter(user_name__team_id__name = request.POST['team_to_show']).count(),
+                    'team_name' : request.POST['team_to_show']
                     }
 
         return render(request, 'teams_app/team_listings.html', context)
@@ -107,7 +118,9 @@ def team_listings(request):
         context = {
                     'all_teams' : Team.objects.all(),
                     'all_user_teams' : User_Team.objects.filter(team_id__name=request.POST['team_to_show']),
-                    'user' : User.objects.filter(email = request.session['registered_user_email'])
+                    'user' : User.objects.filter(email = request.session['registered_user_email']),
+                    'team_count' : User.objects.filter(user_name__team_id__name = request.POST['team_to_show']).count(),
+                    'team_name' : request.POST['team_to_show']
                     }
 
         return render(request, 'teams_app/team_listings.html', context)
@@ -122,4 +135,15 @@ def user_information(request, last_name):
         }
 
     return render(request, 'teams_app/user_information.html', context)
+####
+
+# LEAVE TEAM (Removes user from a team)
+def leave_team(request, team_name):
+
+    if request.session['logged_in_user_email']:
+        User_Team.objects.filter(user_id__email = request.session['logged_in_user_email']).filter(team_id__name = team_name).delete()
+    elif request.session['registered_user_email']:
+        User_Team.objects.filter(user_id__email = request.session['registered_user_email']).filter(team_id__name = team_name).delete()
+
+    return redirect('team_listings')
 ####
