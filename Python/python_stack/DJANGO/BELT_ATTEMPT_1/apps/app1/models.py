@@ -2,18 +2,25 @@ from __future__ import unicode_literals
 
 from django.db import models
 
-from django.shortcuts import render, HttpResponse, redirect
+from django.shortcuts import render, redirect
 
 from django.contrib import messages
 
+import re
+
+full_name = re.compile(r'^([a-z A-Z])*$')
+
+at_sign = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
+
 class UserManager(models.Manager):
 
+    # Login validation
     def login(self, data):
 
         counter = 0
         errors = []
 
-        # USERNAME
+        # Username validation
         if(len(data['username']) < 1):
             errors.append('USERNAME CANNOT BE BLANK!')
 
@@ -26,9 +33,8 @@ class UserManager(models.Manager):
 
             else:
                 errors.append("USERNAME NOT VALID!")
-####
 
-        # PASSWORD
+        # Password validation
         if(len(data['password']) < 8 and len(data['password']) >= 1):
             errors.append("PASSWORD NOT VALID!")
 
@@ -42,9 +48,8 @@ class UserManager(models.Manager):
 
             else:
                 errors.append("PASSWORD NOT VALID!")
-####
 
-        # FINAL CHECK
+        # Final login validation check
         if counter == 2:
             logged_in_user_object = User.objects.get(username = data['username'])
             print logged_in_user_object # Refayat Haque refayathaque
@@ -56,13 +61,14 @@ class UserManager(models.Manager):
             return (False, errors)
 ####
 
+    # Registration validation
     def registration(self, data):
 
         counter = 0
         errors = []
 
-        # NAME
-        if data['name'].isalpha() and len(data['name']) > 2:
+        # Name validation w/ regex
+        if len(data['name']) > 2 and full_name.match(data['name']):
             counter += 1
 
         elif data['name'].isalpha() and len(data['name']) < 2:
@@ -71,9 +77,7 @@ class UserManager(models.Manager):
         elif len(data['name']) < 1:
             errors.append('NAME CANNOT BE BLANK!')
 
-        # need validation for 'space', e.g. Refayat Haque doesn't work
-
-        # USERNAME
+        # Username validation
         if data['username'].isalpha() and len(data['username']) > 2:
             counter += 1
 
@@ -85,9 +89,11 @@ class UserManager(models.Manager):
 
         elif User.objects.filter(username = data['username']):
             errors.append("YOU CANNOT REGISTER AGAIN!")
-####
 
-        # PASSWORD
+        elif at_sign.match(data['username']):
+            errors.append("USERNAME CANNOT BE AN EMAIL!")
+
+        # Password validation
         if(len(data['password']) >= 8):
             counter += 1
 
@@ -102,10 +108,8 @@ class UserManager(models.Manager):
 
         elif(data['password'] != data['password_confirmation']):
             errors.append('PASSWORDS DO NOT MATCH!')
-####
 
-        # FINAL CHECK
-
+        # Final registration validation check
         if counter == 4:
             User.objects.create(name = data['name'], username = data['username'], password = data['password'])
             registered_user_object = User.objects.get(username = data['username'])
@@ -118,7 +122,7 @@ class UserManager(models.Manager):
             return (False, errors)
 ####
 
-# TABLE
+# Table for User
 class User(models.Model):
     name = models.CharField(max_length=45)
     username = models.CharField(max_length=45)

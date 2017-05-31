@@ -4,6 +4,22 @@
     <meta charset="utf-8">
     <title>Add</title>
   </head>
+  <style media="screen">
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+      width: 500px;
+      text-align: left;
+      font-family: sans-serif;
+    }
+    h1 {
+      color: green;
+    }
+    h3 {
+      color: red;
+    }
+  </style>
   <body>
 
     {% if messages %}
@@ -14,10 +30,14 @@
 
     <form class="" action="/app2/make_trip" method="post">
       {% csrf_token %}
-      Destination<input type="text" name="destination" value="">
-      Travel Start<input type="date" name="travel_start" value="">
-      Travel End<input type="date" name="travel_end" value="">
-      Description<input type="text" name="description" value="">
+      <h1>Destination</h1>
+      <input type="text" name="destination" value="">
+      <h1>Travel Start</h1>
+      <input type="date" name="travel_start" value="">
+      <h1>Travel End</h1>
+      <input type="date" name="travel_end" value="">
+      <h1>Description</h1>
+      <input type="text" name="description" value="">
       <input type="submit" name="submit" value="Add">
     </form>
 

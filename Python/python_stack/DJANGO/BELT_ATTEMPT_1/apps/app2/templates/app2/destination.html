@@ -28,9 +28,16 @@
       <h2><em>Description</em> - {{i.description}}</h2>
     {% endfor %}
 
-    <h1>Others in this trip:</h1>
+    {% if all_trip_users_minus_current_user %}
+    <h1>Trip Roster:</h1>
+    {% endif %}
 
-    {% for i in other_users_in_trip %}
+    {% for i in all_trip_users_minus_current_user %}
+    <!-- {% if i.username == trip.created_by %}
+    <ul>
+      <li><p>{{ i.name }} (Organizer)</p></li>
+    </ul>
+    {% endif %} -->
     <ul>
       <li><p>{{ i.name }}</p></li>
     </ul>

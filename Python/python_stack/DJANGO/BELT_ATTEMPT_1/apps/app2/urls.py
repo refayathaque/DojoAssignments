@@ -12,7 +12,3 @@ urlpatterns = [
     url(r'^display_trip/(?P<destination>\w+\s\w+)$', views.display_trip),
     url(r'^log_out$', views.log_out)
 ]
-
-# url(r'^leave_team/(?P<team_name>\w+\s\w+)$', views.leave_team), # REGEX for things with spaces in between like 'Monitor FC'
-# url(r'^leave_team/(?P<team_name>\w+)$', views.leave_team), # REGEX for things WITHOUT spaces in between
-# url(r'^leave_team/(?P<team_name>\w+\s\w+\s\w+)$', views.leave_team) # REGEX for things with TWO spaces in between like 'Booz Allen FC'
