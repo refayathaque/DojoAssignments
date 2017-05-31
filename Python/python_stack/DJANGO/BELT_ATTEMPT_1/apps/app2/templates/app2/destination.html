@@ -19,16 +19,16 @@
   </style>
   <body>
 
-    <h1>Trip Information</h1>
+    <h1>Trip Information:</h1>
 
     {% for i in trip %}
-      <h2><em>Created by:</em> {{i.created_by}}</h2>
-      <h2><em>Description:</em> {{i.description}}</h2>
-      <h3><em>Travel Date From:</em> {{i.travel_start}}</h3>
-      <h3><em>Travel Date To:</em> {{i.travel_end}}</h3>
+      <h2><em>Organizer</em> - {{i.created_by}}</h2>
+      <h3><em>From</em> - {{i.travel_start}}</h3>
+      <h3><em>To</em> - {{i.travel_end}}</h3>
+      <h2><em>Description</em> - {{i.description}}</h2>
     {% endfor %}
 
-    <h1>Other people joining this trip</h1>
+    <h1>Others in this trip:</h1>
 
     {% for i in other_users_in_trip %}
     <ul>

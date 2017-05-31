@@ -4,9 +4,22 @@
     <meta charset="utf-8">
     <title>Travels</title>
   </head>
+  <style media="screen">
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+      width: 500px;
+      text-align: left;
+      font-family: sans-serif;
+    }
+    h1 {
+      color: green;
+    }
+  </style>
   <body>
 
-    <h2>Travels</h2>
+    <h1>Travels</h1>
 
     <!-- GREETING -->
     {% if request.session.logged_in_user_username %}
@@ -28,16 +41,16 @@
       <table>
         <tr>
           <th>Destination</th>
-          <th>Plan</th>
           <th>Travel Start Date</th>
           <th>Travel End Date</th>
+          <th>Plan</th>
         </tr>
         {% for i in all_user_trips %}
         <tr>
           <td><a href="/app2/display_trip/{{ i.trip_id.destination }}">{{ i.trip_id.destination }}</a></td>
-          <td>{{ i.trip_id.description }}</td>
           <td>{{ i.trip_id.travel_start }}</td>
           <td>{{ i.trip_id.travel_end }}</td>
+          <td>{{ i.trip_id.description }}</td>
         </tr>
         {% endfor %}
       </table>
@@ -50,16 +63,16 @@
       <table>
       <tr>
         <th>Destination</th>
-        <th>Plan</th>
         <th>Travel Start Date</th>
         <th>Travel End Date</th>
+        <th>Plan</th>
       </tr>
       {% for i in all_user_trips %}
       <tr>
         <td><a href="/app2/display_trip/{{ i.trip_id.destination }}">{{ i.trip_id.destination }}</a></td>
-        <td>{{ i.trip_id.description }}</td>
         <td>{{ i.trip_id.travel_start }}</td>
         <td>{{ i.trip_id.travel_end }}</td>
+        <td>{{ i.trip_id.description }}</td>
       </tr>
       {% endfor %}
     </table>
@@ -68,7 +81,7 @@
 
     <!-- ALL TRIPS -->
     {% if all_trips_minus_what_users_are_part_of %}
-    <h2>These are some other available trips:</h2>
+    <h2>Here are trips you can join:</h2>
     <table>
       <tr>
         <th>Name</th>
