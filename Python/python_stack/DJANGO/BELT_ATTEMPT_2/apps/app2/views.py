@@ -44,15 +44,15 @@ def log_out(request):
 def display_users(request, email):
 
     context = {
-                'users_posts' : Quote.objects.filter(quote_name__user_id__email = email),
+                'users_posts' : Quote.objects.filter(posted_by = email),
                 'user' : User.objects.filter(email = email),
-                'count' : Quote.objects.filter(quote_name__user_id__email = email).count()
+                'count' : Quote.objects.filter(posted_by = email).count()
                 }
 
-    return render(request, 'app2/users.html')
+    return render(request, 'app2/users.html', context)
 
-def remove_from_favorites(request, id):
-    User_Quote.objects.filter(user_id__email = request.session['email']).filter(quote_id__id = id).delete()
+def remove_from_favorites(request, quote_id__posted_by):
+    User_Quote.objects.filter(user_id__email = request.session['email']).filter(quote_id__posted_by = quote_id__posted_by).delete()
     return redirect('/app2/quotes')
 
 def add_to_favorites(request, id):

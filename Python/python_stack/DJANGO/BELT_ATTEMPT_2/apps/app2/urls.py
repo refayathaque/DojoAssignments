@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^display_users/([a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+)$', views.display_users),
     url(r'^create_quote$', views.create_quote),
     url(r'^log_out$', views.log_out),
-    url(r'^remove_from_favorites/(?P<id>\d+)$', views.remove_from_favorites),
+    url(r'^remove_from_favorites/([a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+)$', views.remove_from_favorites),
     url(r'^add_to_favorites/(?P<id>\d+)$', views.add_to_favorites)
 ]
 

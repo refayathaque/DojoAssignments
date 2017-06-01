@@ -57,7 +57,7 @@
           <td>{{ i.quote_id.quoted_by }}</td>
           <td>{{ i.quote_id.quote }}</td>
           <td>{{ i.quote_id.posted_by }}</td>
-          <td><a href="/app2/remove_from_favorites/{{ i.id }}">Yes, remove</a></td>
+          <td><a href="/app2/remove_from_favorites/{{ i.quote_id.posted_by }}">Yes, remove</a></td>
         </tr>
         {% endfor %}
       </table>
