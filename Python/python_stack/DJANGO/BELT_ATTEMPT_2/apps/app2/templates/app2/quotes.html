@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Quotes</title>
+  </head>
+  <style media="screen">
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+      width: 500px;
+      text-align: left;
+      font-family: sans-serif;
+    }
+    h1 {
+      color: green;
+    }
+    table {
+    font-family: arial, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    }
+    td, th {
+    border: 1px solid #dddddd;
+    text-align: left;
+    padding: 8px;
+    }
+    tr:nth-child(even) {
+    background-color: #dddddd;
+    }
+  </style>
+  <body>
+
+    <h1>Quotes</h1>
+
+    <!-- GREETING -->
+    {% if request.session.email %}
+      {% for i in user_information %}
+        <h3>Welcome {{ i.name }}!</h3>
+      {% endfor %}
+    {%  endif %}
+
+    <!-- FAVORITED QUOTES -->
+    {% if request.session.email %}
+      {% if all_user_favorited %}
+      <h2 style="color : blue">Your Favorites:</h2>
+      <table>
+        <tr>
+          <th>Quoted by</th>
+          <th>Quote</th>
+          <th>Posted by</th>
+          <th>Remove from favorites?</th>
+        </tr>
+        {% for i in all_user_favorited %}
+        <tr>
+          <td>{{ i.quote_id.quoted_by }}</td>
+          <td>{{ i.quote_id.quote }}</td>
+          <td>{{ i.quote_id.posted_by }}</td>
+          <td><a href="/app2/remove_from_favorites/{{ i.id }}">Yes, remove</a></td>
+        </tr>
+        {% endfor %}
+      </table>
+      {% endif %}
+    {% endif %}
+
+    <!-- ALL QUOTES -->
+    {% if all_quotes_minus_what_users_favorited %}
+    <h2>Quotable Quotes:</h2>
+    <table>
+      <tr>
+        <th>Quoted by</th>
+        <th>Quote</th>
+        <th>Posted by</th>
+        <th>Add to favorites?</th>
+      </tr>
+      {% for i in all_quotes_minus_what_users_favorited %}
+      <tr>
+        <td>{{ i.quoted_by }}</td>
+        <td>{{ i.quote }}</td>
+        <td><a href="/app2/display_users/{{ i.posted_by }}">{{ i.posted_by }}</a></td>
+        <td><a href="/app2/add_to_favorites/{{ i.id }}">Yes, add</a></td>
+      </tr>
+      {% endfor %}
+    </table>
+    {% endif %}
+
+    <!-- INSERTING QUOTE -->
+    <form class="" action="/app2/create_quote" method="post">
+      {% csrf_token %}
+      <p>Quoted by:</p>
+      <input type="text" name="quoted_by" value="">
+      <p>Message:</p>
+      <textarea type="text" name="quote" value="" rows="4" cols="50"></textarea>
+      <input type="submit" name="submit" value="Submit">
+    </form>
+
+    <form class="" action="/app2/log_out" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Log out">
+    </form>
+
+  </body>
+</html>

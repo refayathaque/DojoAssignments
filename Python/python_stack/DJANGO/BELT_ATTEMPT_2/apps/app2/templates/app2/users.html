@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Destination</title>
+  </head>
+  <style media="screen">
+    body {
+      margin-right: auto;
+      margin-left: auto;
+      margin-top: 10px;
+      width: 500px;
+      text-align: left;
+      font-family: sans-serif;
+    }
+    h1 {
+      color: green;
+    }
+  </style>
+  <body>
+
+    {% for i in user %}
+      <h2><em>Posts by</em> : {{i.name}}</h2>
+    {% endfor %}
+    <h2><em>Count</em> : {{ count }}</h2>
+
+    {% for i in users_posts %}
+    <ul>
+      <li><p>{{ i.quoted_by }} : {{ i.quote }}</p></li>
+    </ul>
+    {% endfor %}
+
+    <form class="" action="/app2/quotes" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Back to Dashboard">
+    </form>
+
+    <form class="" action="/app2/log_out" method="post">
+      {% csrf_token %}
+      <input type="submit" name="submit" value="Log out">
+    </form>
+
+  </body>
+</html>
