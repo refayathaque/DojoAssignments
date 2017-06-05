@@ -17,14 +17,3 @@ urlpatterns = [
     url(r'^remove_from_favorites/([a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+)$', views.remove_from_favorites),
     url(r'^add_to_favorites/(?P<id>\d+)$', views.add_to_favorites)
 ]
-
-# urlpatterns = [
-#     url(r'^travels$', views.travels),
-#     url(r'^make_trip$', views.make_trip),
-#     url(r'^add$', views.add),
-#     url(r'^join_trip/(?P<destination>\w+)$', views.join_trip),
-#     url(r'^join_trip/(?P<destination>\w+\s\w+)$', views.join_trip),
-#     url(r'^display_trip/(?P<destination>\w+)$', views.display_trip),
-#     url(r'^display_trip/(?P<destination>\w+\s\w+)$', views.display_trip),
-#     url(r'^log_out$', views.log_out)
-# ]

@@ -33,6 +33,7 @@ def signing_in():
     print es
     counter = 0
 
+    #EMAIL
     if(len(request.form['email_es']) < 1):
         flash("EMAIL CANNOT BE BLANK!")
     elif not EMAIL_REGEX.match(request.form['email_es']):
@@ -72,6 +73,8 @@ def signing_in():
 @app.route('/registration', methods=['POST'])
 def processing():
     counter = 0
+
+    #EMAIL
     if request.form['first_name'].isalpha() and len(request.form['first_name']) > 2:
         counter += 1
     elif request.form['first_name'].isalpha() and len(request.form['first_name']) < 2:
