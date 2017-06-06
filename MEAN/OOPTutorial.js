@@ -65,3 +65,11 @@ Michael.introduce = function() { // Redefining MICHAEL'S 'introduce' method in t
     console.log("I am the sensei!")
 }
 Michael.introduce();
+
+// CAN ALSO CREATE NEW METHODS FOR EACH INSTANTIATED OBJECT! SIMILAR WAY AS ABOVE!
+
+Michael.sayGoodbye = function() {
+console.log('Goodbye!')
+}
+Michael.sayGoodbye();
+// Method above is UNIQUE to MICHAEL OBJECT

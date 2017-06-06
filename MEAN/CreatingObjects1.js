@@ -28,11 +28,12 @@ Sedan.makeNoise();
 var Bus = VehicleConstructor('Bus', 6, 20);
 console.log(Bus);
 
-Bus.passengerCount = function(passengers) {
-    var count = 0;
-    count += passengers;
-    console.log(count);
+Bus.pick_up_pax = function(new_pax) {
+    var count = Bus.num_pax;
+    count += new_pax;
+    return count;
 }
 
-Bus.passengerCount(23);
+Bus.pick_up_pax(13);
 console.log(Bus);
+console.log(Bus.pick_up_pax(13)); // 33
