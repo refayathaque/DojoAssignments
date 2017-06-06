@@ -49,4 +49,5 @@ function ninjaConstructor(name, cohort) {
     console.log(ninja);
 }
 
-console.log(ninjaConstructor('Harry', 'Kappa'));
+var Harry = ninjaConstructor('Harry', 'Kappa');
+Harry.levelUp();
