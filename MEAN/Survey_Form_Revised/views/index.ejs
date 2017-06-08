@@ -8,15 +8,18 @@
     <script type="text/javascript">
 
       $(document).ready(function() {
+
         var socket = io.connect();
         $('#survey_form').submit(function(e) {
           e.preventDefault();
+
           socket.emit('posting_form', {
             name: $('#name').val(),
             location: $('#location').val(),
             language: $('#language').val(),
             comment: $('#comment').val()
           });
+
         });
 
         socket.on('updated_message', function(data) {
