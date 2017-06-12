@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Form</title>
+  </head>
+  <style media="screen">
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+  </style>
+  <body>
+  <h2>Enter your name and age, see it displayed below!</h2>
+  <hr>
+
+  <% if(typeof(errors) != 'undefined') { %>
+     <% for (var x in errors) { %>
+      <h3><%= errors[x].message %></h3>
+    <% } %>
+  <% } %>
+
+    <form class="" action="/users" method="post">
+      <h3>Name</h3>
+      <input type="text" name="name" value="">
+      <h3>Age</h3>
+      <input type="number" name="age" value="" placeholder="Must be at least 18 y/o">
+      <p>----</p>
+      <input type="submit" name="submit" value="Submit">
+      <hr>
+    </form>
+
+    <% if(typeof(errors) == 'undefined') { %>
+      <% for (var i = 0; i < users.length; i++) { %>
+        <p><strong><%= users[i].name %></strong> <em><%= users[i].age %></em></p>
+        <% } %>
+    <% } %>
+  </body>
+</html>
