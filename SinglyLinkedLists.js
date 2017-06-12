@@ -59,3 +59,46 @@ list1.insert(4)
 console.log("original list 1", list1.head)
 console.log("return of split on value method", list1.splitOnVal(list2, 4))
 console.log("split on list 1", list1.head)
+
+// QUEUES
+
+function queue() {
+    this.head = null;
+    this.tail = null;
+    this.enqueue = function(val) {
+        if(!this.head) {
+            this.head = node;
+            this.tail = node;
+            return this;
+        }
+        this.tail.next = node;
+        this.tail = node;
+        return this;
+    }
+    this.returnFront = function() {
+        if (!this.head) {
+            return null;
+        }
+        return this.head.val
+    }
+    this.returnEmpty = function() {
+        if (!this.head) {
+            return True;
+        }
+        return False;
+    }
+    this.dequeue = function() {
+        if (!this.head) {
+            return null
+        }
+        else if (!this.head.next) {
+            var temp = this.head.val;
+            this.head = null;
+            this.tail = null;
+            return temp;
+        }
+        var temp = this.head.val;
+        this.head = this.head.next;
+        return temp;
+    }
+}
