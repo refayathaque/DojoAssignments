@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Rabbit Information</title>
+  </head>
+  <style media="screen">
+    body {
+      font-family: sans-serif;
+      text-align: center;
+    }
+  </style>
+  <body>
+  <h2>My information!</h2>
+  <hr>
+
+  <% for (var i = 0; i < rabbits.length; i++) { %>
+    <h3><strong><%= rabbits[i].name %></strong> : <em><%= rabbits[i].age %></em></h3>
+    <hr>
+    <a href="/rabbits/edit/<%= rabbits[i].id %>"><button type="button" name="button">Edit my information!</button></a>
+  <% } %>
+
+  </body>
+</html>
