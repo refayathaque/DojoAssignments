@@ -1,0 +1,132 @@
+<div class="container">
+  <h1>{{ title }}</h1>
+  <form (submit)='onSubmit()'>
+  <fieldset>
+    <legend><h2>Account Information:</h2></legend>
+
+    <div *ngIf='users.length > 0'>
+      <fieldset>
+        <div *ngFor='let user of users'>
+        <p>Thank you {{ user.fname | json }} for registering with your email {{ user.email | json }}, we look forward to sending you a lot of spam emails there, and also to your physical address ({{ user.address | json }}) in {{ user.city | json}}, {{ user.state | json }}.</p>
+        </div>
+      </fieldset>
+    </div>
+
+    <p>First Name:</p><input type="text" name="fname" value="" required [(ngModel)]='user.fname' #fname='ngModel'>
+    {{ fname.errors | json }}
+    {{ fname.valid | json }}
+    <div *ngIf='!fname.valid'>First name required!</div>
+
+    <p>Last Name:</p><input type="text" name="lname" value="" required [(ngModel)]='user.lname' #lname='ngModel'>
+    {{ lname.errors | json }}
+    {{ lname.valid | json }}
+    <div *ngIf='!lname.valid'>Last name required!</div>
+
+    <p>Email:</p><input type="text" name="email" value="" pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$' [(ngModel)]="user.email" #email='ngModel' required>
+    {{ email.errors | json }}
+    {{ email.valid | json }}
+    <div *ngIf='!email.valid'>Email invalid!</div>
+
+    <p>Password:</p><input type="password" name="password" value="" [(ngModel)]='user.password' #password='ngModel' minlength='16' required>
+    {{ password.errors | json }}
+    {{ password.valid | json }}
+    <div *ngIf='!password.valid'>Password must be at least 16 characters long!</div>
+
+    <p>Password Confirmation:</p><input type="password" name="pconfirmation" value="" [(ngModel)]='user.pconfirmation' #pconfirmation='ngModel' minlength='16' required>
+    {{ pconfirmation.errors | json }}
+    {{ pconfirmation.valid | json }}
+    <div *ngIf='!pconfirmation.valid'>Password must match what is above!</div>
+
+    <p>Street Address:</p><input type="text" name="address" value="" [(ngModel)]='user.address' #address='ngModel' required>
+    {{ address.errors | json }}
+    {{ address.valid | json }}
+    <div *ngIf='!address.valid'>Address required!</div>
+
+    <p>Unit/Apt Number:</p><input type="text" name="apt" value="" [(ngModel)]='user.apt' #apt='ngModel'>
+
+    <p>City:</p><input type="text" name="city" value="" required [(ngModel)]='user.city' #city='ngModel'>
+    {{ city.errors | json }}
+    {{ city.valid | json }}
+    <div *ngIf='!city.valid'>City required!</div>
+
+    <p>State:</p><select name='state' [(ngModel)]='user.state' #state='ngModel' required>
+      <option value="AL">Alabama</option>
+    	<option value="AK">Alaska</option>
+    	<option value="AZ">Arizona</option>
+    	<option value="AR">Arkansas</option>
+    	<option value="CA">California</option>
+    	<option value="CO">Colorado</option>
+    	<option value="CT">Connecticut</option>
+    	<option value="DE">Delaware</option>
+    	<option value="DC">District Of Columbia</option>
+    	<option value="FL">Florida</option>
+    	<option value="GA">Georgia</option>
+    	<option value="HI">Hawaii</option>
+    	<option value="ID">Idaho</option>
+    	<option value="IL">Illinois</option>
+    	<option value="IN">Indiana</option>
+    	<option value="IA">Iowa</option>
+    	<option value="KS">Kansas</option>
+    	<option value="KY">Kentucky</option>
+    	<option value="LA">Louisiana</option>
+    	<option value="ME">Maine</option>
+    	<option value="MD">Maryland</option>
+    	<option value="MA">Massachusetts</option>
+    	<option value="MI">Michigan</option>
+    	<option value="MN">Minnesota</option>
+    	<option value="MS">Mississippi</option>
+    	<option value="MO">Missouri</option>
+    	<option value="MT">Montana</option>
+    	<option value="NE">Nebraska</option>
+    	<option value="NV">Nevada</option>
+    	<option value="NH">New Hampshire</option>
+    	<option value="NJ">New Jersey</option>
+    	<option value="NM">New Mexico</option>
+    	<option value="NY">New York</option>
+    	<option value="NC">North Carolina</option>
+    	<option value="ND">North Dakota</option>
+    	<option value="OH">Ohio</option>
+    	<option value="OK">Oklahoma</option>
+    	<option value="OR">Oregon</option>
+    	<option value="PA">Pennsylvania</option>
+    	<option value="RI">Rhode Island</option>
+    	<option value="SC">South Carolina</option>
+    	<option value="SD">South Dakota</option>
+    	<option value="TN">Tennessee</option>
+    	<option value="TX">Texas</option>
+    	<option value="UT">Utah</option>
+    	<option value="VT">Vermont</option>
+    	<option value="VA">Virginia</option>
+    	<option value="WA">Washington</option>
+    	<option value="WV">West Virginia</option>
+    	<option value="WI">Wisconsin</option>
+    	<option value="WY">Wyoming</option>
+    </select>
+    {{ state.errors | json }}
+    {{ state.valid | json }}
+    <div *ngIf='!state.valid'>State required!</div>
+
+    <p>I'm feeling lucky:</p>
+    <form>
+      Yes :) <input name="lucky" required [(ngModel)]='user.lucky' #lucky='ngModel' type="radio" value="yes">
+      No :( <input name="lucky" required [(ngModel)]='user.lucky' #lucky='ngModel' type="radio" value="no">
+    </form>
+    <div *ngIf='!lucky.valid'>You must tell us if you're feeling lucky or not!</div>
+    {{ lucky.errors | json }}
+    {{ lucky.valid | json }}
+
+  </fieldset>
+
+  <div *ngIf='lucky.valid && city.valid && address.valid && pconfirmation.valid && password.valid && email.valid && lname.valid && fname.valid && state.valid'>
+    <input id="button" type="submit" name="" value="Register">
+  </div>
+
+  </form>
+
+  {{ user | json }}
+
+  <hr>
+
+  {{ users | json }}
+
+</div>

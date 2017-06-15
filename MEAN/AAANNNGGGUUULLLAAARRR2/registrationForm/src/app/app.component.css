@@ -1,0 +1,11 @@
+.container {
+  font-family: sans-serif;
+  text-align: center;
+  width: 700px;
+  margin-right: auto;
+  margin-left: auto;
+  text-align: center;
+}
+#button {
+  margin: 10px;
+}
