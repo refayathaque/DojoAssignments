@@ -1,0 +1,9 @@
+fieldset {
+  width: 300px;
+  display: inline-block;
+  height: 231px;
+  padding-top: 75px;
+}
+* {
+  font-family: sans-serif;
+}

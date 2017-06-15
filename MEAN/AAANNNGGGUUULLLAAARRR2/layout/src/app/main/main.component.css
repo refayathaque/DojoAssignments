@@ -1,0 +1,11 @@
+fieldset {
+  width: 870px;
+  display: inline-block;
+  height: 300px;
+}
+* {
+  font-family: sans-serif;
+}
+p {
+  text-align: left;
+}
