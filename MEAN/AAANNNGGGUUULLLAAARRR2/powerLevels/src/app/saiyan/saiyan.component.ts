@@ -14,7 +14,10 @@ export class SaiyanComponent implements OnInit {
 
   calculatePowerUp(){
     console.log('This function works!')
-    this.newPowerLevel = this.initialPowerLevel * 10;
+    setTimeout(()=>{
+      console.log("this.init", this.initialPowerLevel)
+      this.newPowerLevel = this.initialPowerLevel * 10;
+    },0)
   }
 
   ngOnInit() {

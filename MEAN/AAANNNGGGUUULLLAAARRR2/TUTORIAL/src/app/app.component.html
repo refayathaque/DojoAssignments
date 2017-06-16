@@ -1,0 +1,99 @@
+<div id='container'>
+    <h1>{{ title }}</h1>
+    <p class='code'><em>Text in red is code</em></p>
+    <div>
+        <h2>Setup</h2>
+            <h3>Creating an Angular App</h3>
+                <p>* navigate to the folder directory you want your new app *</p>
+                <p class='code'>ng new myFirstAngularApp</p>
+            <h3>Generating Components, Directives, Services and Pipes</h3>
+                <p>* navigate into your new angular application folder *</p>
+                <p class='code'>ng generate component my-component</p>
+                <p class='code'>ng generate service my-service</p>
+                <p class='code'>ng generate class my-class</p>
+            <h3>Launching the App</h3>
+                <p class='code'>ng serve</p>
+                <p>Run on <em>http://localhost:4200</em></p>
+    </div>
+    <div>
+        <h2>Typescript</h2>
+            <h3>Basic Types</h3>
+                <p class="code"> var myString: string = "This is a string"; </p>
+                <p class="code"> var myNumber: number = 7; </p>
+                <p class="code"> var myBoolean: boolean = true; </p>
+                <p class="code"> var arrayOfNumbers: number[]; ( can also be string[] ) </p>
+                <p class="code"> var arrayOfNumbers: Array<number / string / etc>; </p>
+                <p class="code"> var anything: any = 7; </p>
+            <h3>Variable Declarations</h3>
+                <p>var - is used when we want to define the scope, and this will be scoped within functions only.</p>
+                <p>let - is used when we want to define the scope, within blocks (within curly braces), this includes loops, a variable declared as a let within an if block, or for loop block, will not be defined outside of the if block, or the for loop block.</p>
+                <p>const - is similar to let, in that it's scoped within blocks, but we cannot change it's type, or value once set. Note: if an object is const, we can't change the object's structure (such as adding, or replacing keys), but we can change the object's values.</p>
+    </div>
+    <div>
+        <h2>Component - Data</h2>
+            <h3>Component</h3>
+                <p>Components offer "reusable building blocks for an application". They hold the HTML, CSS and JavaScript for that piece of the application, and we can use them by their unique selector name.</p>
+                <p>(AppComponent) which always loads first. This (what you are currently viewing) is considered the root component and highest level component. Data stored in this component can be passed down through the entire application.</p>
+                <p>This component will load because in our root index.html file in our application, we used it's selector tag.</p>
+                <h4>On our app.component.ts file</h4>
+                <p>@Component, this is a type of decorator, which is a function given an object as a parameter. This object holds meta data which gives details to our decorator and its functionality.</p>
+                <p>The immediate class that follows the decorator export class AppComponent (curly braces) will inherit all of this meta-data and functionality of the @Component decorator.</p>
+                <p>app.component.ts which includes export class AppComponent (curly braces) will be where all your TypeScript code will go - and essentially all of our logic for this particular component. This is linked to the template file app.component.html and styling file app.component.css.</p>
+            <h3>Interpolation</h3>
+                <p>When we need to print variables in our template, we use interpolation. These variables derive from our Components, they could be variable we define, or objects that are returned to us</p>
+                <p>When we define variables with values in our Component's Class, and want these values to be printed in our Template using INTERPOLATION. Within our Template file, we use double curly brackets and insert the variable name in the middle</p>
+                <p>Below we are displaying variables 'x' and 'y', numbers 10 and 5 respectively. These variables are defined in our APP COMPONENT'S CLASS</p>
+                <p class="code">{{ x }}</p>
+                <p class="code">{{ y }}</p>
+                <p>We can also have OBJECTS and ARRAYS in the CLASS, and printed below are the first names and last names of two people. These two people are saved in OBJECTS within an ARRAY. To access their information we will be FOR LOOPING over the ARRAY using '*ngFor'. *placed INSIDE the ELEMENT TAG</p>
+                <p class="code" *ngFor='let user of users, let i=index'>
+                    Firstname: {{ users[i].firstname | json }}
+                    Lastname: {{ users[i].lastname | json }}
+                </p>
+                <p class="code">The general format for '*ngFor' is '*ngFor='let one of many, let i=index''</p>
+            <h3>Data Binding</h3>
+                <p>We use this to BIND DATA to an HTML element attribute, IE the input element tag. To bind data we must place square brackets around the attribute and have it evaluate variables in our AppComponent class. The format is [HTML attribute]='some variable in AppComponent class'.</p>
+                <input type="text" name="" [value]="users[0].firstname">
+                <p>Above we BOUND the firstname of the first object in our users list to the value attribute in the input element tag.</p>
+            <h3>Pipes</h3>
+                <p>Pipes are filters, they help us transform displayed values within a template, for better presentation and readability. The following pipes (filters) are built into Angular (however we can also make our own custom pipes).</p>
+                <p>json pipe is (and should be) very commonly used when coding. It allows you to view the data you expect in the template file, without having to question or guess if the right data is present and available.</p>
+                <p>Example below</p>
+                <p class="code">{{ users | json }}</p>
+                <p>Example below of the same 'users' array above but without the json filter</p>
+                <p class="code">{{ users }}</p>
+                <p>date pipe is also used to manipulate the visual representation of datetime.</p>
+                <p class="code">Today's Date without the date pipe: {{ today }}</p>
+                <p class="code">Today's Date WITH the date pipe: {{ today | date:'medium' }}</p>
+            <h3>Structural Directives</h3>
+                <p>These directives allow us to hide/show elements based on variable conditions, and even repeat an element (such as a list item) for each variable in an array, so with 1 line, we can create a list of names that use an Array of names from our Component class.</p>
+                <p>Structural Directives are Angular built-in directives which help us "...change the DOM layout by adding and removing DOM elements." This includes things that help us repeat and hide elements. The most commonly used Structural Directives are the *ngIf and *ngFor.</p>
+                <h4>*ngIf</h4>
+                    <p>Allows us to control an element's visibility on our page. For example, here is a simple component that includes a basic *ngIf structural directive. The value of the directive needs to evaluate to either true or false - this will dictate if the element will be visible or not.</p>
+                    <p>In our AppComponent class we set 'x' as 10. Below we created a div which will only display if the value of 'x' is less than 15.</p>
+                    <p class="code" *ngIf='x < 15'>The value of 'x' is indeed less than 15!</p>
+                    <p>The p element tag above was displayed because our 'x' value is set to 10, if we changed the 'x' value to anything higher than or equal to 15 it wouldn't print.</p>
+                <h4>*ngFor</h4>
+                    <p>Allows us to repeat an element and expose a variable for each instance of the element that is equal to each part of that array. So essentially, it takes an array and returns each part of the array in the following format: *ngFor='LET ONE OF MANY', IE 'LET USER OF USERS' or 'LET NUMBER OF NUMBERS'.</p>
+                    <p>Below we will iterate over 'array' [1, 2, 3, 4] in our AppComponent class and return each element inside of it within their own p element tags.</p>
+                    <p class="code" *ngFor='let number of numbers'>
+                        {{ number }}
+                    </p>
+                    <p>If we need the value of each element in the array, as well as the index in which we are currently on, we write the *ngFor a little differently as shown here: '*ngFor let hero of heroes, let i=index'</p>
+                    <p class="code" *ngFor='let number of numbers, let i=index'>
+                        {{ number }}...Index: {{ i }}
+                    </p>
+                    <p>Above we see the elements AND their INDEXES</p>
+            <h3>Attribute Directives (Styling)</h3>
+                <p style='color: blue;'>Styling Experiment</p>
+                <p>We can do inline styling using properties set to variables in our AppComponent class. In our class we've set 'fontcolor' to string 'blue', and we will do inline styling using [ngStyle]. *Note how the variable is NOT QUOTED</p>
+                <span [ngStyle]="{
+                    'color': fontcolor,
+                    'font-weight': 'bold'
+                    }">ngStyle w/Variable</span>
+
+
+
+
+    </div>
+</div>

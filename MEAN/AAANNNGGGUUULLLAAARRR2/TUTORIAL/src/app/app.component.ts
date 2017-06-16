@@ -1,0 +1,19 @@
+import { Component } from '@angular/core';
+
+@Component({
+    selector: 'app-root',
+    templateUrl: './app.component.html',
+    styleUrls: ['./app.component.css']
+})
+export class AppComponent {
+    title: string = 'Angular 2 Tutorial';
+    x: number = 10;
+    y: number = 5;
+    users = [
+        {firstname: 'Refayat', lastname: 'Haque'},
+        {firstname: 'Ishaba', lastname: 'Haque'}
+    ];
+    numbers = [1, 2, 3, 4];
+    today = Date.now();
+    fontcolor = 'blue';
+}

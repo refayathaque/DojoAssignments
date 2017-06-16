@@ -36,6 +36,10 @@ export class AppComponent {
     };
     console.log(typeof(this.users[0]))
     console.log(this.users[0])
+    this.update();
+
+  }
+  update(){
     this.child.calculatePowerUp();
     this.child1.calculatePowerUp();
     this.child2.calculatePowerUp();
