@@ -85,15 +85,56 @@
                     </p>
                     <p>Above we see the elements AND their INDEXES</p>
             <h3>Attribute Directives (Styling)</h3>
-                <p style='color: blue;'>Styling Experiment</p>
-                <p>We can do inline styling using properties set to variables in our AppComponent class. In our class we've set 'fontcolor' to string 'blue', and we will do inline styling using [ngStyle]. *Note how the variable is NOT QUOTED</p>
+                <p>We can do inline styling using properties set to variables in our AppComponent class using [ngStyle]. In our class we've set 'fontcolor' to string 'blue', and we will do inline styling using [ngStyle]. *Note how the variable 'fontcolor' is NOT QUOTED, only CSS PROPERTIES are QUOTED</p>
                 <span [ngStyle]="{
                     'color': fontcolor,
                     'font-weight': 'bold'
-                    }">ngStyle w/Variable</span>
-
-
-
-
+                    }">
+                    ngStyle w/Variable
+                </span>
+                <p>Now lets use Angular's method of using [ngClass], this allows us to pass an object into [ngClass]="" with class names as the keys and booleans as the values. If the value is true, the class will be applied, if its false, it won't. Here is an example where we want the class of red to be applied and bold to not be applied.</p>
+                <p>We have two classes set in the CSS, one is set to display text in green, while the other will display text in blue.</p>
+                <p [ngClass]="{ 'ngClassGreen': true, 'ngClassBlue': false }">I should be green and not blue because ngClassGreen is set to true in [ngClass], and ngClassBlue is set to false.</p>
+                <p [ngClass]="{ 'ngClassGreen': false, 'ngClassBlue': true }">REVERSED! I should be blue and not green because ngClassBlue is set to true in [ngClass], and ngClassGreen is set to false.</p>
+                <p>This is great but it's still static - meaning, we are hard coding 'true' and 'false'. Alternatively, we can define variables in our 'app.component.ts' as true or false, and then use them in the [ngClass] object. Later when we learn click events, we can change the true variables to false and vise-versa, giving us a very effective way to change styling based on user interactions.</p>
+                <p [ngClass]="{ 'ngClassGreen': switchon, 'ngClassBlue': switchoff }"> Variables 'switchon' is set to boolean true in our AppComponent class, and that was used in the [ngClass] object to keep me green, and 'switchoff' is set to boolean false to make sure I'm not blue.</p>
+    </div>
+    <div>
+        <h2>Component - Events</h2>
+            <h3>Event Listeners</h3>
+                <p>We can add events on HTML elements, when these events occur, we can trigger code to run. This gives us the ability to make our applications interactive with the user.</p>
+                <p>EVENT BINDING is a way to add event listeners on HTML elements (within our template) to trigger JavaScript code (in our class file) within that particular component.</p>
+                <p>For example, to BIND a CLICK EVENT on a button, we would give the button an attribute of the event name 'click' (can be anything in HTML like 'mouseenter') and wrap it in parentheses, (click), then we give it a value to evaluate. The evaluating block of code in quotes "" will be whatever we want to do when this button is clicked. In example, we can have it invoke a function from our AppComponent class.</p>
+                <p>In the example below we will provide a button that when clicked will increment the value of our 'x' variable (which is already set to 10) by 10</p>
+                <button (click)='increaseXBy10()'>Increase variable 'x' by 10</button>
+                <p class="code">{{ x }}</p>
+                <p>The CLICK EVENT above INVOKES the function 'increaseXBy10' in our AppComponent class which has the logic to increase the value of our variable 'x' by 10.</p>
+                <button (mouseenter)='increaseYBy10()'>Increase variable 'y' by 10</button>
+                <p class="code">{{ y }}</p>
+                <p>The MOUSEENTER EVENT above INVOKES the function 'increaseYBy10' in our AppComponent class which has the logic to increase the value of our variable 'y' by 10.</p>
+            <h3>Forms</h3>
+                <p>Forms in Angular allow us to not only retrieve information from a user, but also include validations on each individual input.</p>
+                <p><strong>TWO-WAY BINDING:</strong> Angular has 2 different methods of creating forms. We will focus on Template Driven Forms. With this approach, we take advantage of two-way bound objects to store all the data related to the inputs of the form. Let's take a look at the following sample:</p>
+                <p>We have a form below that takes in a person's email address, and we are doing EVENT BINDING here, we are BINDING a SUBMIT EVENT on a form and having it invoke the 'emailSubmission' function in our AppComponent class.</p>
+                <p>***For this to work we have a 'personWithEmail' object in our AppComponent class with the key 'email' and value of empty string ("")</p>
+                <p>***We must also also <strong>import FormsModule</strong> for this to work, check the app.module.ts file</p>
+                <form (submit)="emailSubmission()">
+                    <input type="text" name="email" [(ngModel)]="personWithEmail.email">
+                </form>
+                <p class="code">{{ personWithEmail.email | json }}</p>
+                <p>If we look at the template, we will notice we have an input with name='email', and a new attribute [(ngModel)] set to the object's key 'personWithEmail.email'. This new attribute [(ngModel)]="personWithEmail.email" is what <strong>converts our object 'personWithEmail' into a TWO-WAY BOUND OBJECT.</strong> Now, we can print the value we initially set from our class, to our template, as well as reflect changes made on our template back to our AppComponent class.</p>
+                <p>***Remember to always include a unique name attribute for each input, Angular utilizes this to keep track of different inputs!</p>
+                <h4>Submitting the form</h4>
+                    <p>We didn't submit the form above, let's do that here</p>
+                    <p>With this example, personWithEmail.email will initially be an empty string, and will reflect the value of what we type in the input in real time. When we are ready to submit this data, we will use the (submit) event on the form, to INVOKE a FUNCTION we made up called emailSubmission(), since we already have the personWithEmail object in our class, and it's two way bound and up to date with the content the user entered, we now just need to use it by referencing it.</p>
+                    <p>Lastly, whatever we do with this personWithEmail object, once we are done with it, we need to reset the object back to a new version of what we initially set it to. We do this because they are objects, and we are COPYING the OBJECT's REFERENCE, and NOT it's VALUE.<p>
+                    <p>Here is an example of pushing the personWithEmail object into an array called emails, and then resetting the personWithEmail object to a new object with an empty string.</p>
+                    <form (submit)="emailSubmission()">
+                        <input type="text" name="email" [(ngModel)]="personWithEmail.email">
+                        <input type="submit">
+                    </form>
+                    <p class="code">{{ personWithEmail.email | json }}</p>
+                    <p class="code" *ngFor='let email of emails, let i=index'>{{ emails[i].email | json }}</p>
+                <h3>Form Validations</h3>
     </div>
 </div>

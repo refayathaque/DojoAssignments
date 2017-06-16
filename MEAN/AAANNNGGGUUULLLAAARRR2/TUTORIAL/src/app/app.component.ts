@@ -16,4 +16,19 @@ export class AppComponent {
     numbers = [1, 2, 3, 4];
     today = Date.now();
     fontcolor = 'blue';
+    switchon: boolean = true;
+    switchoff: boolean = false;
+    increaseXBy10(){
+        this.x += 10; // MUST REFERENCE VARIABLES INSIDE CLASS WITH 'THIS'!
+    }
+    increaseYBy10(){
+        this.y += 10;
+    }
+    personWithEmail = {email: ""};
+    emails = [];
+    emailSubmission(){
+        this.emails.push(this.personWithEmail)
+        console.log(this.personWithEmail)
+        this.personWithEmail = {email: ""}
+    }
 }
