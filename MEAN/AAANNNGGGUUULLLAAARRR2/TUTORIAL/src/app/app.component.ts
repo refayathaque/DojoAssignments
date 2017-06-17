@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { User } from './user';
 
 @Component({
     selector: 'app-root',
@@ -30,5 +31,12 @@ export class AppComponent {
         this.emails.push(this.personWithEmail)
         console.log(this.personWithEmail)
         this.personWithEmail = {email: ""}
+    }
+    user = new User();
+    usersarray = [];
+    registrationFormSubmission() {
+        console.log(this.user)
+        this.usersarray.push(this.user);
+        this.user = new User();
     }
 }

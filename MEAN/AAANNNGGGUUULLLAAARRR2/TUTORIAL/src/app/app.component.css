@@ -24,3 +24,10 @@
 div {
     border: 1px solid #F7F9DE;
 }
+.ng-valid {
+    color: green;
+}
+.ng-invalid {
+    color: purple;
+    font-weight: bold;
+}

@@ -6,7 +6,7 @@
             <h3>Creating an Angular App</h3>
                 <p>* navigate to the folder directory you want your new app *</p>
                 <p class='code'>ng new myFirstAngularApp</p>
-            <h3>Generating Components, Directives, Services and Pipes</h3>
+            <h3>Generating Components, Services, and Classes</h3>
                 <p>* navigate into your new angular application folder *</p>
                 <p class='code'>ng generate component my-component</p>
                 <p class='code'>ng generate service my-service</p>
@@ -53,6 +53,7 @@
                 <p class="code">The general format for '*ngFor' is '*ngFor='let one of many, let i=index''</p>
             <h3>Data Binding</h3>
                 <p>We use this to BIND DATA to an HTML element attribute, IE the input element tag. To bind data we must place square brackets around the attribute and have it evaluate variables in our AppComponent class. The format is [HTML attribute]='some variable in AppComponent class'.</p>
+                <p>***This is ONE-WAY BINDING</p>
                 <input type="text" name="" [value]="users[0].firstname">
                 <p>Above we BOUND the firstname of the first object in our users list to the value attribute in the input element tag.</p>
             <h3>Pipes</h3>
@@ -115,7 +116,7 @@
             <h3>Forms</h3>
                 <p>Forms in Angular allow us to not only retrieve information from a user, but also include validations on each individual input.</p>
                 <p><strong>TWO-WAY BINDING:</strong> Angular has 2 different methods of creating forms. We will focus on Template Driven Forms. With this approach, we take advantage of two-way bound objects to store all the data related to the inputs of the form. Let's take a look at the following sample:</p>
-                <p>We have a form below that takes in a person's email address, and we are doing EVENT BINDING here, we are BINDING a SUBMIT EVENT on a form and having it invoke the 'emailSubmission' function in our AppComponent class.</p>
+                <p>We have a form below that takes in a person's email address, and we are doing EVENT BINDING here, we are BINDING a SUBMIT EVENT on a form and having it invoke the 'emailSubmission' function in our AppComponent class. (But for this specific example we won't submit, we'll submit in the second example after this)</p>
                 <p>***For this to work we have a 'personWithEmail' object in our AppComponent class with the key 'email' and value of empty string ("")</p>
                 <p>***We must also also <strong>import FormsModule</strong> for this to work, check the app.module.ts file</p>
                 <form (submit)="emailSubmission()">
@@ -127,7 +128,8 @@
                 <h4>Submitting the form</h4>
                     <p>We didn't submit the form above, let's do that here</p>
                     <p>With this example, personWithEmail.email will initially be an empty string, and will reflect the value of what we type in the input in real time. When we are ready to submit this data, we will use the (submit) event on the form, to INVOKE a FUNCTION we made up called emailSubmission(), since we already have the personWithEmail object in our class, and it's two way bound and up to date with the content the user entered, we now just need to use it by referencing it.</p>
-                    <p>Lastly, whatever we do with this personWithEmail object, once we are done with it, we need to reset the object back to a new version of what we initially set it to. We do this because they are objects, and we are COPYING the OBJECT's REFERENCE, and NOT it's VALUE.<p>
+                    <p>Lastly, whatever we do with this personWithEmail object, once we are done with it, we need to reset the object back to a new version of what we initially set it to. We do this because they are objects, and we are COPYING the OBJECT's REFERENCE, and NOT it's VALUE, so we have to <strong>point the user object to ANOTHER object</strong>, we can't have it POINTED TO the SAME OBJECT ANYMORE.</p>
+                    <p>We will be REDEFINING the personWithEmail object<p>
                     <p>Here is an example of pushing the personWithEmail object into an array called emails, and then resetting the personWithEmail object to a new object with an empty string.</p>
                     <form (submit)="emailSubmission()">
                         <input type="text" name="email" [(ngModel)]="personWithEmail.email">
@@ -136,5 +138,74 @@
                     <p class="code">{{ personWithEmail.email | json }}</p>
                     <p class="code" *ngFor='let email of emails, let i=index'>{{ emails[i].email | json }}</p>
                 <h3>Form Validations</h3>
+                    <h4>Input Controllers</h4>
+                    <p>to identify the validation status of an input, we need to look at that input's <strong>CONTROLLER</strong>. Each input, including the form, can expose a controller object for us to utilize. To do this, we use the following format within the tag of either the form, or input (as an attribute key-value pair) #email='ngModel', now we have a CONTROLLER OBJECT</p>
+                    <p>Now we can use this object to identify if errors exist due to validation rules like this: {{ email.errors }}. Printing the errors can be done anywhere within our template file. This email object is dynamic, as we type into each input, the controller (in this case 'email') will change it's status.</p>
+                    <p>Let's try this out with our form example from above</p>
+                    <form (submit)="emailSubmission()">
+                        <input type="text" name="email" [(ngModel)]="personWithEmail.email" required minlength="8" maxlength="16" pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$' #email="ngModel" placeholder="Must be between 8 and 16 chars, have @, and . (email format)" size="50">
+                        <input type="submit">
+                    </form>
+                    <p>{{ personWithEmail.email | json }}</p>
+                    <p *ngFor='let email of emails, let i=index'>{{ emails[i].email | json }}</p>
+                    <p class="code">'null' if all conditions met to be valid.....{{ email.errors | json }}</p>
+                    <p class="code">'true' if valid.....{{ email.valid | json }}</p>
+                    <h4>Built-in Classes for Validation</h4>
+                    <p>Angular adds classes on the form and each input based on each input validation status. Meaning, as long as we have validations in input tags, we can style certain classes in our stylesheet (specific to that component), and angular will insert and remove these classes on each input as well as the form, as their status change.</p>
+                    <p>***Notice above how the text color chnages from PURPLE BOLD to GREEN as we enter an email address with the correct length and email format requirements</p>
+                    <h4>REGISTRATION FORM</h4>
+                    <p>Now lets look at a little more filled out registration form for better large picture context. We are adding a CLASS of User in this example, so we can generate a NEW INSTANCE of User with pre-defined fields, this is the SAME result AS HARD CODING an OBJECT LITERAL, but we are using OOP to make our code more DRY (DON'T REPEAT YOURSELF).</p>
+                    <p class="code">ng generate class User <em>(in the app folder)</em></p>
+                    <p>***Since this is a separate file, we need to import the class file to use it. Every time we use this class, either to generate new objects, or set the data type to this class, we need to import it first.</p>
+                    <p>***Refer to user.ts to see structure of class, note the 'CONSTRUCTOR' method and the PUBLIC attribute/property for the key</p>
+                    <p>Below we have a registration form with fields:</p>
+                    <ul [ngStyle]="{'text-align':'left'}">
+                        <li>Email</li>
+                        <li>Name</li>
+                        <li>Password</li>
+                    </ul>
+                    <form (submit)="registrationFormSubmission()" #formData='ngForm'>
+                        <input
+                            type="text"
+                            name="email"
+                            required
+                            minlength="4"
+                            maxlength="24"
+                            [(ngModel)]="user.email"
+                            #email1='ngModel'
+                            pattern='^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$'
+                            placeholder="Email"
+                        />
+                        <input
+                            type="text"
+                            name="name"
+                            required
+                            minlength="4"
+                            maxlength="24"
+                            [(ngModel)]="user.name"
+                            #name='ngModel'
+                            placeholder="Name"
+                        />
+                        <input
+                            type="text"
+                            name="password"
+                            required
+                            maxlength="15"
+                            pattern="^([a-zA-Z0-9@*#]{8,15})$"
+                            [(ngModel)]="user.password"
+                            #password='ngModel'
+                            placeholder="Password"
+                        />
+                        <div *ngIf="formData.valid">
+                            <input type="submit">
+                        </div>
+
+                    </form>
+                    <p class="code">{{ user | json }}</p>
+                    <p class="code">{{ usersarray | json }}</p>
+                    <p>Here, our [ngClass] also come in to show us whether or not our inputs are meeting the conditions set by our validations</p>
+                    <p>With large forms like this, we may want to catch all parts of the form in an object, just like we exposed the controllers of each input with (for example:)#password='ngModel', we can do the same for the entire form, which within it, we will have access to each input controller as well. We do this by adding the same attribute pattern with 'ngForm': #formData='ngForm' (we place this in our form tag as a key-value pair), 'ngForm' and 'ngModel' are both key words made by Angular, we use them to create controller objects.</p>
+                    <p>We used the FORM CONTROLLER, and *ngIf in a div around the 'register' button, to display the 'register' button ONLY IF ALL VALIDATIONS PASS</p>
+
     </div>
 </div>
