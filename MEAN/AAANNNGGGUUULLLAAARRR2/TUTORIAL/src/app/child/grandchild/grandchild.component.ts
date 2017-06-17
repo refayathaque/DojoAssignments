@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
 @Component({
   selector: 'app-grandchild',
@@ -6,6 +6,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./grandchild.component.css']
 })
 export class GrandchildComponent implements OnInit {
+
+    @Output() functionSendingDataUp = new EventEmitter();
+
+    object1 = {message: 'I am data being passed up from the grandchild (CHILD) component!'}
+
+    eventSendingDataUp(){
+        this.functionSendingDataUp.emit(this.object1);
+    }
 
   constructor() { }
 

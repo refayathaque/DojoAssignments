@@ -95,6 +95,7 @@
                     <hr class='style-two'>
             <h3>Attribute Directives (Styling)</h3>
                 <p>We can do inline styling using properties set to variables in our AppComponent class using [ngStyle]. In our class we've set 'fontcolor' to string 'blue', and we will do inline styling using [ngStyle]. *Note how the variable 'fontcolor' is NOT QUOTED, only CSS PROPERTIES are QUOTED</p>
+                <p><strong>Important: quotes OUTSIDE curly braces must be DOUBLE, while quotes INSIDE curly braces (for CSS properties) must be SINGLE</strong></p>
                 <span [ngStyle]="{
                     'color': fontcolor,
                     'font-weight': 'bold'
@@ -253,15 +254,37 @@
                         <p class="code">ng generate component secondchild</p>
                         <p>Second thing we will have to do is DEFINE an ATTRIBUTE and INPUT. Now, we will input into the app-secondchild component tag, the object 'object' by creating an attribute on the tag. The attribute name will be the same name as the data which we will have inside that component, and the value will define its value. For example, here we are pushing into the app-secondchild tag, the variable named 'object'. <em>***'object' is in our app.component.ts</em></p>
                         <p><strong>NOTE: We are using DATA BINDING, therefore we need to use brackets around the new attribute</strong></p>
-                        <p>The attribute name of [objPassedDown] will be the variable we expect inside the child component, and it's value will be the evaluation of the 'object' variable.</p>
+                        <p>The ATTRIBUTE name of [objPassedDown] will be the variable we expect inside the child component, and it's VALUE will be the evaluation of the 'object' variable.</p>
                         <p>Let's look at the secondchild component, we will see that we expect the 'obPassedDown' variable with the <em>@Input() decorator.</em></p>
                         <p>From there, we can use the 'objPassedDown' variable to print in the secondchild component template.</p>
                         <p>The advantage comes when the 'object' variable from our AppComponent changes, Angular will also update the 'objPassedDown' variable in our secondchild component. <strong>DATA BINDING!</strong></p>
+                        <p>@Input() BINDS DATA!</p>
                         <p><em>NOTE: We need to import the Input decorator to use it.</em></p>
                         <div>
                             <p class="code"><app-secondchild [objPassedDown]='object'></app-secondchild><p>
                         </div>
                         <hr class='style-two'>
                 <h3>Outputs</h3>
+                    <p>Alternatively from inputting data from a parent component to a child, there are cases where we need the <strong>CHILD component to either RETURN DATA to a PARENT, or TRIGGER a FUNCTION on the PARENT'S CLASS</strong>. To do this we use the @Output() decorator.</p>
+                        <h4>How to use the @Output() Decorator</h4>
+                            <p>We want the child component to either send data to the parent, or trigger an action on the parent. To do this, we will use @Output() as well as EventEmitter.</p>
+                            <p><strong>@Output() is used to define an event we expose to the parent's template, and the EventEmitter will be the way we invoke that event.</strong></p>
+                            <p><em>***To demonstrate this we will be using our secondchild component as the parent and the grandchild component as the child.</em></p>
+                            <p>Important: <strong>Import OUTPUT and EVENTEMITTER to the child component!</strong></p>
+                            <div>
+                                <p class="code"><app-secondchild></app-secondchild></p>
+                            </div>
+                            <p>Above we see everything action. Below are the four steps we took:</p>
+                            <ol [ngStyle]="{'text-align':'left'}">
+                                <li>In grandchild component (CHILD) Class | We create an Output of an EventEmitter object called 'functionSendingDataUp'</li>
+                                <br>
+                                <li>In grandchild component (CHILD) Template | We create a button to TRIGGER a FUNCTION 'eventSendingDataUp' and in that function we will call on our new EventEmitter 'functionSendingDataUp' and EMIT it.</li>
+                                <br>
+                                <li>In secondchild component (PARENT) Template | We will expect that event on the app-grandchild tag -> (functionSendingDataUp)='functionReceivingDataFromChild($event)', and ON EMIT we will INVOKE a FUNCTION we made called functionReceivingDataFromChild($event). We pass it $EVENT which is a built in object that will give us the PARAMETERS if passed in <em>(Used to get data from child component).</em></li>
+                                <br>
+                                <li>In secondchild component (PARENT) Class | We will create the functionReceivingDataFromChild function, expect the PARAMETER and use the data as we wish. This <strong>function will only run when the child component emits.</strong></li>
+                                <br>
+                            </ol>
+                            <p><strong>This process can be repeated from child to parent and can be chained for nested components.</strong></p>
     </div>
 </div>

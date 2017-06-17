@@ -1,2 +1,13 @@
-<p>Secondchild works! AND below is the object that was passed down!</p>
+<p>I am the secondchild component! AND below is the object that was passed down to me (as an ATTRIBUTE) from my parent <em>(our ROOT component)</em>!</p>
+
 <p>{{ objPassedDown | json }}</p>
+
+<p>Below is my CHILD (our grandchild component) component:</p>
+
+<div>
+    <p><app-grandchild (functionSendingDataUp)='functionReceivingDataFromChild($event)'></app-grandchild></p>
+</div>
+
+<p>Below is what I (our secondchild component, and PARENT of the component above with the button) am RECEIVING from my CHILD (our grandchild component) once the button above in my CHILD component is clicked:</p>
+
+{{ receivinginformation | json }}

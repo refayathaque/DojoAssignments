@@ -9,6 +9,13 @@ export class SecondchildComponent implements OnInit {
 
     @Input() objPassedDown;
 
+    receivinginformation = [];
+
+    functionReceivingDataFromChild(eventData){
+        console.log(eventData);
+        this.receivinginformation.push(eventData);
+    }
+
   constructor() { }
 
   ngOnInit() {
