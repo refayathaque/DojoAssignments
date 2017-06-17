@@ -39,4 +39,5 @@ export class AppComponent {
         this.usersarray.push(this.user);
         this.user = new User();
     }
+    object = {message: 'This is the object we are passing down from PARENT to CHILD'}
 }

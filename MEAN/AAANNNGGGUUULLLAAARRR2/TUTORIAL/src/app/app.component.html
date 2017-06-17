@@ -14,6 +14,7 @@
             <h3>Launching the App</h3>
                 <p class='code'>ng serve</p>
                 <p>Run on <em>http://localhost:4200</em></p>
+                <hr class='style-two'>
     </div>
     <div>
         <h2>Typescript</h2>
@@ -24,10 +25,12 @@
                 <p class="code"> var arrayOfNumbers: number[]; ( can also be string[] ) </p>
                 <p class="code"> var arrayOfNumbers: Array<number / string / etc>; </p>
                 <p class="code"> var anything: any = 7; </p>
+                <hr class='style-two'>
             <h3>Variable Declarations</h3>
                 <p>var - is used when we want to define the scope, and this will be scoped within functions only.</p>
                 <p>let - is used when we want to define the scope, within blocks (within curly braces), this includes loops, a variable declared as a let within an if block, or for loop block, will not be defined outside of the if block, or the for loop block.</p>
                 <p>const - is similar to let, in that it's scoped within blocks, but we cannot change it's type, or value once set. Note: if an object is const, we can't change the object's structure (such as adding, or replacing keys), but we can change the object's values.</p>
+                <hr class='style-two'>
     </div>
     <div>
         <h2>Component - Data</h2>
@@ -39,6 +42,7 @@
                 <p>@Component, this is a type of decorator, which is a function given an object as a parameter. This object holds meta data which gives details to our decorator and its functionality.</p>
                 <p>The immediate class that follows the decorator export class AppComponent (curly braces) will inherit all of this meta-data and functionality of the @Component decorator.</p>
                 <p>app.component.ts which includes export class AppComponent (curly braces) will be where all your TypeScript code will go - and essentially all of our logic for this particular component. This is linked to the template file app.component.html and styling file app.component.css.</p>
+                <hr class='style-two'>
             <h3>Interpolation</h3>
                 <p>When we need to print variables in our template, we use interpolation. These variables derive from our Components, they could be variable we define, or objects that are returned to us</p>
                 <p>When we define variables with values in our Component's Class, and want these values to be printed in our Template using INTERPOLATION. Within our Template file, we use double curly brackets and insert the variable name in the middle</p>
@@ -51,11 +55,13 @@
                     Lastname: {{ users[i].lastname | json }}
                 </p>
                 <p class="code">The general format for '*ngFor' is '*ngFor='let one of many, let i=index''</p>
+                <hr class='style-two'>
             <h3>Data Binding</h3>
                 <p>We use this to BIND DATA to an HTML element attribute, IE the input element tag. To bind data we must place square brackets around the attribute and have it evaluate variables in our AppComponent class. The format is [HTML attribute]='some variable in AppComponent class'.</p>
                 <p>***This is ONE-WAY BINDING</p>
                 <input type="text" name="" [value]="users[0].firstname">
                 <p>Above we BOUND the firstname of the first object in our users list to the value attribute in the input element tag.</p>
+                <hr class='style-two'>
             <h3>Pipes</h3>
                 <p>Pipes are filters, they help us transform displayed values within a template, for better presentation and readability. The following pipes (filters) are built into Angular (however we can also make our own custom pipes).</p>
                 <p>json pipe is (and should be) very commonly used when coding. It allows you to view the data you expect in the template file, without having to question or guess if the right data is present and available.</p>
@@ -66,6 +72,7 @@
                 <p>date pipe is also used to manipulate the visual representation of datetime.</p>
                 <p class="code">Today's Date without the date pipe: {{ today }}</p>
                 <p class="code">Today's Date WITH the date pipe: {{ today | date:'medium' }}</p>
+                <hr class='style-two'>
             <h3>Structural Directives</h3>
                 <p>These directives allow us to hide/show elements based on variable conditions, and even repeat an element (such as a list item) for each variable in an array, so with 1 line, we can create a list of names that use an Array of names from our Component class.</p>
                 <p>Structural Directives are Angular built-in directives which help us "...change the DOM layout by adding and removing DOM elements." This includes things that help us repeat and hide elements. The most commonly used Structural Directives are the *ngIf and *ngFor.</p>
@@ -85,6 +92,7 @@
                         {{ number }}...Index: {{ i }}
                     </p>
                     <p>Above we see the elements AND their INDEXES</p>
+                    <hr class='style-two'>
             <h3>Attribute Directives (Styling)</h3>
                 <p>We can do inline styling using properties set to variables in our AppComponent class using [ngStyle]. In our class we've set 'fontcolor' to string 'blue', and we will do inline styling using [ngStyle]. *Note how the variable 'fontcolor' is NOT QUOTED, only CSS PROPERTIES are QUOTED</p>
                 <span [ngStyle]="{
@@ -99,6 +107,7 @@
                 <p [ngClass]="{ 'ngClassGreen': false, 'ngClassBlue': true }">REVERSED! I should be blue and not green because ngClassBlue is set to true in [ngClass], and ngClassGreen is set to false.</p>
                 <p>This is great but it's still static - meaning, we are hard coding 'true' and 'false'. Alternatively, we can define variables in our 'app.component.ts' as true or false, and then use them in the [ngClass] object. Later when we learn click events, we can change the true variables to false and vise-versa, giving us a very effective way to change styling based on user interactions.</p>
                 <p [ngClass]="{ 'ngClassGreen': switchon, 'ngClassBlue': switchoff }"> Variables 'switchon' is set to boolean true in our AppComponent class, and that was used in the [ngClass] object to keep me green, and 'switchoff' is set to boolean false to make sure I'm not blue.</p>
+                <hr class='style-two'>
     </div>
     <div>
         <h2>Component - Events</h2>
@@ -113,6 +122,7 @@
                 <button (mouseenter)='increaseYBy10()'>Increase variable 'y' by 10</button>
                 <p class="code">{{ y }}</p>
                 <p>The MOUSEENTER EVENT above INVOKES the function 'increaseYBy10' in our AppComponent class which has the logic to increase the value of our variable 'y' by 10.</p>
+                <hr class='style-two'>
             <h3>Forms</h3>
                 <p>Forms in Angular allow us to not only retrieve information from a user, but also include validations on each individual input.</p>
                 <p><strong>TWO-WAY BINDING:</strong> Angular has 2 different methods of creating forms. We will focus on Template Driven Forms. With this approach, we take advantage of two-way bound objects to store all the data related to the inputs of the form. Let's take a look at the following sample:</p>
@@ -125,6 +135,7 @@
                 <p class="code">{{ personWithEmail.email | json }}</p>
                 <p>If we look at the template, we will notice we have an input with name='email', and a new attribute [(ngModel)] set to the object's key 'personWithEmail.email'. This new attribute [(ngModel)]="personWithEmail.email" is what <strong>converts our object 'personWithEmail' into a TWO-WAY BOUND OBJECT.</strong> Now, we can print the value we initially set from our class, to our template, as well as reflect changes made on our template back to our AppComponent class.</p>
                 <p>***Remember to always include a unique name attribute for each input, Angular utilizes this to keep track of different inputs!</p>
+                <hr class='style-two'>
                 <h4>Submitting the form</h4>
                     <p>We didn't submit the form above, let's do that here</p>
                     <p>With this example, personWithEmail.email will initially be an empty string, and will reflect the value of what we type in the input in real time. When we are ready to submit this data, we will use the (submit) event on the form, to INVOKE a FUNCTION we made up called emailSubmission(), since we already have the personWithEmail object in our class, and it's two way bound and up to date with the content the user entered, we now just need to use it by referencing it.</p>
@@ -137,6 +148,7 @@
                     </form>
                     <p class="code">{{ personWithEmail.email | json }}</p>
                     <p class="code" *ngFor='let email of emails, let i=index'>{{ emails[i].email | json }}</p>
+                    <hr class='style-two'>
                 <h3>Form Validations</h3>
                     <h4>Input Controllers</h4>
                     <p>to identify the validation status of an input, we need to look at that input's <strong>CONTROLLER</strong>. Each input, including the form, can expose a controller object for us to utilize. To do this, we use the following format within the tag of either the form, or input (as an attribute key-value pair) #email='ngModel', now we have a CONTROLLER OBJECT</p>
@@ -205,6 +217,7 @@
                     <p>Here, our [ngClass] also come in to show us whether or not our inputs are meeting the conditions set by our validations</p>
                     <p>With large forms like this, we may want to catch all parts of the form in an object, just like we EXPOSED the CONTROLLERS of each input with (for example: #password='ngModel'), we can do the same for the entire form, which within it, we will have access to each input controller as well. We do this by adding the same attribute pattern with 'ngForm': #formData='ngForm' (we place this in our form tag as a key-value pair), 'ngForm' and 'ngModel' are both key words made by Angular, we use them to create controller objects.</p>
                     <p>We used the FORM CONTROLLER, and *ngIf in a div around the 'register' button, to display the 'register' button ONLY IF ALL VALIDATIONS PASS</p>
+                    <hr class='style-two'>
             <h2>Architecture</h2>
                 <h3>Application Architecture</h3>
                     <p>AppComponent is the ROOT component, and will be the MASTER PARENT. All other components WITHIN the ROOT component will be its CHILD components.</p>
@@ -212,6 +225,7 @@
                     <p>***We want to avoid components needing to request data from sibling components (at the same level).</p>
                     <p><strong>IMPORTANT: Data is stored in the highest level Component so all of that component's child components may retrieve the data from the parent component.</strong></p>
                     <p>Moving forward we will be working with two components, both nested in our ROOT component, one will be the immediate child while the other will be the grandchild.</p>
+                    <hr class='style-two'>
                 <h3>Nested Components</h3>
                     <p><em>It's important that we create new components (Using the Angular CLI) in the correct folders. IE for this example we will create our child in the ROOT component folder, while the grandchild will be created in the child component folder.</em></p>
                     <p>The AppComponent will always load (as the initial component), but every other component we make, we can have it load within the AppComponent's HTML template by using it's selector.</p>
@@ -225,9 +239,29 @@
                     </div>
                     <p>***Note that we NESTED the grandchild component WITHIN our child component, in our child component we used the granchild's SELECTOR as a TAG to load it.</p>
                     <p>***Also note how we are using a CSS class from THIS AppComponent to change the text color in the child component, the text color in the child component is set to the default black.</p>
-
-
-
-
+                    <hr class='style-two'>
+                <h3>AppModule</h3>
+                    <p><em>When deleting components be sure to REMOVE them from the AppModule's IMPORTS and DECLARATIONS!</em></p>
+                    <p>IMPORTANT: The CLI will create our new Components and register them for us on the parent module, however this is not the case with Services. Be aware, in the future when we create a Service for our application, Angular's CLI will not automatically register the Service to our application. We would have to do it manually.</p>
+                    <p><em>The Forms Module must be manually imported into AppModule whenever we are dealing with Forms.</em></p>
+                    <hr class='style-two'>
+                <h3>Inputs</h3>
+                    <p>It's a common occurrence when we want a child component to receive the same data/information as the current parent component (and keep it up to date). For example, we have the initial AppComponent which may hold an object; we want this object to be available in a child component where we will display the object. To do this, we will be using the <strong>@Input() decorator</strong>.</p>
+                    <h4>How to use the @Input() Decorator</h4>
+                        <p>First thing we have to do is to LOAD the CHILD component in the PARENT template, we already know how to do this from above.</p>
+                        <p><em>***For the purposes of this exercise we will create another child component called 'secondchild'</em></p>
+                        <p class="code">ng generate component secondchild</p>
+                        <p>Second thing we will have to do is DEFINE an ATTRIBUTE and INPUT. Now, we will input into the app-secondchild component tag, the object 'object' by creating an attribute on the tag. The attribute name will be the same name as the data which we will have inside that component, and the value will define its value. For example, here we are pushing into the app-secondchild tag, the variable named 'object'. <em>***'object' is in our app.component.ts</em></p>
+                        <p><strong>NOTE: We are using DATA BINDING, therefore we need to use brackets around the new attribute</strong></p>
+                        <p>The attribute name of [objPassedDown] will be the variable we expect inside the child component, and it's value will be the evaluation of the 'object' variable.</p>
+                        <p>Let's look at the secondchild component, we will see that we expect the 'obPassedDown' variable with the <em>@Input() decorator.</em></p>
+                        <p>From there, we can use the 'objPassedDown' variable to print in the secondchild component template.</p>
+                        <p>The advantage comes when the 'object' variable from our AppComponent changes, Angular will also update the 'objPassedDown' variable in our secondchild component. <strong>DATA BINDING!</strong></p>
+                        <p><em>NOTE: We need to import the Input decorator to use it.</em></p>
+                        <div>
+                            <p class="code"><app-secondchild [objPassedDown]='object'></app-secondchild><p>
+                        </div>
+                        <hr class='style-two'>
+                <h3>Outputs</h3>
     </div>
 </div>
