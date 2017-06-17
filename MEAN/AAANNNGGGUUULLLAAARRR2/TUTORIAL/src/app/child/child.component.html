@@ -1,0 +1,9 @@
+<p>  I am the child component! <em>(You can tell because I have a border around me)</em></p>
+
+<p>app.component.html is LOADING me using my SELECTOR, which can be found in my component.ts file. My SELECTOR is used as a TAG here to have me sucessfully integrated in the AppComponent!</p>
+
+<p>I will also be LOADING my child (our granchild component) below!</p>
+
+<div [ngStyle]="{'border':'1px solid #8CBF10'}">
+    <app-grandchild></app-grandchild>
+</div>

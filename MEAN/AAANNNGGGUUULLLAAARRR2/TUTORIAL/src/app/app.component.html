@@ -199,13 +199,35 @@
                         <div *ngIf="formData.valid">
                             <input type="submit">
                         </div>
-
                     </form>
                     <p class="code">{{ user | json }}</p>
                     <p class="code">{{ usersarray | json }}</p>
                     <p>Here, our [ngClass] also come in to show us whether or not our inputs are meeting the conditions set by our validations</p>
-                    <p>With large forms like this, we may want to catch all parts of the form in an object, just like we exposed the controllers of each input with (for example:)#password='ngModel', we can do the same for the entire form, which within it, we will have access to each input controller as well. We do this by adding the same attribute pattern with 'ngForm': #formData='ngForm' (we place this in our form tag as a key-value pair), 'ngForm' and 'ngModel' are both key words made by Angular, we use them to create controller objects.</p>
+                    <p>With large forms like this, we may want to catch all parts of the form in an object, just like we EXPOSED the CONTROLLERS of each input with (for example: #password='ngModel'), we can do the same for the entire form, which within it, we will have access to each input controller as well. We do this by adding the same attribute pattern with 'ngForm': #formData='ngForm' (we place this in our form tag as a key-value pair), 'ngForm' and 'ngModel' are both key words made by Angular, we use them to create controller objects.</p>
                     <p>We used the FORM CONTROLLER, and *ngIf in a div around the 'register' button, to display the 'register' button ONLY IF ALL VALIDATIONS PASS</p>
+            <h2>Architecture</h2>
+                <h3>Application Architecture</h3>
+                    <p>AppComponent is the ROOT component, and will be the MASTER PARENT. All other components WITHIN the ROOT component will be its CHILD components.</p>
+                    <p>Now, it's important to understand where we hold data which we retrieve from the service. Data does not get stored in the service (ever). Data is stored in the highest level Component needed, so all child components may receive data through an @Input(), or call to a parent through a @Output() event.</p>
+                    <p>***We want to avoid components needing to request data from sibling components (at the same level).</p>
+                    <p><strong>IMPORTANT: Data is stored in the highest level Component so all of that component's child components may retrieve the data from the parent component.</strong></p>
+                    <p>Moving forward we will be working with two components, both nested in our ROOT component, one will be the immediate child while the other will be the grandchild.</p>
+                <h3>Nested Components</h3>
+                    <p><em>It's important that we create new components (Using the Angular CLI) in the correct folders. IE for this example we will create our child in the ROOT component folder, while the grandchild will be created in the child component folder.</em></p>
+                    <p>The AppComponent will always load (as the initial component), but every other component we make, we can have it load within the AppComponent's HTML template by using it's selector.</p>
+                    <div>
+                        <p class="code"><app-child></app-child></p>
+                    </div>
+                    <p>If we were to reuse the above tag multiple times in our AppComponent template, we would see the TaskComponent's template repeated multiple times - this goes back to the idea of a Component-based Architecture, and the ability to reuse code without rewriting the code.</p>
+                    <p>Below we are loading the child component again</p>
+                    <div>
+                        <p class="code"><app-child></app-child></p>
+                    </div>
+                    <p>***Note that we NESTED the grandchild component WITHIN our child component, in our child component we used the granchild's SELECTOR as a TAG to load it.</p>
+                    <p>***Also note how we are using a CSS class from THIS AppComponent to change the text color in the child component, the text color in the child component is set to the default black.</p>
+
+
+
 
     </div>
 </div>
