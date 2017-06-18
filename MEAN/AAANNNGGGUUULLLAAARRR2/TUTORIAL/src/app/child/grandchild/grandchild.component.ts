@@ -7,12 +7,12 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class GrandchildComponent implements OnInit {
 
-    @Output() functionSendingDataUp = new EventEmitter();
+    @Output() eventSendingDataUp = new EventEmitter();
 
     object1 = {message: 'I am data being passed up from the grandchild (CHILD) component!'}
 
-    eventSendingDataUp(){
-        this.functionSendingDataUp.emit(this.object1);
+    functionSendingDataUp(){
+        this.eventSendingDataUp.emit(this.object1);
     }
 
   constructor() { }

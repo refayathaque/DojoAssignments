@@ -653,3 +653,24 @@ console.log(validBraces("{{[(hello)]}}")); //Outputs true
 console.log(validBraces("{{[(hello]}}")); //Outputs false
 
 console.log('----');
+
+function FizzBuzz() {
+    for ( var i = 0; i < 101; i++ ) {
+        if ( i % 3 == 0 && i % 6 == 0 ) {
+            console.log('FizzBuzz');
+        }
+        else if ( i % 3 == 0 ) {
+            console.log('Fizz');
+        }
+        else if ( i % 6 == 0 ) {
+            console.log('Buzz')
+        }
+        else {
+            console.log(i);
+        }
+    }
+}
+
+FizzBuzz();
+
+console.log('----');

@@ -9,11 +9,11 @@ export class SecondchildComponent implements OnInit {
 
     @Input() objPassedDown;
 
-    receivinginformation = [];
+    receivedinformation = [];
 
     functionReceivingDataFromChild(eventData){
         console.log(eventData);
-        this.receivinginformation.push(eventData);
+        this.receivedinformation.push(eventData);
     }
 
   constructor() { }

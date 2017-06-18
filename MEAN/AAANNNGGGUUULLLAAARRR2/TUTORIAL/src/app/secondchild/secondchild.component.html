@@ -5,9 +5,9 @@
 <p>Below is my CHILD (our grandchild component) component:</p>
 
 <div>
-    <p><app-grandchild (functionSendingDataUp)='functionReceivingDataFromChild($event)'></app-grandchild></p>
+    <p><app-grandchild (eventSendingDataUp)='functionReceivingDataFromChild($event)'></app-grandchild></p>
 </div>
 
 <p>Below is what I (our secondchild component, and PARENT of the component above with the button) am RECEIVING from my CHILD (our grandchild component) once the button above in my CHILD component is clicked:</p>
 
-{{ receivinginformation | json }}
+{{ receivedinformation | json }}

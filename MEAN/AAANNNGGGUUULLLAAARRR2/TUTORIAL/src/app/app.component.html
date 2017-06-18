@@ -219,6 +219,7 @@
                     <p>With large forms like this, we may want to catch all parts of the form in an object, just like we EXPOSED the CONTROLLERS of each input with (for example: #password='ngModel'), we can do the same for the entire form, which within it, we will have access to each input controller as well. We do this by adding the same attribute pattern with 'ngForm': #formData='ngForm' (we place this in our form tag as a key-value pair), 'ngForm' and 'ngModel' are both key words made by Angular, we use them to create controller objects.</p>
                     <p>We used the FORM CONTROLLER, and *ngIf in a div around the 'register' button, to display the 'register' button ONLY IF ALL VALIDATIONS PASS</p>
                     <hr class='style-two'>
+        <div>
             <h2>Architecture</h2>
                 <h3>Application Architecture</h3>
                     <p>AppComponent is the ROOT component, and will be the MASTER PARENT. All other components WITHIN the ROOT component will be its CHILD components.</p>
@@ -274,17 +275,34 @@
                             <div>
                                 <p class="code"><app-secondchild></app-secondchild></p>
                             </div>
-                            <p>Above we see everything action. Below are the four steps we took:</p>
+                            <p>Above we see everything action. Below are the four steps we took to pass variable 'object1' from a CHILD component to its PARENT:</p>
                             <ol [ngStyle]="{'text-align':'left'}">
-                                <li>In grandchild component (CHILD) Class | We create an Output of an EventEmitter object called 'functionSendingDataUp'</li>
+                                <li>In grandchild component (CHILD) Class | We create an Output of an EventEmitter object called 'eventSendingDataUp', this is the EVENT that our SELECTOR TAG in the parent TEMPLATE will be listening for. <em>(This is also where we declare and define our variable 'object1' which we will be passing up to the PARENT)</em></li>
                                 <br>
-                                <li>In grandchild component (CHILD) Template | We create a button to TRIGGER a FUNCTION 'eventSendingDataUp' and in that function we will call on our new EventEmitter 'functionSendingDataUp' and EMIT it.</li>
+                                <li>In grandchild component (CHILD) Template | We create a button to INVOKE the FUNCTION 'functionSendingDataUp', and in that function we will call on our new EventEmitter 'eventSendingDataUp' and EMIT it.</li>
                                 <br>
-                                <li>In secondchild component (PARENT) Template | We will expect that event on the app-grandchild tag -> (functionSendingDataUp)='functionReceivingDataFromChild($event)', and ON EMIT we will INVOKE a FUNCTION we made called functionReceivingDataFromChild($event). We pass it $EVENT which is a built in object that will give us the PARAMETERS if passed in <em>(Used to get data from child component).</em></li>
+                                <li>In secondchild component (PARENT) Template | We will expect that event on the app-grandchild tag -> (eventSendingDataUp)='functionReceivingDataFromChild($event)', and ON EMIT we will INVOKE a FUNCTION we made called functionReceivingDataFromChild($event). We pass it $EVENT which is a built in object that will give us the PARAMETERS <em>(Used to get data from the child component).</em></li>
                                 <br>
-                                <li>In secondchild component (PARENT) Class | We will create the functionReceivingDataFromChild function, expect the PARAMETER and use the data as we wish. This <strong>function will only run when the child component emits.</strong></li>
+                                <li>In secondchild component (PARENT) Class | We will create the 'functionReceivingDataFromChild' function, expect the PARAMETER and use the data (variable 'object1') as we wish. This <strong>function will only run when the child component emits.</strong></li>
                                 <br>
                             </ol>
                             <p><strong>This process can be repeated from child to parent and can be chained for nested components.</strong></p>
-    </div>
+                            <hr class='style-two'>
+            </div>
+            <div>
+                <h2>Services</h2>
+                    <h3>Services</h3>
+                        <p><strong>Services are PROVIDERS (classes with methods)</strong></p>
+                        <p>We can inject a Service into any Component, and therefore any Component can call those methods.</p>
+                        <p>Service methods are used for 2 things: They either manipulate data for us, or more commonly are used to make API calls to our backend server, or other external APIs using the HTTP module.</p>
+                        <p><em>NOTE: Services are not used to store data</em></p>
+                            <h4>How to create a Service and inject it in a Component</h4>
+                                <p class="code">ng generate service http</p>
+                                <p>This will create a class called HttpService. <strong>The CLI will NOT automatically register our new Service with our AppModule, therefore we need to navigate to our app.modules.ts file, import the service file and include the class in the providers array.</strong></p>
+                                <p>Now to inject this service in a component, we use DEPENDENCY INJECTION, which is done by expecting the service as a parameter in our Component's constructor: constructor(private _httpService: HttpService) (_httpService variable will take on the instance of the class HttpService), we also need to make sure that our Component file has imported the service class import HttpService from './http.service';</p>
+                    <h3>HTTP and Promises</h3>
+                        <p>HTTP Module is a library which allows us to make AJAX-type HTTP requests to any end-point (API). These requests are unique in a way that they are RETURNED TO US as Observables, but we will convert them to PROMISES (we don't need Observables for HTTP requests, since it's 1 request and 1 response). To do this, we will use the same HttpService we created from the section above.</p>
+                        <h4>Injecting the HTTP module in the Service</h4>
+                            <p>To use the HTTP module, we will inject it in the service.ts file just like we did with the Service in the Component (through DEPENDENCY INJECTION). Then we will have the Service method RETURN the HTTP PROMISE to whatever Component INVOKES the METHOD.</p>
+            </div>
 </div>

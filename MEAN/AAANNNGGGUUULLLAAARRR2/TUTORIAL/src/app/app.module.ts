@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { ChildComponent } from './child/child.component';
 import { GrandchildComponent } from './child/grandchild/grandchild.component';
 import { SecondchildComponent } from './secondchild/secondchild.component';
+import { HttpService } from './http.service'; // MUST BE DONE MANUALLY FOR SERVICES
 
 @NgModule({
   declarations: [
@@ -18,7 +19,7 @@ import { SecondchildComponent } from './secondchild/secondchild.component';
     BrowserModule,
     FormsModule
   ],
-  providers: [],
+  providers: [HttpService], // MUST BE DONE MANUALLY FOR SERVICES
   bootstrap: [AppComponent]
 })
 export class AppModule { }

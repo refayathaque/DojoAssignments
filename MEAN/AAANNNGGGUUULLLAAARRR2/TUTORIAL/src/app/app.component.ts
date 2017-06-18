@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from './user'; // MUST IMPORT CONSTRUCTOR CLASSES!
+import { HttpService } from './http.service'; // MUST BE DONE MANUALLY FOR SERVICES
 
 @Component({
     selector: 'app-root',
@@ -40,4 +41,11 @@ export class AppComponent {
         this.user = new User();
     }
     object = {message: 'This is the object we are passing down from PARENT to CHILD'}
+    tasks = [];
+    constructor(private _httpService: HttpService){}
+    getTasks(){
+        this._httpService.retrieveTasks()
+        .then( tasks => { this.tasks = tasks })
+        .catch( err => { console.log(err); })
+    }
 }
