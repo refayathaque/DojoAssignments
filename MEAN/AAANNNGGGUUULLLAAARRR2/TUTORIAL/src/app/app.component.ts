@@ -42,10 +42,10 @@ export class AppComponent {
     }
     object = {message: 'This is the object we are passing down from PARENT to CHILD'}
     tasks = [];
-    constructor(private _httpService: HttpService){}
+    constructor(private _httpService: HttpService){} // Using HttpService from class exported above from service.ts
     getTasks(){
         this._httpService.retrieveTasks()
-        .then( tasks => { this.tasks = tasks })
+        .then( tasks => { this.tasks = tasks }) //.then is a CALLBACK method
         .catch( err => { console.log(err); })
     }
 }

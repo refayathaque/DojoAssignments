@@ -294,15 +294,17 @@
                     <h3>Services</h3>
                         <p><strong>Services are PROVIDERS (classes with methods)</strong></p>
                         <p>We can inject a Service into any Component, and therefore any Component can call those methods.</p>
-                        <p>Service methods are used for 2 things: They either manipulate data for us, or more commonly are used to make API calls to our backend server, or other external APIs using the HTTP module.</p>
+                        <p>Service methods are used for 2 things: They either manipulate data for us, or <strong>more commonly are used to make API calls to our backend server, or other external APIs using the HTTP module.</strong></p>
                         <p><em>NOTE: Services are not used to store data</em></p>
                             <h4>How to create a Service and inject it in a Component</h4>
                                 <p class="code">ng generate service http</p>
                                 <p>This will create a class called HttpService. <strong>The CLI will NOT automatically register our new Service with our AppModule, therefore we need to navigate to our app.modules.ts file, import the service file and include the class in the providers array.</strong></p>
-                                <p>Now to inject this service in a component, we use DEPENDENCY INJECTION, which is done by expecting the service as a parameter in our Component's constructor: constructor(private _httpService: HttpService) (_httpService variable will take on the instance of the class HttpService), we also need to make sure that our Component file has imported the service class import HttpService from './http.service';</p>
+                                <p>Now to inject this service in a component, we use DEPENDENCY INJECTION, which is done by expecting the service as a parameter in our Component's constructor: constructor(private _httpService: HttpService) <strong>(_httpService variable will take on the instance of the class HttpService)</strong>, we also need to make sure that our Component file has imported the service class import HttpService from './http.service';</p>
                     <h3>HTTP and Promises</h3>
                         <p>HTTP Module is a library which allows us to make AJAX-type HTTP requests to any end-point (API). These requests are unique in a way that they are RETURNED TO US as Observables, but we will convert them to PROMISES (we don't need Observables for HTTP requests, since it's 1 request and 1 response). To do this, we will use the same HttpService we created from the section above.</p>
                         <h4>Injecting the HTTP module in the Service</h4>
-                            <p>To use the HTTP module, we will inject it in the service.ts file just like we did with the Service in the Component (through DEPENDENCY INJECTION). Then we will have the Service method RETURN the HTTP PROMISE to whatever Component INVOKES the METHOD.</p>
+                            <p>To use the HTTP module, we will inject it in the service.ts (class HttpService) just like we did with the Service in the component.ts (class AppComponent) through DEPENDENCY INJECTION. Then we will have the Service method RETURN the HTTP PROMISE to whatever Component INVOKES the METHOD.</p>
+                            <button (click)='getTasks()'>Click to see Refayat's GitHub stats</button>
+                            <p>{{ tasks | json }}</p>
             </div>
 </div>
