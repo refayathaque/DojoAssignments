@@ -41,11 +41,11 @@ export class AppComponent {
         this.user = new User();
     }
     object = {message: 'This is the object we are passing down from PARENT to CHILD'}
-    tasks = [];
+    refayatGitHubInfo = [];
     constructor(private _httpService: HttpService){} // Using HttpService from class exported above from service.ts
-    getTasks(){
-        this._httpService.retrieveTasks()
-        .then( tasks => { this.tasks = tasks }) //.then is a CALLBACK method
+    getRefayatGitHubInfo(){
+        this._httpService.retrieveGitHubInfo()
+        .then( refayatGitHubInfo => { this.refayatGitHubInfo = refayatGitHubInfo }) //.then is a CALLBACK method
         .catch( err => { console.log(err); })
     }
 }

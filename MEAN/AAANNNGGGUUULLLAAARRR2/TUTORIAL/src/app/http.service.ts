@@ -10,7 +10,7 @@ import 'rxjs/add/operator/toPromise';
 export class HttpService {
 
     constructor(private _http: Http) { } // Using Http from angular module imported from above
-    retrieveTasks() {
+    retrieveGitHubInfo() {
       return this._http.get('https://api.github.com/users/refayathaque').map(data=>data.json()).toPromise()
     }
 

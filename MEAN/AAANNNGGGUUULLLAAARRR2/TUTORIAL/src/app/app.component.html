@@ -303,8 +303,17 @@
                     <h3>HTTP and Promises</h3>
                         <p>HTTP Module is a library which allows us to make AJAX-type HTTP requests to any end-point (API). These requests are unique in a way that they are RETURNED TO US as Observables, but we will convert them to PROMISES (we don't need Observables for HTTP requests, since it's 1 request and 1 response). To do this, we will use the same HttpService we created from the section above.</p>
                         <h4>Injecting the HTTP module in the Service</h4>
-                            <p>To use the HTTP module, we will inject it in the service.ts (class HttpService) just like we did with the Service in the component.ts (class AppComponent) through DEPENDENCY INJECTION. Then we will have the Service method RETURN the HTTP PROMISE to whatever Component INVOKES the METHOD.</p>
-                            <button (click)='getTasks()'>Click to see Refayat's GitHub stats</button>
-                            <p>{{ tasks | json }}</p>
+                            <p>To use the HTTP module, we will <em>inject it in the service.ts (class HttpService) just like we did with the Service in the component.ts (class AppComponent) through DEPENDENCY INJECTION.</em> Then we will have the Service method RETURN the HTTP PROMISE to whatever Component INVOKES the METHOD.</p>
+                            <p>Notice that the _http.get() has 2 functions chained to it, .map and .toPromise(). The .map method is used to convert the returned object from the HTTP request into a json formatted object, and the .toPromise method is used to force the _http.get() call to return us a Promise instead of an Observable.</p>
+                            <p><em>In the example below we will try and get my GitHub user information</em></p>
+                            <p><strong>AppComponent will call the Service, specifically the retrieveGitHubInfo() method, retrieve it's promise and to invoke the HTTP request, we will chain the .then() callback method.</strong></p>
+                            <p>Now, when we call getRefayatGitHubInfo() from our AppComponent, we will <em>retrieve the Promise and invoke the request due to us chaining the .then() callback method</em>. On a successful server response, this will invoke the .then() callback and redefine our AppComponent's 'refayatGitHubInfo' empty array, to the object that was returned from our HTTP request.</p>
+                            <p>If the HTTP request failed for some reason, the .then() callback will not be invoked and alternatively, <em>the .catch() callback will be invoke, and we will be given the error object in the first parameter. We can use the error object to console log and identify the error code.</em></p>
+                            <p>See this in action below! Upon clicking the button we will be able to see all of my GitHub user information in the form of an object.</p>
+                            <p><strong>Be sure to import the HttpModule into your module.ts file, and also place it in the imports array!</strong></p>
+                            <button (click)='getRefayatGitHubInfo()'>Click to see Refayat's GitHub stats</button>
+                            <p class="code">{{ refayatGitHubInfo | json }}</p>
+                            <hr class='style-two'>
+                <h2>Routing</h2>
             </div>
 </div>
