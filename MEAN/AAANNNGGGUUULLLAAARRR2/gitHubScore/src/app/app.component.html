@@ -2,7 +2,7 @@
 <div style="text-align:center">
   <h1>{{title}}</h1>
   <form (submit)="getRefayatGitHubInfo(username)" #formData='ngForm'>
-      <h3>Please enter your GitHub Username below</h3>
+      <h3 [ngStyle]="{'color':'black'}">Please enter your GitHub Username below</h3>
       <input type="text" name="username" required [(ngModel)]="username" #username.controller="ngModel" minlength="5" maxlength="25">
       <br>
       <button *ngIf="formData.valid" type="submit" name="submit">Calculate my GitHub Score</button>
