@@ -1,7 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http'; // MUST BE MANUALLY INSERTED!
 import { AppComponent } from './app.component';
-
 import { Observable } from 'rxjs/Observable'; // MUST BE MANUALLY INSERTED!
 import 'rxjs/add/operator/catch'; // MUST BE MANUALLY INSERTED!
 import 'rxjs/add/operator/map'; // MUST BE MANUALLY INSERTED!

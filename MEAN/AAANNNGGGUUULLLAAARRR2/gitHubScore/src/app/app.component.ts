@@ -1,12 +1,12 @@
 import { Component, OnChanges } from '@angular/core';
 import { HttpService } from './http.service'; // MUST BE DONE MANUALLY FOR SERVICES
 
-
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.css']
 })
+
 export class AppComponent {
   title = 'GitHub Score';
   GitHubInfo : object;
@@ -23,4 +23,5 @@ export class AppComponent {
        // .then is PROMISE which in essence is a CALLBACK calling a CALLBACK method
       .catch( err => { console.log(err); })
   }
+
 }
