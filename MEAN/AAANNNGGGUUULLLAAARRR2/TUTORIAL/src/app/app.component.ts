@@ -42,10 +42,10 @@ export class AppComponent {
     }
     object = {message: 'This is the object we are passing down from PARENT to CHILD'}
     refayatGitHubInfo = [];
-    constructor(private _httpService: HttpService){} // Using HttpService from class exported above from service.ts
+    constructor(private _httpService: HttpService){} // DEPENDENCY INJECTION! Using HttpService from class exported above from service.ts
     getRefayatGitHubInfo(){
         this._httpService.retrieveGitHubInfo()
-        .then( refayatGitHubInfo => { this.refayatGitHubInfo = refayatGitHubInfo }) //.then is a CALLBACK method
+        .then( refayatGitHubInfo => { this.refayatGitHubInfo = refayatGitHubInfo }) // .then is a CALLBACK method
         .catch( err => { console.log(err); })
     }
 }
