@@ -10,7 +10,8 @@ import { GrandchildComponent } from './child/grandchild/grandchild.component';
 import { SecondchildComponent } from './secondchild/secondchild.component';
 import { HttpService } from './http.service';
 import { HomeComponent } from './home/home.component';
-import { OfficeComponent } from './office/office.component'; // MANUALLY DO THIS FOR SERVICES!
+import { OfficeComponent } from './office/office.component';
+import { TaskComponent } from './task/task.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { OfficeComponent } from './office/office.component'; // MANUALLY DO THIS
     GrandchildComponent,
     SecondchildComponent,
     HomeComponent,
-    OfficeComponent
+    OfficeComponent,
+    TaskComponent
   ],
   imports: [
     BrowserModule,

@@ -318,35 +318,58 @@
                             <h4><em>FOR A MORE DETAILED LOOK AT SERVICES LOOK AT gitHubScores!</em></h4>
                             <hr class='style-two'>
                 <h2>Routing</h2>
-                    <p>In situations where we want a user to switch 'pages' on our application, we use Angular's routing module. NOTE: With Angular, we NEVER ACTUALLY CHANGE PAGES, meaning - the initial HTML page given to us will always be the one used by our application. ROUTING simply CHANGES THE COMPONENT that loads based on the URL and our defined Angular routing rules.</p>
-                    <h3>Adding Routing</h3>
-                        <p>To integrate routing in our application, we can take two approaches, first approach is creating a new application with the routing files included for us by Angular's CLI. The second approach is CREATING THE FILES ON OUR OWN.</p>
-                        <p>To build an App with Routing included we need to run the following code the Angular CLI</p>
-                        <p class="code">ng new my-project-name --routing</p>
-                        <p>To add routing to our current project we must CREATE the ROUTING FILE MANUALLY and import it in our App MODULE MANUALLY</p>
-                        <p>Either way, the following files need to exist in our <em>.../src/app</em> folder directory. If you are integrating routing in a current project, you'll need to create the following files on your own. If your using the CLI, they will be generated for you.</p>
-                        <p class="code">../app/app-routing.modules.ts</p>
-                        <p>Above is our routing file, we add routing rules in the routes array.</p>
-                    <h3>Routing Rules</h3>
-                        <p>Routing rules are defined as objects, and are placed inside the routes array from within our app-routing.module.ts file. The following example is a route which will catch the root request: ttp://localhost:4200/home. ('h' omitted from http so Angular runs this template!)</p>
-                        <p class="code"> path: 'home', component: HomeComponent (surrounded in curly braces)</p>
-                        <p>Lets break down the options for each routing rule: <strong><em>path:'home'</em> - define the expected path you want this route to match. <em>component: ComponentName</em> - define the expected component we want to load if this route matches the URL request</strong></p>
-                        <p><em>Be sure to IMPORT the COMPONENT to your ROUTING file!</em></p>
-                    <h3>Sample Routes</h3>
-                        <p>The next few examples will better indicate the pattern, and also introduce you to redirectTo and links utilized for the routing. Also note 2 more options that may be added in a routing rule.</p>
-                        <p class="code">pathMatch: 'full'</p>
-                        <p>^ Matches the exact path, only used for root route requests and sub-routing.</p>
-                        <p class="code">redirectTo: ''</p>
-                        <p>^ This is in replacement of component: ComponentName and will immediately redirect the user to a different route.</p>
-                        <p>We are now going to use a route to link to our 'HomeComponent'. Once it's clicked you'll see the HomeComponent display right below</p>
-                        <a routerLink="/home">Click here to load the HomeComponent</a>
-                        <a routerLink="/office">Click here to load the OfficeComponent</a>
-                        <div>
-                            <p class="code"><router-outlet></router-outlet></p>
-                        </div>
-                        <p>***We have the option of loading up MORE THAN ONE COMPONENT (Not together though...) ^</p>
-                        <p>For routing to work there is some housekeeping we need to do. <strong>app-routingmodule file needs to import Routes, RouterModule from @angular/router;</strong>, in addition to the ROUTING RULES in the 'Routes' array. In our <strong>app.module file we need to have import AppRoutingModule from ./app-routing.module, and we also need to include the 'AppRoutingModule' class in the imports array.</strong></p>
-                        <p>Lastly we need to apply a <strong>router-outlet/router-outlet</strong> tag where we want the Component to load based on the current URL. This needs to be done to the MOST ROOT LEVEL COMPONENT we want to start routing from. Initially we can place the tag in <em>app.component.html</em> file, but we could place it in a sub-component of the app-component. We want this to be HIGH IN THE COMPONENT ARCHITECTURE because all routing will start from this point, and all sub-routing will occurring within the components that load in the tag.</p>
-
+                        <p>In situations where we want a user to switch 'pages' on our application, we use Angular's routing module. NOTE: With Angular, we NEVER ACTUALLY CHANGE PAGES, meaning - the initial HTML page given to us will always be the one used by our application. ROUTING simply CHANGES THE COMPONENT that loads based on the URL and our defined Angular routing rules.</p>
+                        <h4>Adding Routing</h4>
+                            <p>To integrate routing in our application, we can take two approaches, first approach is creating a new application with the routing files included for us by Angular's CLI. The second approach is CREATING THE FILES ON OUR OWN.</p>
+                            <p>To build an App with Routing included we need to run the following code the Angular CLI</p>
+                            <p class="code">ng new my-project-name --routing</p>
+                            <p>To add routing to our current project we must CREATE the ROUTING FILE MANUALLY and import it in our App MODULE MANUALLY</p>
+                            <p>Either way, the following files need to exist in our <em>.../src/app</em> folder directory. If you are integrating routing in a current project, you'll need to create the following files on your own. If your using the CLI, they will be generated for you.</p>
+                            <p class="code">../app/app-routing.modules.ts</p>
+                            <p>Above is our routing file, we add routing rules in the routes array.</p>
+                        <h4>Routing Rules</h4>
+                            <p>Routing rules are defined as objects, and are placed inside the routes array from within our app-routing.module.ts file. The following example is a route which will catch the root request: ttp://localhost:4200/home. ('h' omitted from http so Angular runs this template!)</p>
+                            <p class="code"> path: 'home', component: HomeComponent (surrounded in curly braces)</p>
+                            <p>Lets break down the options for each routing rule:   <strong><em>path:'home'</em> - define the expected path you want this route to match. <em>component: ComponentName</em> - define the expected component we want to load if this route matches the URL request</strong></p>
+                            <p><em>Be sure to IMPORT the COMPONENT to your ROUTING file!</em></p>
+                        <h4>Sample Routes</h4>
+                            <p>The next few examples will better indicate the pattern, and also introduce you to redirectTo and links utilized for the routing. Also note 2 more options that may be added in a routing rule.</p>
+                            <p class="code">pathMatch: 'full'</p>
+                            <p>^ Matches the exact path, only used for root route requests and sub-routing.</p>
+                            <p class="code">redirectTo: ''</p>
+                            <p>^ This is in replacement of component: ComponentName and will immediately redirect the user to a different route.</p>
+                            <p>We are now going to use a route to link to our 'HomeComponent'. Once it's clicked you'll see the HomeComponent display right below</p>
+                            <a routerLink="/home">Click here to load the HomeComponent</a>
+                            <a routerLink="/office">Click here to load the OfficeComponent</a>
+                            <div>
+                                <p class="code"><router-outlet></router-outlet></p>
+                            </div>
+                            <p>***We have the option of loading up MORE THAN ONE COMPONENT (Not together though...) ^</p>
+                            <p>For routing to work there is some housekeeping we need to do. <strong>app-routingmodule file needs to import Routes, RouterModule from @angular/router;</strong>, in addition to the ROUTING RULES in the 'Routes' array. In our <strong>app.module file we need to have import AppRoutingModule from ./app-routing.module, and we also need to include the 'AppRoutingModule' class in the imports array.</strong></p>
+                            <p>Lastly we need to apply a <strong>router-outlet/router-outlet</strong> tag where we want the Component to load based on the current URL. This needs to be done to the MOST ROOT LEVEL COMPONENT we want to start routing from. Initially we can place the tag in <em>app.component.html</em> file, but we could place it in a sub-component of the app-component. We want this to be HIGH IN THE COMPONENT ARCHITECTURE because all routing will start from this point, and all sub-routing will occurring within the components that load in the tag.</p>
+                            <hr class='style-two'>
+                <h3>Routing with Params</h3>
+                    <p>It's likely that we want to route to a page with data based on the link's information. For example, switching to a TasksComponent based on the url's task ID. To do this, we need to <strong>modify our route rules to expect a parameter</strong>. We do this by adding a colon : in front of the name of the parameter we expect, in this case, the parameter received will be identified by the name 'id', path: 'task/:id', component: TaskComponent. <em>Note: We may name this parameter 'id' and expect a number, however Angular will match this path with anything after 'task/', it could be a number: 'task/7' or text 'task/abc', in both cases, the route will match and we will load the TaskComponent.</em></p>
+                    <a routerLink='/task/7' >Click here to load the TaskComponent with id 7</a>
+                    <div>
+                        <p class="code"><router-outlet></router-outlet></p>
+                    </div>
+                    <h4>Retrieving the Parameter Value</h4>
+                        <p>To receive the data from the url (such as in this case the task id), we need to look within the particular Component that loads.</p>
+                        <p>When the TaskComponent loads, we can retrieve the parameter value by injecting the <strong>ActivatedRoute module</strong>.</p>
+                        <p>The ActivatedRoute module is an OBSERVABLE object, we subscribe to this and when doing so, we give this module a block of code to run when, and if our URL changes. This observable callback we pass it expects a PARAMETER referred to as <em>params, the params object holds all the parameters.</em> In this case, we expect the ':id' parameter, therefore our params object will have a key of id, and will include the <strong>value of our url: params.id => 7</strong></p>
+                        <p>Know that every time the URL changes, the observable object will TRIGGER OUR CALLBACK, and run our code. Giving us the ability to change our data in our component based on different URL. IE a user may navigate from 'ttp://localhost:4200/task/7' to 'ttp://localhost:4200/task/33' and later to 'ttp://localhost:4200/task/59', in each case, we will be notified. Since our TaskComponent would not reload otherwise (if we stay within the same URL but different param values, the Component itself won't reload, therefore we need a block of code to run every time this changes, to make sure the task information within the component reflects the changes on our URL) -- using this observable, we can keep track of the change in number (in our url) and change our data respectively.</p>
+                        <p><em>***In essence this is a way for us to SEND DATA TO OUR COMPONENTS FROM OUR TEMPLATES USING URL PARAMETERS!</em></p>
+                        <hr class='style-two'>
+                    <h4>Observing URL Params</h4>
+                        <p>There are situations, where we need to keep watch over an object, and when that object changes, we want to be aware of the change, and we want to be alerted. This is the exact case in the previous section when our params object changes based on the user's navigation through our application. This is where OBSERVABLES become a viable solution.</p>
+                    <h4>What are Observables?</h4>
+                        <p><strong>OBSERVABLES are a type of OBJECT which we can SUBSCRIBE TO, to KEEP WATCH FOR CHANGES on that object. IE in our TaskComponent file, we have code in our CONSTRUCTOR that will load different data based on the parameter.</strong></p>
+                    <h4>Subscribing to Observables</h4>
+                        <p>Notice that we are calling the SUBSCRIBE METHOD on the _route.params OBJECT. This object is in fact a type OBSERVABLE, and SUBSCRIBING TO IT, is essentially GIVING US A CALLBACK function which will be INVOKED EVERY TIME the OBSERVABLE IS TRIGGERED DUE TO CHANGES.</p>
+                        <p><em>Just be aware that observables that we want to watch for, we need to subscribe to.</em></p>
+                        <p>We also need to unsubscribe from them, otherwise we may run into memory leak issues (we would unsubscribe from observables when the component deconstructs, we have a life cycle method for this called onDestroy).</p>
+                        <p><em>You may have noticed, an observable is quite similar in behavior to a promise, however, we SUBSCRIBE to a 'STREAM' with observables, and we continuously listen for triggers, until we unsubscribe (with PROMISES, we expect ONLY ONE RESPONSE).</em></p>
+                <h3>Routing with Data</h3>
             </div>
 </div>
