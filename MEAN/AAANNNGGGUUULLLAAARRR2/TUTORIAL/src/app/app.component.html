@@ -370,6 +370,9 @@
                         <p><em>Just be aware that observables that we want to watch for, we need to subscribe to.</em></p>
                         <p>We also need to unsubscribe from them, otherwise we may run into memory leak issues (we would unsubscribe from observables when the component deconstructs, we have a life cycle method for this called onDestroy).</p>
                         <p><em>You may have noticed, an observable is quite similar in behavior to a promise, however, we SUBSCRIBE to a 'STREAM' with observables, and we continuously listen for triggers, until we unsubscribe (with PROMISES, we expect ONLY ONE RESPONSE).</em></p>
+                        <p>***Be sure to UNSUBSCRIBE from OBSERVABLES to avoid Angular2 taking up unnecessary memory, this is done on 'ngOnDestroy'. 'ngOnDestroy' is like a DEconstructor</p>
+                        <hr class='style-two'>
                 <h3>Routing with Data</h3>
+                    <p></p>
             </div>
 </div>
