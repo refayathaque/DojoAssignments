@@ -373,6 +373,13 @@
                         <p>***Be sure to UNSUBSCRIBE from OBSERVABLES to avoid Angular2 taking up unnecessary memory, this is done on 'ngOnDestroy'. 'ngOnDestroy' is like a DEconstructor</p>
                         <hr class='style-two'>
                 <h3>Routing with Data</h3>
-                    <p></p>
+                    <p>Just like we used @Input to pass data to a child components, and @Output to retrieve events and data from child components, we may still want this feature while loading child components through the router-outlet. This is what we will work towards in this section, by using OBSERVABLES.</p>
+                    <h4>Observables</h4>
+                        <p>OBSERVABLES are objects. It holds DATA, and a couple of METHODS. One method allows us to CHANGE the Observable's DATA, and another allows us to RETRIEVE it's CURRENT DATA.</p>
+                        <p>Observables CAN BE MADE IN A SERVICE, so <em>multiple components can retrieve the same observable.</em> This way, <em>any one of the components can update the observable data through the method (we can't directly change data without using the method), and any other component which has that observable will be informed of the change of data. To be 'informed' of change in data, we need to subscribe to the observable</em>, which is a complex way of saying that we want a callback to be invoke with the new data passed to us.</p>
+                        <p>Here is an example of an Observable (this particular type of observable we will use is actually called BehaviorSubject, BehaviorSubject is a type of Subject, which is a type of Observable, either way, it's simply a type of Observable, there are many different kind of Observables available through the rxjs library for different use cases). The BehaviorSubject is a type of observable which allows us to retrieve the current data last modified on the Observable.</p>
+                    <h4>Observable in the Service</h4>
+                        <p>To send data to child components (or any component), we will be using a service to store an Observable. So first we make a new service called communicate, <strong>generate service communicate (don't forget to import your service in the app.modules.ts file)</strong>, within this service we will make our Observable, <strong>which we first need to import</strong>. This service will have it's observable value pre-defined to null, and a method (updateCars) which will update the observable data, in this case an array of cars.</p>
+                        <p>***ASIDE***The constructor function is like ONINIT, it registers services, and runs whatever functions are inside of it, once the page loads. We can pass in all our services inside of it. The constructor function is used for DEPENDENCY INJECTION!</p>
             </div>
 </div>

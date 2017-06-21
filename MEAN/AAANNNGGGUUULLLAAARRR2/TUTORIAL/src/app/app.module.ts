@@ -12,6 +12,7 @@ import { HttpService } from './http.service';
 import { HomeComponent } from './home/home.component';
 import { OfficeComponent } from './office/office.component';
 import { TaskComponent } from './task/task.component';
+import { CommunicateService } from './communicate.service';
 
 @NgModule({
   declarations: [
@@ -29,7 +30,7 @@ import { TaskComponent } from './task/task.component';
     FormsModule, // MANUALLY DO THIS FOR FORMS!
     HttpModule // MANUALLY DO THIS FOR SERVICES!
   ],
-  providers: [HttpService], // MANUALLY DO THIS FOR SERVICES!
+  providers: [HttpService, CommunicateService], // MANUALLY DO THIS FOR SERVICES!
   bootstrap: [AppComponent]
 })
 

@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
-import { User } from './user'; // MUST IMPORT CONSTRUCTOR CLASSES!
+import { Component, OnDestroy } from '@angular/core';
+import { User } from './user'; // MUST IMPORT CONSTRUCTOR CLASSES
 import { HttpService } from './http.service'; // MUST BE DONE MANUALLY FOR SERVICES
+import { BehaviorSubject } from 'rxjs/BehaviorSubject'; // MUST BE DONE MANUALLY FOR SERVICES WITH OBSERVABLES
+import { CommunicateService } from './communicate.service'; // MUST BE DONE MANUALLY FOR SERVICES
 
 @Component({
     selector: 'app-root',
@@ -42,10 +44,22 @@ export class AppComponent {
     }
     object = {message: 'This is the object we are passing down from PARENT to CHILD'}
     refayatGitHubInfo = [];
-    constructor(private _httpService: HttpService){} // DEPENDENCY INJECTION! Using HttpService from class exported above from service.ts
+
+    constructor(private _httpService: HttpService, private _communicateService: CommunicateService){
+        _communicateService.updateCars(this.cars)
+    } // DEPENDENCY INJECTION! Using HttpService from class exported above from http.service.ts
+    // The constructor function is like ONINIT, it registers services, and runs whatever functions are inside of it, once the page loads. We can pass in all our services inside of it. The constructor function is used for DEPENDENCY INJECTION!
+
+    cars = [{model:'Toyota Camry'}, {model:'Honda Accord'}];
+
+    updateCars(){
+    this._communicateService.updateCars(this.cars);
+    }
+
     getRefayatGitHubInfo(){
         this._httpService.retrieveGitHubInfo()
         .then( refayatGitHubInfo => { this.refayatGitHubInfo = refayatGitHubInfo }) // .then is a CALLBACK method
         .catch( err => { console.log(err); })
     }
+
 }
