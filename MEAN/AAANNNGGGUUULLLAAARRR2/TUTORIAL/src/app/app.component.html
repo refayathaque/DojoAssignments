@@ -381,5 +381,34 @@
                     <h4>Observable in the Service</h4>
                         <p>To send data to child components (or any component), we will be using a service to store an Observable. So first we make a new service called communicate, <strong>generate service communicate (don't forget to import your service in the app.modules.ts file)</strong>, within this service we will make our Observable, <strong>which we first need to import</strong>. This service will have it's observable value pre-defined to null, and a method (updateCars) which will update the observable data, in this case an array of cars.</p>
                         <p>***ASIDE***The constructor function is like ONINIT, it registers services, and runs whatever functions are inside of it, once the page loads. We can pass in all our services inside of it. The constructor function is used for DEPENDENCY INJECTION!</p>
+                    <h4>Updating the Observable Data</h4>
+                        <p>We have a service, which holds an OBSERVABLE 'observedCars' and a function called 'updateCars'. The function 'updateCars' simply updates the 'observedCars' data by calling next and passing in the new data:
+                        <p class="code">this.observedCars.next(cars)</p>
+                        <p>Therefore, any Component which needs to update the observable data, will simply call our service method 'updateData()' and pass the data.</p>
+                        <p>Lets now look at a parent component (AppComponent) and a child component (ObsChildOneComponent), the Parent Component holds the data we need for some other component (in this case a child component which will load depending on our URL and routing rules). When the parent component loads, it will use the service and update the observable with the current data by calling the method:</p>
+                        <p class='code'>_communicateService.updateData(this.cars)<p>
+                        <p>We also made a helper function, so anytime we need to update the observable, we can simply call 'updateCars' in our AppComponent, and it will update the observable with our current component's cars array.</p>
+                        <p>We follow the same pattern with any, and every component that needs to update the current state of the observable. We have that component call the 'updateCars()' method of our service and pass it new data.</p>
+                    <h4>Retrieving Data from the Observable</h4>
+                        <p>Now lets talk about how we can use this data. We talked about how we can update, but now we need to subscribe to this observable. By doing so, we are given a callback, which will invoke anytime the state of the observable is changed. <em>NOTE: We need to unsubscribe as well, otherwise we will cause a memory leak.</em> We can subscribe whenever we want, but it makes sense to subscribe on the constructor, therefore we first call on our service _communicateService instance, directly to the observable object
+                        <p class="code">_communicateService.observedUsers.subscribe()</p>
+                        <p>The subscribe method expects 3 callback functions as parameters. First is the success method, which <strong>returns us the new observable data (this invokes every time someone calls '.next' on our observable)</strong> Second is the error callback which returns us an error object, and third is the success method.</p>
+                    <h4>Unsubscribing from Observables</h4>
+                        <p>Just as we subscribed to an observable in the constructor, we will unsubscribe from the observables when this component is destroyed. To do this we need to do 2 things:
+                        <p><em>First - we need to retrieve the instance of the subscription and store it in a variable of type 'Subscription'</em></p>
+                        <p><em>Second - we will implement the 'OnDestroy' interface which allows us to use the 'ngOnDestroy' life cycle hook, allowing us to unsubscribe from the subscription object, when this component is destroyed (it will be destroyed when the view is removed).</em></p>
+                    <h4>Current Observable Data</h4>
+                        <p>Lastly, if we need the current snapshot of the observable data, we can call <p class="code">this._communicateService.subject.getValue();</p>
+                        <p>This feature is unique specifically to the BehaviorSubject observable.</p>
+                    <h4>Demo</h4>
+                        <p>Here is a demonstration of OBSERVABLES in action.</p>
+                        <p><em>Note how subscriptions work by loading up the two CHILD components and changing the data on both!</em></p>
+                        <p>Cars Array below as per AppComponent (PARENT)</p><p class="code">{{ cars | json }}</p>
+                        <button (click)='changeData()'>Change Data</button>
+                        <a routerLink='/obs-child-one' >Click here to load CHILD ONE</a>
+                        <a routerLink='/obs-child-two' >Click here to load CHILD TWO</a>
+                        <div>
+                            <p class="code"><router-outlet></router-outlet></p>
+                        </div>
             </div>
 </div>

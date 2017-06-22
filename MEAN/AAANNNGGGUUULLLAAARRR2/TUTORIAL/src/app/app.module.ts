@@ -13,6 +13,8 @@ import { HomeComponent } from './home/home.component';
 import { OfficeComponent } from './office/office.component';
 import { TaskComponent } from './task/task.component';
 import { CommunicateService } from './communicate.service';
+import { ObsChildOneComponent } from './obs-child-one/obs-child-one.component';
+import { ObsChildTwoComponent } from './obs-child-two/obs-child-two.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +24,9 @@ import { CommunicateService } from './communicate.service';
     SecondchildComponent,
     HomeComponent,
     OfficeComponent,
-    TaskComponent
+    TaskComponent,
+    ObsChildOneComponent,
+    ObsChildTwoComponent
   ],
   imports: [
     BrowserModule,
