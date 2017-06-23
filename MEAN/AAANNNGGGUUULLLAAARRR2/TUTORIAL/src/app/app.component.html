@@ -410,5 +410,13 @@
                         <div>
                             <p class="code"><router-outlet></router-outlet></p>
                         </div>
+                <h3>Nested Routing</h3>
+                    <p>It may be the case that we need routing within routing. Angular gives us a simple way to accomplish this. We go back to our routing file and add child routes on any one particular route. It's imperative to remember that now we need to <strong>add another router-outlet within the component that we want the new partial to load.</strong></p>
+                    <p>For this to work we would need two router-outlet tags. The first one should be within the AppComponent, since this is the root component for our project, and from the app component, we want to decide what component to load in the router-outlet.</p>
+                    <p>Also we will have another router-outlet within the CHILD Component, since we want the GRAND CHILD Component to load as the partial in this view. Essentially, every component which you give CHILD ROUTES to, will need a router-outlet.</p>
+                    <a [routerLink]="['/child', 'grandchild']" >Grandchild Component</a>
+                    <div>
+                        <p class="code"><router-outlet></router-outlet></p>
+                    </div>
             </div>
 </div>
