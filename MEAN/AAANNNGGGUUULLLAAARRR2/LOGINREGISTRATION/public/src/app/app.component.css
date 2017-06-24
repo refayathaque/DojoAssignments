@@ -1,0 +1,13 @@
+.container {
+    margin-left: auto;
+    margin-right: auto;
+    font-family: sans-serif;
+    width: 700px;
+    text-align: center;
+}
+button {
+    padding-left: 20px;
+    padding-right: 20px;
+    border-radius: 10px;
+    background-color: #D0F0C0;
+}
