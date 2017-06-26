@@ -5,8 +5,8 @@ var UserSchema = new mongoose.Schema({
     lastname: {type: String, required: true},
     birthdate: {type: Date, required: true},
     username: {type: String, required: true},
-    email: {type: String, required: true},
-    password: {type: String, required: true},
+    email: {type: String, required: true, validate: {validator: function(value) { return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);}, message: '{value} is not a valid email address!'}},
+    password: {type: String, required: true, validate: {validator: function(value) { return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,14}$/.test(value);}, message: '{value} is not a valid email address!'}},
     confirmpassword: {type: String, required: true},
     created_at: {type: Date, required: true},
     updated_at: {type: Date, required: true}
