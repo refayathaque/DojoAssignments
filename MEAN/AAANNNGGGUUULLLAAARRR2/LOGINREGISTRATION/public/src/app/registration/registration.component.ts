@@ -8,7 +8,10 @@ import { User } from '../user'; // MUST IMPORT CONSTRUCTOR CLASSES
 })
 export class RegistrationComponent implements OnInit {
 
-  constructor() { }
+  constructor() {
+      // Try doing date validation later. In HTML date input there should be min='{{ mindate }}'
+      // Here there should be a function invoked on page load that takes the current date and subtracts accordingly to only allow people of a certain age to register. 
+  }
 
   user = new User();
   users = [];
@@ -18,7 +21,10 @@ export class RegistrationComponent implements OnInit {
       this.user = new User();
   }
 
+  mindate: number;
+
   ngOnInit() {
+
   }
 
 }
