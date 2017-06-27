@@ -7,13 +7,15 @@ export class LoginRegistrationService {
 
   constructor(private _Http: Http) { }
 
-  registerUser(user){
+  registerUser(user) {
     console.log(user)
     return this._Http.post('/users', user)
     .map((data) => {
+      console.log("Inside Service After HTTP Call")
       console.log("data", data)
       return data.json()
     })
     .toPromise();
   }
+
 }

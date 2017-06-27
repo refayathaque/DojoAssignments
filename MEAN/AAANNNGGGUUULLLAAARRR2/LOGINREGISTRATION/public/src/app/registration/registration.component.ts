@@ -12,8 +12,7 @@ import { Cookie } from 'ng2-cookies';
 
 export class RegistrationComponent implements OnInit {
 
-  constructor(private _LoginRegistrationService: LoginRegistrationService) {
-  }
+  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router:Router) { }
 
   user = new User();
   // users = [];
@@ -26,21 +25,24 @@ export class RegistrationComponent implements OnInit {
   ngOnInit() { }
 
   registration() {
-      if(this.user.password !== this.user.confirmpassword) {
-          alert("Passwords do not match!")
-      } else {
+      if (this.user.password !== this.user.confirmpassword) {
+          alert("Passwords do not match!") }
+      else
+      {
           this._LoginRegistrationService.registerUser(this.user)
           .then((data) => {
               if(data.error) {
                   alert(data.messages)
               } else {
+                  console.log("DATA Inside Register Component")
                   console.log(data)
               }
           })
-          .catch((err)=>{
-          console.log("inside register component")
+          .catch((err) => {
+          console.log("ERR Inside Register Component")
           console.log(err)
           })
       }
   }
+
 }

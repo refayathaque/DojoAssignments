@@ -1,8 +1,10 @@
 const mongoose = require('mongoose');
 const User = mongoose.model('User');
+
 function UsersController() {
+
     this.create = function(req, res) {
-        User.findone({email: req.body.email})
+        User.findOne({email: req.body.email})
         .then((user) => {
             console.log(user)
             if(user) {
@@ -23,5 +25,7 @@ function UsersController() {
             console.log(err)
         })
     }
-})
+
+}
+
 module.exports = new UsersController();
