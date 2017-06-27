@@ -5,7 +5,7 @@ import 'rxjs';
 @Injectable()
 export class LoginRegistrationService {
 
-  constructor(private _Http:Http) { }
+  constructor(private _Http: Http) { }
 
   registerUser(user){
     console.log(user)

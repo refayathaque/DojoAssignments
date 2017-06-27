@@ -18,7 +18,8 @@ import { LoginRegistrationService } from "app/loginregistration.service";
   imports: [
     BrowserModule,
     AppRoutingModule,
-    FormsModule
+    FormsModule,
+    HttpModule // MANUALLY DO THIS FOR SERVICES!
   ],
   providers: [LoginRegistrationService],
   bootstrap: [AppComponent]

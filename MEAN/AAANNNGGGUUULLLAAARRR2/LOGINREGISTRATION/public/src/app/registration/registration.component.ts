@@ -13,13 +13,10 @@ import { Cookie } from 'ng2-cookies';
 export class RegistrationComponent implements OnInit {
 
   constructor(private _LoginRegistrationService: LoginRegistrationService) {
-      // Try doing date validation later. In HTML date input there should be min='{{ mindate }}'
-      // Here there should be a function invoked on page load that takes the current date and subtracts accordingly to only allow people of a certain age to register.
   }
 
-  // user = new User();
+  user = new User();
   // users = [];
-  //
   // registration() {
   //     console.log(this.user)
   //     this.users.push(this.user);
@@ -40,7 +37,10 @@ export class RegistrationComponent implements OnInit {
                   console.log(data)
               }
           })
+          .catch((err)=>{
+          console.log("inside register component")
+          console.log(err)
+          })
       }
   }
-
 }
