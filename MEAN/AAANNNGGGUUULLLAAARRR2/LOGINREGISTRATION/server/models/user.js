@@ -1,5 +1,6 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+
 var UserSchema = new mongoose.Schema({
     firstname: {type: String, required: true},
     lastname: {type: String, required: true},

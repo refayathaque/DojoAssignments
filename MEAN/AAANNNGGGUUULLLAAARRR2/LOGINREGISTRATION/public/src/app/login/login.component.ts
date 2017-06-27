@@ -9,9 +9,14 @@ import { User } from '../user'; // MUST IMPORT CONSTRUCTOR CLASSES
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
+
 export class LoginComponent implements OnInit {
 
-  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router:Router) { }
+  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router: Router) {
+      if(Cookie.check("logged_id")) {
+      this._Router.navigateByUrl('home')
+      }
+  }
 
   user = new User();
 
@@ -25,6 +30,7 @@ export class LoginComponent implements OnInit {
       if(data.login) {
         alert("You are logged in!")
         Cookie.set("logged_id", data.user._id)
+        Cookie.set("logged_username", data.user.username)
       } else {
         alert(data.error)
       }

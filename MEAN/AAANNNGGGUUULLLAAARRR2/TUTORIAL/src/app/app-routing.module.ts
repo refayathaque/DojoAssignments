@@ -16,7 +16,7 @@ const routes: Routes = [
     { path: 'obs-child-two', component: ObsChildTwoComponent },
     { path: 'child', component: ChildComponent, children:[
 		{ path: 'grandchild', component: GrandchildComponent }
-    ]}
+        ]}
 ];
 
 @NgModule({

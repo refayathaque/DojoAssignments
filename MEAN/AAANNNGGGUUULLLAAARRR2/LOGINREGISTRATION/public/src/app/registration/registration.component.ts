@@ -12,10 +12,14 @@ import { Cookie } from 'ng2-cookies';
 
 export class RegistrationComponent implements OnInit {
 
-  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router:Router) { }
+  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router: Router) {
+      if(Cookie.check("logged_id")) {
+      this._Router.navigateByUrl('home')
+      }
+  }
 
   user = new User();
-  
+
   ngOnInit() { }
 
   registration() {
@@ -30,6 +34,9 @@ export class RegistrationComponent implements OnInit {
               } else {
                   console.log("DATA Inside Register Component")
                   console.log(data)
+                  Cookie.set('logged_id', data.user._id)
+                  Cookie.set("logged_username", data.user.username)
+                  this._Router.navigateByUrl('home')
               }
           })
           .catch((err) => {

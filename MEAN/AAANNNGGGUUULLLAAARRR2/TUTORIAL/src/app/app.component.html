@@ -219,6 +219,7 @@
                     <p>Here, our [ngClass] also come in to show us whether or not our inputs are meeting the conditions set by our validations</p>
                     <p>With large forms like this, we may want to catch all parts of the form in an object, just like we EXPOSED the CONTROLLERS of each input with (for example: #password='ngModel'), we can do the same for the entire form, which within it, we will have access to each input controller as well. We do this by adding the same attribute pattern with 'ngForm': #formData='ngForm' (we place this in our form tag as a key-value pair), 'ngForm' and 'ngModel' are both key words made by Angular, we use them to create controller objects.</p>
                     <p>We used the FORM CONTROLLER, and *ngIf in a div around the 'register' button, to display the 'register' button ONLY IF ALL VALIDATIONS PASS</p>
+                    <p>OR we can do the same thing as ^ with [disabled]='!formData.valid'</p>
                     <hr class='style-two'>
         <div>
             <h2>Architecture</h2>
