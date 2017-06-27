@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http } from "@angular/http";
-import 'rxjs';
+import 'rxjs/RX'; // RxJS stands for *R*eactive E*x*tensions for *J*ava*S*cript, and its a library that gives us an implementation of Observables for JS
 
 @Injectable()
 export class LoginRegistrationService {
