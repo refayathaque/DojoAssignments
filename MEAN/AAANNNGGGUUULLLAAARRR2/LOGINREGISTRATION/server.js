@@ -16,5 +16,5 @@ require("./server/config/routes.js")(app);
 app.get('*', (req, res) => {
   res.redirect('/')
 });
-app.listen(port, () => console.log(`API running on localhost:${port}`));
+app.listen(port, () => console.log(`Running on localhost:${port}`));
 // DO NOT CHANGE ANYTHING IN THIS FILE! YOUR CODE WILL BREAK!

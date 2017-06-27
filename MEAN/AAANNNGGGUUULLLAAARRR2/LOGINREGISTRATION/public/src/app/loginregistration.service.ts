@@ -11,8 +11,19 @@ export class LoginRegistrationService {
     console.log(user)
     return this._Http.post('/users', user)
     .map((data) => {
-      console.log("Inside Service After HTTP Call")
+      console.log("Inside Service (Registration) After HTTP Call")
       console.log("data", data)
+      return data.json()
+    })
+    .toPromise();
+  }
+
+  loginUser(user) {
+    console.log(user)
+    return this._Http.post('/login', user)
+    .map((data) => {
+      console.log("Inside Service (Login) After HTTP Call")
+      console.log(data)
       return data.json()
     })
     .toPromise();

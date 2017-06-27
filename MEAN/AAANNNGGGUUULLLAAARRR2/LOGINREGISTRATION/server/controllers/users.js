@@ -4,6 +4,7 @@ const User = mongoose.model('User');
 function UsersController() {
 
     this.create = function(req, res) {
+        console.log("Inside controller (Registration)")
         User.findOne({email: req.body.email})
         .then((user) => {
             console.log(user)
@@ -25,6 +26,27 @@ function UsersController() {
             console.log(err)
         })
     }
+
+    this.login = function(req, res) {
+        console.log("Inside controller (Login)")
+        console.log(req.body)
+        User.findOne({username: req.body.username}, function(err, user) {
+            if(err) {
+                console.log(err)
+            } else if(user) {
+                console.log("User in DB", user)
+                var validPassword = user.comparePassword(req.body.password)
+                if(validPassword) {
+                    res.json({login: true, user: user})
+                } else {
+                        res.json({login: false, error: "Invalid password!"})
+                    }
+                } else {
+                    console.log("User NOT in DB")
+                    res.json({login: false, error: "Username not found!"})
+                }
+            })
+        }
 
 }
 
