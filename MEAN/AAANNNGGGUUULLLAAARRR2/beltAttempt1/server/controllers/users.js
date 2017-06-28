@@ -13,7 +13,7 @@ function UsersController() {
             } else {
                 var user = new User(req.body)
                 user.save((err, user) => {
-                    console.log('user created!')
+                    console.log('User created!')
                     if(err) {
                         res.json({error: true, messages: err.errors.email.message})
                     } else {

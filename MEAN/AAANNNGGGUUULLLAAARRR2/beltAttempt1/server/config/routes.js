@@ -9,4 +9,8 @@ module.exports = function(app) {
         console.log('REQ BODY : ', req.body)
         users.login(req, res)
     })
+    app.post('/questions', (req, res) => {
+        console.log('REQ BODY : ', req.body)
+        questions.create(req, res)
+    })
 }

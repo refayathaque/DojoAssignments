@@ -8,10 +8,8 @@ var UserSchema = new mongoose.Schema({
     username: {type: String, required: true},
     email: {type: String, required: true, validate: {validator: function(value) { return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);}, message: '{value} is not a valid email address!'}},
     password: {type: String, required: true, validate: {validator: function(value) { return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,14}$/.test(value);}, message: '{value} is not a valid email address!'}},
-    confirmpassword: {type: String, required: true},
-    created_at: {type: Date, required: true},
-    updated_at: {type: Date, required: true}
-}, {timestamps: false});
+    confirmpassword: {type: String, required: true}
+}, {timestamps: true});
 
 // Bcrypt Password Hashing
 UserSchema.methods.generateHash = function(password){
