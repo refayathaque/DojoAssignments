@@ -28,9 +28,10 @@ export class LoginComponent implements OnInit {
     this._LoginRegistrationService.loginUser(this.user)
     .then((data) => {
       if(data.login) {
-        alert("You are logged in!")
+        alert("Welcome back!")
         Cookie.set("logged_id", data.user._id)
         Cookie.set("logged_username", data.user.username)
+        this._Router.navigateByUrl('home')
       } else {
         alert(data.error)
       }

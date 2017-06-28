@@ -9,7 +9,7 @@ function UsersController() {
         .then((user) => {
             console.log(user)
             if(user) {
-                res.json({error: true, messages: 'email already exists!'})
+                res.json({error: true, messages: 'You are already registered!'})
             } else {
                 var user = new User(req.body)
                 user.save((err, user) => {
