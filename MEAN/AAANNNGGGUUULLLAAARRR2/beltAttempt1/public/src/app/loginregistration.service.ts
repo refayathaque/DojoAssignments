@@ -29,4 +29,15 @@ export class LoginRegistrationService {
     .toPromise();
   }
 
+  submitQuestion(question) {
+    console.log(question)
+    return this._Http.post('/questions', question)
+    .map((data) => {
+      console.log("Inside Service (Question) After HTTP Call")
+      console.log("data", data)
+      return data.json()
+    })
+    .toPromise();
+  }
+
 }

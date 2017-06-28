@@ -22,4 +22,8 @@ export class HomeComponent implements OnInit {
       this._Router.navigateByUrl('login')
   }
 
+  addquestion() {
+      this._Router.navigateByUrl('question')
+  }
+
 }

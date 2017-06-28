@@ -8,6 +8,21 @@
 
         <button (click)='logout()' type="button" name="button">Logout</button>
 
+        <button (click)='addquestion()' type="button" name="button">Add a Question</button>
+
+        <table>
+          <tr>
+            <th>Question</th>
+            <th>Answers</th>
+            <th>Action</th>
+          </tr>
+          <tr *ngFor='let question of questions'>
+            <td>{{ question.text }}</td>
+            <td>{{ question.answers.length }}</td>
+            <td><a [routerLink]="['/showquestion', question._id]"></a> | <a [routerLink]="['/answer']"></a></td>
+          </tr>
+        </table>
+
     </fieldset>
 
 </div>

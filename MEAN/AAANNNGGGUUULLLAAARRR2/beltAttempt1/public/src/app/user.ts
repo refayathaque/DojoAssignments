@@ -6,8 +6,6 @@ export class User {
     public username: string = "",
     public email: string = "",
     public password: string = "",
-    public confirmpassword: string = "",
-    public created_at: Date = new Date(),
-    public updated_at: Date = new Date()
+    public confirmpassword: string = ""
     ) {}
 }
