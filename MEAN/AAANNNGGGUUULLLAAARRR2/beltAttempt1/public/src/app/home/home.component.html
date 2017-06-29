@@ -17,9 +17,9 @@
             <th>Action</th>
           </tr>
           <tr *ngFor='let question of questions'>
-            <td>{{ question.text }}</td>
-            <td>{{ question.answers.length }}</td>
-            <td><a [routerLink]="['/showquestion', question._id]"></a> | <a [routerLink]="['/answer']"></a></td>
+            <td>{{ question.content }}</td>
+            <td></td>
+            <td></td>
           </tr>
         </table>
 

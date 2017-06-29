@@ -3,6 +3,18 @@ const Question = mongoose.model('Question');
 
 function QuestionsController() {
 
+    this.showAllQuestions = function(req, res) {
+        Question.find({})
+        .populate("answers")
+        .exec(function(err, questions) {
+            if(err) {
+                console.log(err)
+            } else {
+                res.json(questions)
+            }
+        })
+    }
+
     this.create = function(req, res) {
         console.log("Inside questions controller")
         Question.findOne({content: req.body.content})

@@ -40,4 +40,13 @@ export class LoginRegistrationService {
     .toPromise();
   }
 
+  index() {
+      return this._Http.get('/index')
+      .map((data) => {
+          console.log("Data being returned to component", data)
+          return data.json()
+      })
+      .toPromise();
+  }
+
 }
