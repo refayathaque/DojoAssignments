@@ -1,11 +1,12 @@
 // var mongoose = require('mongoose');
+// var Schema = mongoose.Schema;
 //
 // var AnswerSchema = new mongoose.Schema({
 //     content: {type: String, required: true},
 //     detail: {type: String, required: true},
 //     created_by: {type: String, required: true},
 //     like: {type: Number, required: true},
-//     _questions: [{type: QuestionSchema.Types.ObjectId, ref: 'Question'}]
+//     _questions: [{type: Schema.Types.ObjectId, ref: 'Question'}]
 // }, {timestamps: true});
 //
 // AnswerSchema.methods.like = function(callback) {

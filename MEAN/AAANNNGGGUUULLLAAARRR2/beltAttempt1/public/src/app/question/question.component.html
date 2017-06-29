@@ -12,7 +12,7 @@
         <form (submit)='submitquestion()' #formData='ngForm'>
 
             <p>Question</p>
-            <input type="text" name="question" required minlength="10" [(ngModel)]="question.question" #question='ngModel' size="60">
+            <input type="text" name="content" required minlength="10" [(ngModel)]="question.content" #content='ngModel' size="60">
 
             <div [hidden]='!question.errors'>
                 {{ question.errors | json }}
