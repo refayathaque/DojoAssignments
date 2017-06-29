@@ -24,9 +24,10 @@ export class QuestionComponent implements OnInit {
       console.log('Question Component Before Service Call', this.question)
       this._LoginRegistrationService.submitQuestion(this.question)
       .then((data) => {
-          if(data.content) {
+          if(data) {
               alert(data.messages)
               this._Router.navigateByUrl('home')
+              // Route worked bc just 'data' was passed in above in if statement, not 'data.question' or 'data.content'
           } else {
               alert(data.messages)
           }
