@@ -2,12 +2,12 @@
     font-family: sans-serif;
     text-align: center;
 }
-input.ng-valid {
+textarea.ng-valid {
     color: green;
 }
-input.ng-invalid {
+textarea.ng-invalid {
     color: red;
 }
-input.ng-pristine {
+textarea.ng-pristine {
     color: black;
 }

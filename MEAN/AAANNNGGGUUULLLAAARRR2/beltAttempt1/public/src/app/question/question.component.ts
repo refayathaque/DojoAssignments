@@ -10,25 +10,25 @@ import { ActivatedRoute } from "@angular/router"; // MUST IMPORT FOR PASSING ID 
   templateUrl: './question.component.html',
   styleUrls: ['./question.component.css']
 })
+
 export class QuestionComponent implements OnInit {
 
-  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router: Router, _activatedRoute: ActivatedRoute) { }
+  constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router: Router, _activatedRoute: ActivatedRoute) { } // Dependency Injections for some IMPORTS
 
-  question = new Question();
+  question = new Question(); // Instantiating class 'question'
 
   ngOnInit() { }
 
   submitquestion() {
       this.question.created_by = Cookie.get('logged_id');
-      console.log(this.question)
+      console.log('Question Component Before Service Call', this.question)
       this._LoginRegistrationService.submitQuestion(this.question)
       .then((data) => {
-          if(data.error) {
+          if(data.content) {
               alert(data.messages)
+              this._Router.navigateByUrl('home')
           } else {
-              console.log("DATA Inside Question Component")
-              console.log(data)
-              this._Router.navigateByUrl('question')
+              alert(data.messages)
           }
       })
       .catch((err) => {

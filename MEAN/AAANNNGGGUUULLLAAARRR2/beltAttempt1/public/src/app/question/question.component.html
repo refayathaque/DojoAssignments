@@ -12,14 +12,14 @@
         <form (submit)='submitquestion()' #formData='ngForm'>
 
             <p>Question</p>
-            <input type="text" name="content" required minlength="10" [(ngModel)]="question.content" #content='ngModel' size="60">
+            <textarea type="text" name="content" required minlength="10" rows="6" cols="60" [(ngModel)]="question.content" #content='ngModel'></textarea>
 
             <div [hidden]='!question.errors'>
                 {{ question.errors | json }}
             </div>
 
             <p>Description (Optional)</p>
-            <input type="text" name="description" [(ngModel)]="question.description" size="60">
+            <textarea type="text" name="description" [(ngModel)]="question.description" rows="6" cols="60"></textarea>
 
             <br>
             <button [disabled]="!formData.valid" value="submit" type="submit" name="submit">Submit</button>

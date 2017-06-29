@@ -1,4 +1,5 @@
 var users = require('../controllers/users.js')
+var questions = require('../controllers/questions.js')
 
 module.exports = function(app) {
     app.post('/users', (req, res) => {
@@ -9,7 +10,7 @@ module.exports = function(app) {
         console.log('REQ BODY : ', req.body)
         users.login(req, res)
     })
-    app.post('/questions', (req, res) => {
+    app.post('/newquestions', (req, res) => {
         console.log('REQ BODY : ', req.body)
         questions.create(req, res)
     })
