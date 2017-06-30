@@ -29,9 +29,9 @@ export class LoginRegistrationService {
     .toPromise();
   }
 
-  submitQuestion(question) {
-    console.log('Question in Service', question)
-    return this._Http.post('/newquestions', question)
+  submitQuestion(answer) {
+    console.log('Question in Service', answer)
+    return this._Http.post('/newanswers', answer)
     .map((data) => {
       console.log("Inside Service (Question) After HTTP Call")
       console.log("Data being returned to component", data)
@@ -64,6 +64,17 @@ export class LoginRegistrationService {
       return data.json()
     })
     .toPromise()
+  }
+
+  submitAnswer(question) {
+    console.log('Question in Service', question)
+    return this._Http.post('/newquestions', question)
+    .map((data) => {
+      console.log("Inside Service (Question) After HTTP Call")
+      console.log("Data being returned to component", data)
+      return data.json()
+    })
+    .toPromise();
   }
 
 }

@@ -15,7 +15,7 @@ function QuestionsController() {
         })
     }
 
-    this.show=function(req, res){
+    this.show = function(req, res){
     var question_id = req.params.id
     Question.findOne({_id:question_id})
     .populate("answers")

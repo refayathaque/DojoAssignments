@@ -1,5 +1,6 @@
 var users = require('../controllers/users.js')
 var questions = require('../controllers/questions.js')
+var answers = require('../controllers/answers.js')
 // IMPORTANT TO HAVE ALL CONTROLLERS HERE!
 
 module.exports = function(app) {
@@ -15,6 +16,11 @@ module.exports = function(app) {
     })
 
     app.post('/newquestions', (req, res) => {
+        console.log('REQ BODY : ', req.body)
+        questions.create(req, res)
+    })
+
+    app.post('/newanswers', (req, res) => {
         console.log('REQ BODY : ', req.body)
         questions.create(req, res)
     })
