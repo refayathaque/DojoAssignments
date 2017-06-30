@@ -15,6 +15,20 @@ function QuestionsController() {
         })
     }
 
+    this.show=function(req, res){
+    var question_id = req.params.id
+    Question.findOne({_id:question_id})
+    .populate("answers")
+    .exec(function(err, question){
+      if(err){
+        console.log(err)
+      }
+      else{
+        res.json(question)
+      }
+    })
+    }
+
     this.create = function(req, res) {
         console.log("Inside questions controller")
         Question.findOne({content: req.body.content})

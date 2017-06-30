@@ -49,4 +49,21 @@ export class LoginRegistrationService {
       .toPromise();
   }
 
+  show(id){
+    return this._Http.get(`/questions/${id}`)
+    .map((data)=>{
+      return data.json()
+    })
+    .toPromise()
+  }
+
+  like(id){
+    return this._Http.post(`/answers/${id}/like`, {id:id})
+    .map((data)=>{
+
+      return data.json()
+    })
+    .toPromise()
+  }
+
 }

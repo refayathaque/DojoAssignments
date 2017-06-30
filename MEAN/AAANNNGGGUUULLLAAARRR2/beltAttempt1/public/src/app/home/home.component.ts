@@ -35,7 +35,7 @@ export class HomeComponent implements OnInit {
   }
 
   addquestion() {
-      this._Router.navigateByUrl('question')
+      this._Router.navigateByUrl('newquestion')
   }
 
 }
