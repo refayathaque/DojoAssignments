@@ -66,11 +66,11 @@ export class LoginRegistrationService {
     .toPromise()
   }
 
-  submitAnswer(question) {
-    console.log('Question in Service', question)
-    return this._Http.post('/newquestions', question)
+  submitAnswer(id, answer) {
+    console.log('Answer in Service', answer)
+    return this._Http.post(`/newanswers/${id}`, answer)
     .map((data) => {
-      console.log("Inside Service (Question) After HTTP Call")
+      console.log("Inside Service (Answer) After HTTP Call")
       console.log("Data being returned to component", data)
       return data.json()
     })

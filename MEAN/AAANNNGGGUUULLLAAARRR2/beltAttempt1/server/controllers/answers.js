@@ -36,7 +36,7 @@ function AnswersController() {
     Question.findOne({_id:question_id}, function(err, question){
       var answer = new Answer(req.body);
       answer._question = question_id
-      //we need to save both to the db!
+      // We need to save both to the db!
       answer.save(function(err){
         question.answers.push(answer)
         question.save(function(err, question){

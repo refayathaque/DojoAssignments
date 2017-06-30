@@ -12,11 +12,14 @@
 
         <button (click)='logout()' type="button" name="button">Logout</button>
 
+        <hr>
+
         <div *ngFor = "let answer of question.answers">
             <p>Answer : {{ answer.content }}</p>
             <p>Detail : {{ answer.detail }}</p>
             <p>Created By : {{ answer.created_by }}</p>
             <p># Likes : {{ answer.likes }} <button (click)='likes(answer._id)' type="button" name="button">Like</button></p>
+            <hr>
         </div>
 
     </fieldset>

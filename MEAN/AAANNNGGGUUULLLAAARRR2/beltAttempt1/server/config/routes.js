@@ -20,9 +20,9 @@ module.exports = function(app) {
         questions.create(req, res)
     })
 
-    app.post('/newanswers', (req, res) => {
+    app.post('/newanswers/:id', (req, res) => {
         console.log('REQ BODY : ', req.body)
-        questions.create(req, res)
+        answers.create(req, res)
     })
 
     app.get('/index', (req,res) => {
