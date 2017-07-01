@@ -31,11 +31,6 @@ module.exports = function(app) {
         questions.showAllQuestions(req, res)
     })
 
-    // app.post('/answers/:id', (req,res)=>{
-    //     console.log("inside routes")
-    //     answers.create(req, res);
-    // })
-
     app.post('/answers/:id/like', (req,res)=>{
         console.log("inside routes")
         answers.like(req, res);
