@@ -18,7 +18,10 @@ function QuestionsController() {
     this.show = function(req, res){
     var question_id = req.params.id
     Question.findOne({_id:question_id})
-    .populate("answers")
+    .populate({
+        path: 'answers',
+        options: { sort: {'likes': '-1'}}
+    })
     .exec(function(err, question){
       if(err){
         console.log(err)

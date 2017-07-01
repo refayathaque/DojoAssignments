@@ -37,7 +37,7 @@ module.exports = function(app) {
     })
 
     app.get('/questions/:id', (req,res)=>{
-        console.log("inside routes (answer)")
+        console.log("Inside routes, getting answers sorted by likes for question with ID passed in")
         console.log(req.body)
         questions.show(req, res)
     })
