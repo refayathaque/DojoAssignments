@@ -8,6 +8,8 @@
         <a routerLink='/home' >Home</a>
         <router-outlet></router-outlet>
 
+        <a [routerLink]="['/show', question._id]">Show</a>
+
         <button (click)='logout()' type="button" name="button">Logout</button>
 
         <form (submit)='submitanswer()' #formData='ngForm'>
