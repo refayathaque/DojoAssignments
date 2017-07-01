@@ -5,7 +5,7 @@ function QuestionsController() {
 
     this.showAllQuestions = function(req, res) {
         Question.find({})
-        .populate("answers")
+        .populate('answers')
         .exec(function(err, questions) {
             if(err) {
                 console.log(err)
@@ -22,6 +22,7 @@ function QuestionsController() {
         path: 'answers',
         options: { sort: {'likes': '-1'}}
     })
+    // http://quabr.com/44231362/mongoose-express-sort-items-order-with-populate-function Where I learned how to do the sort
     .exec(function(err, question){
       if(err){
         console.log(err)
