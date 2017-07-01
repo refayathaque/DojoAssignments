@@ -1,14 +1,16 @@
 var mongoose = require('mongoose');
 var bcrypt = require('bcrypt');
+var Schema = mongoose.Schema;
 
-var UserSchema = new mongoose.Schema({
+var UserSchema = new Schema({
     firstname: {type: String, required: true},
     lastname: {type: String, required: true},
     birthdate: {type: Date, required: true},
     username: {type: String, required: true},
     email: {type: String, required: true, validate: {validator: function(value) { return /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(value);}, message: '{value} is not a valid email address!'}},
     password: {type: String, required: true, validate: {validator: function(value) { return /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,14}$/.test(value);}, message: '{value} is not a valid email address!'}},
-    confirmpassword: {type: String, required: true}
+    confirmpassword: {type: String, required: true},
+    bucketlists: [{type: Schema.Types.ObjectId, ref: 'BucketList'}]
 }, {timestamps: true});
 
 // Bcrypt Password Hashing

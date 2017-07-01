@@ -48,6 +48,18 @@ function UsersController() {
             })
         }
 
+        this.listallusers = function(req, res) {
+                User.find({})
+                // .populate('')
+                .exec(function(err, users) {
+                    if(err) {
+                        console.log(err)
+                    } else {
+                        res.json(users)
+                    }
+                })
+            }
+
 }
 
 module.exports = new UsersController();

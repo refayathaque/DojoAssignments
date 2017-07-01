@@ -29,4 +29,26 @@ export class LoginRegistrationService {
     .toPromise();
   }
 
+  addbucketlist(bucketlist) {
+      console.log('BucketList in Service', bucketlist)
+      return this._Http.post('/addbucketlist', bucketlist)
+      .map((data) => {
+          console.log("Inside Service (BucketList) After HTTP Call")
+          console.log("Data being returned to component", data)
+      return data.json()
+    })
+    .toPromise();
+  }
+
+  listallusers() {
+      return this._Http.get('/listallusers')
+      .map((data) => {
+          console.log("Data being returned to component", data)
+          return data.json()
+      })
+      .toPromise();
+  }
+
+  listallbucketlists() { }
+
 }

@@ -6,6 +6,38 @@
 
         <h3>You are logged in {{ username }}!</h3>
 
+        <form (submit)='addbucketlist()' #formData='ngForm'>
+
+            <p>Title of your Bucket List item</p>
+            <input type="text" name="title" value="" required minlength="5" [(ngModel)]="bucketlist.title" #title='ngModel'>
+
+            <div [hidden]='!title.errors'>
+                {{ title.errors | json }}
+            </div>
+
+            <p>Description</p>
+            <input type="text" name="description" value="" required minlength="10" [(ngModel)]="bucketlist.description" #description='ngModel'>
+
+            <div [hidden]='!description.errors'>
+                {{ description.errors | json }}
+            </div>
+
+            <p>Add a friend to this bucket list</p>
+            <p><em>Don't select from the dropdown list if you don't want to add a friend</em></p>
+
+            <select name="users" [(ngModel)]="bucketlist.users" (ngModelChange)="onChange($event)">
+                <option *ngFor='let user of users'>{{ user.username }}</option>
+            </select>
+
+            <br>
+            <button [disabled]="!formData.valid" value="submit" type="submit" name="submit">Add bucket list item</button>
+
+        </form>
+
+        <h3>Before I die I want to...</h3>
+
+
+
         <button (click)='logout()' type="button" name="button">Logout</button>
 
     </fieldset>
