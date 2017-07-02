@@ -3,17 +3,17 @@ const BucketList = mongoose.model('BucketList');
 
 function BucketListsController() {
 
-    // this.showAllQuestions = function(req, res) {
-    //     Question.find({})
-    //     .populate('answers')
-    //     .exec(function(err, questions) {
-    //         if(err) {
-    //             console.log(err)
-    //         } else {
-    //             res.json(questions)
-    //         }
-    //     })
-    // }
+    this.userbucketlists = function(req, res) {
+        BucketList.find({})
+        // .populate('users')
+        .exec(function(err, bucketlists) {
+            if(err) {
+                console.log(err)
+            } else {
+                res.json(bucketlists)
+            }
+        })
+    }
     //
     // this.show = function(req, res){
     // var question_id = req.params.id

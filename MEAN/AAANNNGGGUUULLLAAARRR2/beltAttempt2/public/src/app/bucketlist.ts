@@ -3,6 +3,6 @@ export class BucketList {
     public title: string = "",
     public description: string = "",
     public created_by: string = "",
-    public users: string = ""
+    public friend: string = ""
     ) {}
 }

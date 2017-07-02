@@ -6,7 +6,9 @@ var BucketListSchema = new Schema({
     description: {type: String, required: true, minlength: 10},
     created_by: {type: String, required: true},
     status: {type: Boolean, required: true, default: false},
-    _users: [{type: Schema.Types.ObjectId, ref: 'User'}]
+    friend: {type: String}
 }, {timestamps: true});
 
 var BucketList = mongoose.model('BucketList', BucketListSchema);
+
+// users: [{type: Schema.Types.ObjectId, ref: 'User'}]

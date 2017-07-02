@@ -17,9 +17,10 @@ export class HomeComponent implements OnInit {
 
     constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router: Router, _activatedRoute: ActivatedRoute) { } // Dependency Injections for some IMPORTS
 
-    users = [];
+    users = []; // For dropdown menu
 
-    bucketlists = [];
+    userbucketlists = []; // For user in session
+    array = [];
 
   ngOnInit() {
       this._LoginRegistrationService.listallusers()
@@ -29,7 +30,21 @@ export class HomeComponent implements OnInit {
       })
       .catch(err => console.log(err))
 
-      this._LoginRegistrationService.listallbucketlists()
+      this._LoginRegistrationService.userbucketlists()
+      .then(data => {
+          this.userbucketlists = data
+        //   console.log(this.userbucketlists)
+          function sort(array){
+              for(var i = 0; i < array.length; i++){
+                  for(var y = 0; array[i].length; y++){
+                      console.log(y);
+                  }
+              }
+          }
+          sort(this.userbucketlists);
+      })
+      .catch(err => console.log(err))
+      // Will bring ALL bucketlists over then will sort here according to username
 
   }
 
@@ -43,8 +58,8 @@ export class HomeComponent implements OnInit {
   }
 
   addbucketlist() {
-      this.bucketlist.users = this.useraddingtobucketlist
-      console.log('USERS : ', this.bucketlist.users)
+      this.bucketlist.friend = this.useraddingtobucketlist
+      console.log('USERS : ', this.bucketlist.friend)
       this.bucketlist.created_by = Cookie.get('logged_username');
       console.log('BucketList Component Before Service Call', this.bucketlist)
       this._LoginRegistrationService.addbucketlist(this.bucketlist)

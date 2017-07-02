@@ -39,10 +39,10 @@ module.exports = function(app) {
     //     answers.like(req, res);
     // })
     //
-    app.get('/questions/:id', (req,res)=>{
+    app.get('/userbucketlists', (req,res)=>{
         console.log("inside routes (answer)")
         console.log(req.body)
-        questions.show(req, res)
+        bucketlists.userbucketlists(req, res)
     })
 
 }

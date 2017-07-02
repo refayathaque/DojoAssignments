@@ -49,6 +49,13 @@ export class LoginRegistrationService {
       .toPromise();
   }
 
-  listallbucketlists() { }
+  userbucketlists() {
+      return this._Http.get('/userbucketlists')
+      .map((data) => {
+          console.log("Data being returned to component", data)
+          return data.json()
+      })
+      .toPromise();
+  }
 
 }
