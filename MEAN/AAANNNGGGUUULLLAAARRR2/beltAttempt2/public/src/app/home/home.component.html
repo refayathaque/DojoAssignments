@@ -36,7 +36,7 @@
 
         <h3>Before I die I want to...</h3>
 
-        {{ userbucketlists | json }}
+        {{ session_user_bucket_list_items | json }}
 
         <button (click)='logout()' type="button" name="button">Logout</button>
 

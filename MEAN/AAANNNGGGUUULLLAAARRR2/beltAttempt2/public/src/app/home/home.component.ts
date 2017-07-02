@@ -19,8 +19,8 @@ export class HomeComponent implements OnInit {
 
     users = []; // For dropdown menu
 
-    userbucketlists = []; // For user in session
-    array = [];
+    all_users_bucket_list_items = []; // For user in session
+    session_user_bucket_list_items = [];
 
   ngOnInit() {
       this._LoginRegistrationService.listallusers()
@@ -32,19 +32,23 @@ export class HomeComponent implements OnInit {
 
       this._LoginRegistrationService.userbucketlists()
       .then(data => {
-          this.userbucketlists = data
-        //   console.log(this.userbucketlists)
-          function sort(array){
-              for(var i = 0; i < array.length; i++){
-                  for(var y = 0; array[i].length; y++){
-                      console.log(y);
-                  }
-              }
-          }
-          sort(this.userbucketlists);
+          this.all_users_bucket_list_items = data
+          console.log(this.all_users_bucket_list_items)
+          extract_session_user_bucket_list_items(this.all_users_bucket_list_items, this.session_user_bucket_list_items);
+          // IMPORTANT to pass in the array we will be iterating over AS WELL AS the array we will be populating, in this case the 'sessionuserbucketlists' array
       })
       .catch(err => console.log(err))
-      // Will bring ALL bucketlists over then will sort here according to username
+
+      function extract_session_user_bucket_list_items(array, array2) {
+          for(var i = 0; i < array.length; i++){
+              console.log(array[i].created_by);
+              if(array[i].created_by === Cookie.get('logged_username')) {
+                console.log('array[i] or BucketList item belonging to the user in session : ', array[i]); // All good till here
+                array2.push(array[i]);
+                console.log(array2);
+            }
+          }
+      }
 
   }
 
