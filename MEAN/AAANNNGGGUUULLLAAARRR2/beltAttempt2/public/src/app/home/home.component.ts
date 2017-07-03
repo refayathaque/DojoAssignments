@@ -43,7 +43,7 @@ export class HomeComponent implements OnInit {
           for(var i = 0; i < array.length; i++){
               console.log(array[i].created_by);
               if(array[i].created_by === Cookie.get('logged_username')) {
-                console.log('array[i] or BucketList item belonging to the user in session : ', array[i]); // All good till here
+                console.log('array[i] or BucketList item belonging to the user in session : ', array[i]);
                 array2.push(array[i]);
                 console.log(array2);
             }
@@ -80,6 +80,7 @@ export class HomeComponent implements OnInit {
       console.log("ERR Inside Question Component")
       console.log(err)
       })
+
   }
 
   logout() {
