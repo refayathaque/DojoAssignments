@@ -19,7 +19,7 @@ export class HomeComponent implements OnInit {
 
     users = []; // For dropdown menu
 
-    all_users_bucket_list_items = []; // For user in session
+    all_users_bucket_list_items = [];
     session_user_bucket_list_items = [];
 
   ngOnInit() {
@@ -69,9 +69,12 @@ export class HomeComponent implements OnInit {
       this._LoginRegistrationService.addbucketlist(this.bucketlist)
       .then((data) => {
           if(data) {
+              console.log(data);
               alert(data.messages)
               this._Router.navigateByUrl('home')
               // Route worked bc just 'data' was passed in above in if statement, not 'data.question' or 'data.content'
+              this.session_user_bucket_list_items.push(data.bucketlist)
+              // ^ Updates the session_user_bucket_list_items array to include item just added by this function
           } else {
               alert(data.messages)
           }
@@ -81,6 +84,10 @@ export class HomeComponent implements OnInit {
       console.log(err)
       })
 
+  }
+
+  updatebucketlist() {
+      
   }
 
   logout() {

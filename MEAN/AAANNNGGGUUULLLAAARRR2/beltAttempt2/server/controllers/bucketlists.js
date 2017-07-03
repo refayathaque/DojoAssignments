@@ -49,7 +49,7 @@ function BucketListsController() {
                         res.json({error: true, messages: 'BucketList item NOT added!'})
                         console.log(err);
                     } else {
-                        res.json({error: false, messages: 'BucketList item added!'})
+                        res.json({error: false, messages: 'BucketList item added!', bucketlist: bucketlist})
                     }
                 })
             }

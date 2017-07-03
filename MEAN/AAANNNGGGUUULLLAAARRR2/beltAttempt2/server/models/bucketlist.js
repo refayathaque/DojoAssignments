@@ -10,5 +10,3 @@ var BucketListSchema = new Schema({
 }, {timestamps: true});
 
 var BucketList = mongoose.model('BucketList', BucketListSchema);
-
-// users: [{type: Schema.Types.ObjectId, ref: 'User'}]
