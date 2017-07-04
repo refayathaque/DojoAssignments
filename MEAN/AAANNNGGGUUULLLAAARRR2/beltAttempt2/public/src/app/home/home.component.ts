@@ -75,6 +75,7 @@ export class HomeComponent implements OnInit {
               // Route worked bc just 'data' was passed in above in if statement, not 'data.question' or 'data.content'
               this.session_user_bucket_list_items.push(data.bucketlist)
               // ^ Updates the session_user_bucket_list_items array to include item just added by this function
+              // session_user_bucket_list_items is TEMPORARY, that's why this works and why we don't get repeats in the table
           } else {
               alert(data.messages)
           }
@@ -89,7 +90,17 @@ export class HomeComponent implements OnInit {
   updatebucketlist(id) {
       console.log('CHECK BOX WORKS', id)
       this._LoginRegistrationService.updatebucketlist(id)
-      .then(data => {})
+      .then(data => {
+          for(var i = 0; i < this.session_user_bucket_list_items.length; i++) {
+              if(this.session_user_bucket_list_items[i]._id === data._id && this.session_user_bucket_list_items[i].status === false) {
+                  this.session_user_bucket_list_items[i].status = true;
+              }
+              else if(this.session_user_bucket_list_items[i]._id === data._id && this.session_user_bucket_list_items[i].status === true) {
+                  this.session_user_bucket_list_items[i].status = false;
+              }
+          }
+      })
+      // ^ For loop to toggle 'true's to 'false's and vice versa in TEMPORARY array 'session_user_bucket_list_items', done to display changes made by user
       .catch(err => console.log(err))
   }
 
