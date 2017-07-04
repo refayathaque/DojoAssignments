@@ -58,4 +58,13 @@ export class LoginRegistrationService {
       .toPromise();
   }
 
+  updatebucketlist(id) {
+      return this._Http.post(`/updatebucketlist/${id}`, {id: id})
+      .map((data) => {
+          console.log("Data being returned to component", data)
+          return data.json()
+      })
+      .toPromise()
+  }
+
 }

@@ -9,4 +9,17 @@ var BucketListSchema = new Schema({
     friend: {type: String, required: false}
 }, {timestamps: true});
 
+BucketListSchema.methods.statusupdate = function(callback) {
+    if(this.status === false) {
+        this.status = true;
+    }
+    else if(this.status === true) {
+        this.status = false;
+    }
+    this.save(function(err) {
+        callback(err);
+    });
+}
+
 var BucketList = mongoose.model('BucketList', BucketListSchema);
+// IMPORTANT to have ^ all the way at the end when models have methods

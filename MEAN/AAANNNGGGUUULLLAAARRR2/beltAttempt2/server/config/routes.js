@@ -18,12 +18,12 @@ module.exports = function(app) {
         console.log('REQ BODY : ', req.body)
         bucketlists.create(req, res)
     })
-    //
-    // app.post('/newanswers/:id', (req, res) => {
-    //     console.log('REQ BODY : ', req.body)
-    //     answers.create(req, res)
-    // })
-    //
+
+    app.post('/updatebucketlist/:id', (req, res) => {
+        console.log('REQ BODY : ', req.body)
+        bucketlists.update(req, res)
+    })
+
     app.get('/listallusers', (req,res) => {
         console.log('REQ BODY : ', req.body)
         users.listallusers(req, res)
@@ -40,7 +40,7 @@ module.exports = function(app) {
     // })
     //
     app.get('/userbucketlists', (req,res)=>{
-        console.log("inside routes (answer)")
+        console.log("Inside Routes (Bucket List Items)")
         console.log(req.body)
         bucketlists.userbucketlists(req, res)
     })

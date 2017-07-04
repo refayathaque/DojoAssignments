@@ -86,8 +86,11 @@ export class HomeComponent implements OnInit {
 
   }
 
-  updatebucketlist() {
-      
+  updatebucketlist(id) {
+      console.log('CHECK BOX WORKS', id)
+      this._LoginRegistrationService.updatebucketlist(id)
+      .then(data => {})
+      .catch(err => console.log(err))
   }
 
   logout() {

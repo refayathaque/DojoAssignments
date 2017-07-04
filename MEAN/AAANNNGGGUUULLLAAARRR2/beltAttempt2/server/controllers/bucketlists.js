@@ -14,6 +14,20 @@ function BucketListsController() {
             }
         })
     }
+
+    this.update = function(req, res) {
+        var id = req.params.id
+        BucketList.findOne({_id: id}, function(err, bucketlistitem) {
+            bucketlistitem.statusupdate(function(err) {
+                if(err) {
+                    console.log(err)
+                }
+                else {
+                    res.json(bucketlistitem)
+                }
+            })
+        })
+    }
     //
     // this.show = function(req, res){
     // var question_id = req.params.id
@@ -50,6 +64,7 @@ function BucketListsController() {
                         console.log(err);
                     } else {
                         res.json({error: false, messages: 'BucketList item added!', bucketlist: bucketlist})
+                        // ^ 'bucketlist: bucketlist' sends the newly created object back to HomeComponent, so we can display it in table without having to reload page
                     }
                 })
             }

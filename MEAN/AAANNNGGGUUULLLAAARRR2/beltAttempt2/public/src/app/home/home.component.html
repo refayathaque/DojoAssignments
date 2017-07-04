@@ -49,9 +49,10 @@
                 <td>{{ item.description }}</td>
                 <td>{{ item.friend }}</td>
                 <td>{{ item.status }}</td>
-                <td><form (submit)='updatebucketlist()'>
-                    <input type="checkbox" name="statusupdate" value="">
-                </form></td>
+                <td>
+                    <input type="checkbox" (click)='updatebucketlist(item._id)' name="statusupdate" value="">
+                    {{ item._id }}
+                </td>
             </tr>
         </table>
 
