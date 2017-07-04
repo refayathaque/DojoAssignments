@@ -1,29 +1,18 @@
-var hello;
-
-function example() {
-  var hello;
-  hello = "hi";
-  console.log(hello);
+function missing(array) {
+    var min = array[0];
+    for(var x = 0; x < array.length; x++) {
+        if(array[x] < min) {
+            min = array[x];
+        }
+    }
+    for(var i = 0; i < array.length; i++) {
+        if(array[i] === min + 1) {
+            min = array[i];
+            i = -1;
+        }
+    }
+    return min + 1;
 }
 
-hello = "interesting";
-example();
-console.log(hello);
-
-
-Properties
-name - set this as your own name
-
-distance_traveled - set this initially as zero
-
-Methods
-
-say_name - should alert the object’s name property
-
-say_something - have it accept a parameter. This function should then say for example “{{your name}} says ‘I am cool’” if you pass ‘I am cool’ as an argument to this method.
-
-walk - have it alert for example “{{your name}} is walking” and increase distance_traveled by 3
-
-run - have it alert for example “{{your name}} is running” and increase distance_traveled by 10
-
-crawl - have it alert for example “{{your name}} is crawling” and increase distance_traveled by 1
+var z = missing([2, 1, -2, 0, -3]);
+console.log(z);
