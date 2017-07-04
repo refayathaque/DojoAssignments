@@ -6,7 +6,7 @@
 
         <h3>You are logged in {{ username }}!</h3>
 
-        <form (submit)='addbucketlist()' #formData='ngForm'>
+        <form (submit)='add_item()' #formData='ngForm'>
 
             <p>Title of your Bucket List item</p>
             <input type="text" name="title" value="" required minlength="5" [(ngModel)]="bucketlist.title" #title='ngModel'>
@@ -25,8 +25,8 @@
             <p>Add a friend to this bucket list</p>
             <p><em>Don't select from the dropdown list if you don't want to add a friend</em></p>
 
-            <select name="users" [(ngModel)]="bucketlist.users" (ngModelChange)="onChange($event)">
-                <option *ngFor='let user of users'>{{ user.username }}</option>
+            <select name="users" [(ngModel)]="friend_username" (ngModelChange)="onChange($event)">
+                <option *ngFor='let user of all_users'>{{ user.username }}</option>
             </select>
 
             <br>
@@ -44,20 +44,21 @@
                 <th>Done?</th>
                 <th>Check box to toggle <</th>
             </tr>
-            <tr *ngFor='let item of session_user_bucket_list_items'>
+            <tr *ngFor='let item of session_user_items'>
                 <td>{{ item.title }}</td>
                 <td>{{ item.description }}</td>
                 <td>{{ item.friend }}</td>
                 <td>{{ item.status }}</td>
                 <td>
                     <input type="checkbox" (click)='updatebucketlist(item._id)' name="statusupdate" value="">
-                    {{ item._id }}
+                    <p><em>BucketListID</em></p>{{ item._id }}
                 </td>
             </tr>
         </table>
 
         <br>
-        {{ session_user_bucket_list_items | json }}
+        <p><strong>session_user_bucket_list_items</strong></p>
+        {{ session_user_items | json }}
 
         <br>
         <button (click)='logout()' type="button" name="button">Logout</button>

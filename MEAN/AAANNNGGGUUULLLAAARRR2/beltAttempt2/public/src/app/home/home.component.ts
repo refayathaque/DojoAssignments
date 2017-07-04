@@ -13,67 +13,72 @@ import { ActivatedRoute } from "@angular/router"; // MUST IMPORT FOR PASSING ID 
 
 export class HomeComponent implements OnInit {
 
-    username = Cookie.get('logged_username')
-
     constructor(private _LoginRegistrationService: LoginRegistrationService, private _Router: Router, _activatedRoute: ActivatedRoute) { } // Dependency Injections for some IMPORTS
 
-    users = []; // For dropdown menu
-
-    all_users_bucket_list_items = [];
-    session_user_bucket_list_items = [];
+    // Variables
+    username = Cookie.get('logged_username')
+    all_users = []; // To display ALL users in bucketlist form's dropdown menu
+    all_items = []; // ALL bucket list items in db
+    session_user_items = []; // Session user's bucket list items
 
   ngOnInit() {
-      this._LoginRegistrationService.listallusers()
+      // Populates 'all_users' array for bucket list form's dropdown menu
+      this._LoginRegistrationService.show_all_users()
       .then(data => {
-          this.users = data
-          console.log(this.users)
+          this.all_users = data
       })
       .catch(err => console.log(err))
 
-      this._LoginRegistrationService.userbucketlists()
+      // Populates 'all_items' array, 'all_items' is SORTed in the following function, then we will have only the items beloging to the user logged in (inside 'session_user_items' array)
+      this._LoginRegistrationService.show_all_items()
       .then(data => {
-          this.all_users_bucket_list_items = data
-          console.log(this.all_users_bucket_list_items)
-          extract_session_user_bucket_list_items(this.all_users_bucket_list_items, this.session_user_bucket_list_items);
-          // IMPORTANT to pass in the array we will be iterating over AS WELL AS the array we will be populating, in this case the 'sessionuserbucketlists' array
+          this.all_items = data
+          sort(this.all_items, this.session_user_items);
+          // IMPORTANT to pass in the array we will be iterating over AS WELL AS the array we will be populating, in this case the 'session_user_items' array
       })
       .catch(err => console.log(err))
 
-      function extract_session_user_bucket_list_items(array, array2) {
-          for(var i = 0; i < array.length; i++){
-              console.log(array[i].created_by);
-              if(array[i].created_by === Cookie.get('logged_username')) {
-                console.log('array[i] or BucketList item belonging to the user in session : ', array[i]);
-                array2.push(array[i]);
-                console.log(array2);
-            }
+      function sort(array1, array2) {
+          for(var i = 0; i < array1.length; i++){
+              console.log(array1[i].created_by);
+              if(array1[i].created_by === Cookie.get('logged_username')) {
+              // Change to 'logged_id' after changing code for creating new bucket list item
+                  array2.push(array1[i]);
+                  console.log(array2);
+              }
           }
       }
 
   }
 
-  bucketlist = new BucketList();
+  bucketlist = new BucketList(); // INSTANTIATING class for new bucket list entries
 
-  useraddingtobucketlist = "";
-
-  onChange(newValue) {
-      console.log(newValue);
-      this.useraddingtobucketlist = newValue;
+  // Getting friend's ID value
+  friend_id = "";
+  friend_username = "";
+  onChange() {
+      for(var i = 0; i < this.all_users.length; i++) {
+          if(this.all_users[i].username === this.friend_username) {
+              this.friend_id = this.all_users[i]._id
+              console.log('Friend ID: ', this.friend_id)
+          }
+      }
   }
 
-  addbucketlist() {
-      this.bucketlist.friend = this.useraddingtobucketlist
-      console.log('USERS : ', this.bucketlist.friend)
-      this.bucketlist.created_by = Cookie.get('logged_username');
-      console.log('BucketList Component Before Service Call', this.bucketlist)
-      this._LoginRegistrationService.addbucketlist(this.bucketlist)
+  // Adding bucket list item to db
+  add_item() {
+      this.bucketlist.friend = this.friend_id
+      console.log('Bucket list friend ID: ', this.bucketlist.friend)
+      this.bucketlist.created_by = Cookie.get('logged_id');
+      console.log('Bucket list component before service call', this.bucketlist)
+      this._LoginRegistrationService.add_item(this.bucketlist)
       .then((data) => {
           if(data) {
               console.log(data);
               alert(data.messages)
               this._Router.navigateByUrl('home')
               // Route worked bc just 'data' was passed in above in if statement, not 'data.question' or 'data.content'
-              this.session_user_bucket_list_items.push(data.bucketlist)
+              this.session_user_items.push(data.bucketlist)
               // ^ Updates the session_user_bucket_list_items array to include item just added by this function
               // session_user_bucket_list_items is TEMPORARY, that's why this works and why we don't get repeats in the table
           } else {
@@ -81,22 +86,21 @@ export class HomeComponent implements OnInit {
           }
       })
       .catch((err) => {
-      console.log("ERR Inside Question Component")
+      console.log("ERR Inside Home Component")
       console.log(err)
       })
-
   }
 
   updatebucketlist(id) {
       console.log('CHECK BOX WORKS', id)
       this._LoginRegistrationService.updatebucketlist(id)
       .then(data => {
-          for(var i = 0; i < this.session_user_bucket_list_items.length; i++) {
-              if(this.session_user_bucket_list_items[i]._id === data._id && this.session_user_bucket_list_items[i].status === false) {
-                  this.session_user_bucket_list_items[i].status = true;
+          for(var i = 0; i < this.session_user_items.length; i++) {
+              if(this.session_user_items[i]._id === data._id && this.session_user_items[i].status === false) {
+                  this.session_user_items[i].status = true;
               }
-              else if(this.session_user_bucket_list_items[i]._id === data._id && this.session_user_bucket_list_items[i].status === true) {
-                  this.session_user_bucket_list_items[i].status = false;
+              else if(this.session_user_items[i]._id === data._id && this.session_user_items[i].status === true) {
+                  this.session_user_items[i].status = false;
               }
           }
       })

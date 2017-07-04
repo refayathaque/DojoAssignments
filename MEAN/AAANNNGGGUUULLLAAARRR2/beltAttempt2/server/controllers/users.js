@@ -48,17 +48,17 @@ function UsersController() {
             })
         }
 
-        this.listallusers = function(req, res) {
-                User.find({})
-                // .populate('')
-                .exec(function(err, users) {
-                    if(err) {
-                        console.log(err)
-                    } else {
-                        res.json(users)
-                    }
-                })
+    this.show = function(req, res) {
+        User.find({})
+        // .populate('')
+        .exec(function(err, users) {
+            if(err) {
+                console.log(err)
+            } else {
+                res.json(users)
             }
+        })
+    }
 
 }
 

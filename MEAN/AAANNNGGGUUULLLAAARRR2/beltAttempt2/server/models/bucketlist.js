@@ -6,8 +6,10 @@ var BucketListSchema = new Schema({
     description: {type: String, required: true, minlength: 10},
     created_by: {type: String, required: true},
     status: {type: Boolean, required: true, default: false},
-    friend: {type: String, required: false}
+    friend: {type: Schema.Types.ObjectId, ref:'User'}
 }, {timestamps: true});
+
+// friend: {type: String, required: false}
 
 BucketListSchema.methods.statusupdate = function(callback) {
     if(this.status === false) {

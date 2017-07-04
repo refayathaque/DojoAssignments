@@ -4,17 +4,32 @@ var bucketlists = require('../controllers/bucketlists.js')
 
 module.exports = function(app) {
 
-    app.post('/users', (req, res) => {
+    // Registration
+    app.post('/registration', (req, res) => {
         console.log('REQ BODY : ', req.body)
         users.create(req, res)
     })
 
-    app.post('/login', (req,res) => {
+    // Login
+    app.post('/login', (req, res) => {
         console.log('REQ BODY : ', req.body)
         users.login(req, res)
     })
 
-    app.post('/addbucketlist', (req, res) => {
+    // Show ALL users in db
+    app.get('/show_all_users', (req, res) => {
+        console.log('REQ BODY : ', req.body)
+        users.show(req, res)
+    })
+
+    // Show ALL bucket list items in db
+    app.get('/show_all_items', (req, res) => {
+        console.log('REQ BODY : ', req.body)
+        bucketlists.show(req, res)
+    })
+
+    // Adds bucket list item to db
+    app.post('/create_item', (req, res) => {
         console.log('REQ BODY : ', req.body)
         bucketlists.create(req, res)
     })
@@ -22,11 +37,6 @@ module.exports = function(app) {
     app.post('/updatebucketlist/:id', (req, res) => {
         console.log('REQ BODY : ', req.body)
         bucketlists.update(req, res)
-    })
-
-    app.get('/listallusers', (req,res) => {
-        console.log('REQ BODY : ', req.body)
-        users.listallusers(req, res)
     })
 
     // app.post('/answers/:id', (req,res)=>{
@@ -39,10 +49,6 @@ module.exports = function(app) {
     //     answers.like(req, res);
     // })
     //
-    app.get('/userbucketlists', (req,res)=>{
-        console.log("Inside Routes (Bucket List Items)")
-        console.log(req.body)
-        bucketlists.userbucketlists(req, res)
-    })
+
 
 }
