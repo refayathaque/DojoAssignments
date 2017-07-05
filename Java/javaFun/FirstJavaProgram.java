@@ -5,3 +5,5 @@ public class FirstJavaProgram {
         System.out.println("My hometown is Dhaka, Bangladesh");
     }
 }
+
+// Conditional is not limited to just comparing booleans. You can compare other data types as well, including Strings and integers. But you have to make sure you are not comparing two completely different data types
