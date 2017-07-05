@@ -41,8 +41,7 @@ export class HomeComponent implements OnInit {
       function sort(array1, array2) {
           for(var i = 0; i < array1.length; i++){
               console.log(array1[i].created_by);
-              if(array1[i].created_by === Cookie.get('logged_username')) {
-              // Change to 'logged_id' after changing code for creating new bucket list item
+              if(array1[i].created_by === Cookie.get('logged_id')) {
                   array2.push(array1[i]);
                   console.log(array2);
               }
@@ -90,6 +89,7 @@ export class HomeComponent implements OnInit {
       console.log(err)
       })
   }
+  // HAVEN'T BEEN ABLE TO GET CREATE BUCKET LIST FUNCTION ^ TO WORK - 07/04/17
 
   updatebucketlist(id) {
       console.log('CHECK BOX WORKS', id)

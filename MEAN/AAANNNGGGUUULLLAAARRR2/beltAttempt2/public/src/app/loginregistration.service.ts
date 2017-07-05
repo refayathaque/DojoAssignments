@@ -62,8 +62,7 @@ export class LoginRegistrationService {
     })
     .toPromise();
   }
-
-
+  // HAVEN'T BEEN ABLE TO GET CREATE BUCKET LIST FUNCTION ^ TO WORK - 07/04/17
 
   updatebucketlist(id) {
       return this._Http.post(`/updatebucketlist/${id}`, {id: id})

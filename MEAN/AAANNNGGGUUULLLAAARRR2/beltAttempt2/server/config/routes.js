@@ -33,6 +33,7 @@ module.exports = function(app) {
         console.log('REQ BODY : ', req.body)
         bucketlists.create(req, res)
     })
+    // HAVEN'T BEEN ABLE TO GET CREATE BUCKET LIST FUNCTION ^ TO WORK - 07/04/17
 
     app.post('/updatebucketlist/:id', (req, res) => {
         console.log('REQ BODY : ', req.body)
