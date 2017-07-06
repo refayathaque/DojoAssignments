@@ -86,4 +86,54 @@ public class BasicJava {
         System.out.println(myArr2);
     }
     // Arrays are PROBABLY immutable in Java
+
+    public void elimNegs(Integer[] myArray6) {
+        ArrayList<Integer> myArr3 = new ArrayList<>();
+        for(int w = 0; w < myArray6.length; w++) {
+            if(myArray6[w] < 0) {
+                myArr3.add(0);
+            }
+            else {
+                myArr3.add(myArray6[w]);
+            }
+        }
+        System.out.println(myArr3);
+    }
+
+    public void minMaxAvg(Integer[] myArray7) {
+        ArrayList<Integer> myArr4 = new ArrayList<>();
+        int min = myArray7[0];
+        int max = myArray7[myArray7.length - 1];
+        int sum = 0;
+        for(int o = 0; o < myArray7.length; o++) {
+            if(myArray7[o] < min) {
+                sum += myArray7[o];
+                min = myArray7[o];
+            }
+            else if(myArray7[o] > max) {
+                sum += myArray7[o];
+                max = myArray7[o];
+            }
+            else {
+                sum += myArray7[o];
+            }
+        }
+        myArr4.add(min);
+        myArr4.add(max);
+        myArr4.add(sum/myArray7.length);
+        System.out.println(myArr4);
+    }
+
+    public void shiftVal(Integer[] myArray8) {
+        for(int e = 0; e < myArray8.length; e++) {
+            try {
+            myArray8[e] = myArray8[e + 1];
+            }
+            catch(ArrayIndexOutOfBoundsException s) {
+                myArray8[e] = 0;
+            }
+        }
+        System.out.println(java.util.Arrays.toString(myArray8));
+    }
+
 }
