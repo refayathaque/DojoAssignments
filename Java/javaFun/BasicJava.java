@@ -79,10 +79,11 @@ public class BasicJava {
     // 'Integer' gives more functionality than just 'int'
 
     public void squareVal(Integer[] myArray5) {
+        ArrayList<Integer> myArr2 = new ArrayList<>();
         for(int d = 0; d < myArray5.length; d++) {
-            myArray5[d] = myArray5[d] * myArray5[d];
+            myArr2.add(myArray5[d] * myArray5[d]);
         }
-        System.out.println(myArray5);
+        System.out.println(myArr2);
     }
-
+    // Arrays are PROBABLY immutable in Java
 }
