@@ -19,18 +19,14 @@ public class SinglyLinkedList{
     }
 
     public Node remove(){
-        Node ptr = this.head.next;
-        Node prev = this.head;
+        Node ptr = this.head;
 
-        while(ptr != null){
-            if(ptr.next != null){
-                ptr = ptr.next;
-                prev = prev.next;
-            }else{
-                prev.next = null;
-            }
+        while(ptr.next.next != null){
+            ptr = ptr.next;
         }
-        return this.head;
+        ptr.next = null;
+
+        return ptr;
     }
 
     public void printValues() {
@@ -50,7 +46,7 @@ public class SinglyLinkedList{
         SLL.add(3);
         SLL.add(4);
 
-        // SLL = SLL.remove();
+        SLL.remove();
         SLL.printValues();
     }
 }
