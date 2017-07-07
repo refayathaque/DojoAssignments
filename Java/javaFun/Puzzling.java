@@ -53,20 +53,11 @@ public class Puzzling {
         System.out.println(array5[0]);
     }
 
-    public void randomNums() {
-        int[] array6;
-        for (int q = 0; q < array6.length; q++) {
-            random.nextInt(55, 100);
-        }
-    }
-
-
-
-
-
-
-
-
-
+    // public void randomNums() {
+    //     int[] array6;
+    //     for (int q = 0; q < array6.length; q++) {
+    //         random.nextInt(55, 100);
+    //     }
+    // }
 
 }
