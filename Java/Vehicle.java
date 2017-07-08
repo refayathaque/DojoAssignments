@@ -5,7 +5,8 @@ public class Vehicle {
 
     public Vehicle(String color) {
         // ^ Constructor, executes code before OBJECT instantiation, here this sets a DEFAULT member (We will set Vehicle color) We will pass in 'color' through our executable when instantating the OBJECT
-        color = color;
+        this.color = color;
+        // 'this.' IMPORTANT! Or default parameter values won't work!
     }
     public Vehicle() {}
     // ^ OVERLOADING the constructor method so class will compile even if we don't pass in default parameter values
@@ -31,7 +32,7 @@ public class Vehicle {
 
     public static void main(String[] args) {
         // Our executable ^ (doing this in lieu of a Test.java class)
-        Vehicle truck = new Vehicle("Black");
+        Vehicle truck = new Vehicle("Maroon");
         Vehicle bus = new Vehicle("White");
         // Instantiating OBJECTS from Vehicle class, now we can access these two objects using variables 'truck' and 'bus'
         // DEFAULT values for constructor passed in with OBJECT instantiation
