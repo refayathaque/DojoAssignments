@@ -1,7 +1,7 @@
 import java.util.Random;
 
 public class BankAccount {
-    private String accountNumber;
+    private Strings accountNumber;
     private long checkingBal;
     private long savingsBal;
 
