@@ -3,10 +3,19 @@ public class Vehicle {
     private int numberOfWheels;
     private String color;
 
+    public Vehicle(String color, int number) {
+        this.color = color;
+        numberOfWheels = number;
+     }
+    // ^ Constructor if we pass in default parameter values for 'color' AND 'numberOfWheels'
     public Vehicle(String color) {
         // ^ Constructor, executes code before OBJECT instantiation, here this sets a DEFAULT member (We will set Vehicle color) We will pass in 'color' through our executable when instantating the OBJECT
         this.color = color;
         // 'this.' IMPORTANT! Or default parameter values won't work!
+    }
+    public Vehicle(int number) {
+        numberOfWheels = number;
+        // ^ Constructor if we ONLY pass in 'number' default parameter values
     }
     public Vehicle() {}
     // ^ OVERLOADING the constructor method so class will compile even if we don't pass in default parameter values
@@ -32,18 +41,18 @@ public class Vehicle {
 
     public static void main(String[] args) {
         // Our executable ^ (doing this in lieu of a Test.java class)
-        Vehicle truck = new Vehicle("Maroon");
-        Vehicle bus = new Vehicle("White");
+        Vehicle truck = new Vehicle("White", 8);
+        Vehicle bus = new Vehicle("Black", 6);
         // Instantiating OBJECTS from Vehicle class, now we can access these two objects using variables 'truck' and 'bus'
         // DEFAULT values for constructor passed in with OBJECT instantiation
 
         // Using Getters and Setters to GET and SET member values
-        truck.setNumberOfWheels(6);
+        // truck.setNumberOfWheels(6);
         // truck.setColor("Blue");
         int truckWheels = truck.getNumberOfWheels();
         String truckColor = truck.getColor();
 
-        bus.setNumberOfWheels(10);
+        // bus.setNumberOfWheels(10);
         // bus.setColor("Yellow");
         int busWheels = bus.getNumberOfWheels();
         String busColor = bus.getColor();
