@@ -3,11 +3,10 @@ public class Vehicle {
     private int numberOfWheels;
     private String color;
 
-    public Vehicle(String color, int number) {
-        this.color = color;
-        numberOfWheels = number;
-     }
-    // ^ Constructor if we pass in default parameter values for 'color' AND 'numberOfWheels'
+    public Vehicle() {}
+        // ^ OVERLOADING the constructor method so class will compile even if we don't pass in default parameter values
+        // * We can also put in default values ^ 'public Vehicle("White", 4)'
+
     public Vehicle(String color) {
         // ^ Constructor, executes code before OBJECT instantiation, here this sets a DEFAULT member (We will set Vehicle color) We will pass in 'color' through our executable when instantating the OBJECT
         this.color = color;
@@ -17,9 +16,13 @@ public class Vehicle {
         numberOfWheels = number;
         // ^ Constructor if we ONLY pass in 'number' default parameter values
     }
-    public Vehicle() {}
-    // ^ OVERLOADING the constructor method so class will compile even if we don't pass in default parameter values
+    public Vehicle(String color, int number) {
+        this.color = color;
+        numberOfWheels = number;
+     }
+    // ^ Constructor if we pass in default parameter values for 'color' AND 'numberOfWheels'
 
+    // * All four CONSTRUCTORS above have different method SIGNATURES
 
     // Setters for 'numberOfWheels' and 'color'
     public void setNumberOfWheels(int number) {
