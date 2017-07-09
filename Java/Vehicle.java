@@ -3,9 +3,12 @@ public class Vehicle {
     private int numberOfWheels;
     private String color;
 
-    public Vehicle() {}
+    public Vehicle() {
         // ^ OVERLOADING the constructor method so class will compile even if we don't pass in default parameter values
-        // * We can also put in default values ^ 'public Vehicle("White", 4)'
+        // * We can also put in default values
+        this("Red", 10);
+        // Will instantate 'Bus' and 'Truck', both Red with 10 wheels
+    }
 
     public Vehicle(String color) {
         // ^ Constructor, executes code before OBJECT instantiation, here this sets a DEFAULT member (We will set Vehicle color) We will pass in 'color' through our executable when instantating the OBJECT
@@ -44,19 +47,19 @@ public class Vehicle {
 
     public static void main(String[] args) {
         // Our executable ^ (doing this in lieu of a Test.java class)
-        Vehicle truck = new Vehicle("White", 8);
-        Vehicle bus = new Vehicle("Black", 6);
+        Vehicle truck = new Vehicle();
+        Vehicle bus = new Vehicle();
         // Instantiating OBJECTS from Vehicle class, now we can access these two objects using variables 'truck' and 'bus'
-        // DEFAULT values for constructor passed in with OBJECT instantiation
+        // DEFAULT values for constructor can be passed in with OBJECT instantiation ^
 
         // Using Getters and Setters to GET and SET member values
-        // truck.setNumberOfWheels(6);
-        // truck.setColor("Blue");
+        truck.setNumberOfWheels(6); // Comment out to use DEFAULT values
+        truck.setColor("Blue"); // Comment out to use DEFAULT values
         int truckWheels = truck.getNumberOfWheels();
         String truckColor = truck.getColor();
 
-        // bus.setNumberOfWheels(10);
-        // bus.setColor("Yellow");
+        bus.setNumberOfWheels(10); // Comment out to use DEFAULT values
+        bus.setColor("Yellow"); // Comment out to use DEFAULT values
         int busWheels = bus.getNumberOfWheels();
         String busColor = bus.getColor();
 
