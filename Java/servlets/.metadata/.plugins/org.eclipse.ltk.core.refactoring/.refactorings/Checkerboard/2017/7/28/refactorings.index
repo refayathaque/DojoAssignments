@@ -1,0 +1,5 @@
+1499719197942	Move 2 resources to 'WEB-INF'
+1499720146127	Move 'web.xml' to 'WEB-INF'
+1499720660222	Move 'style.css' to 'WebContent'
+1499722696595	Move 'Draw.jsp' to 'WebContent'
+1499722779850	Move 'Draw.jsp' to 'WEB-INF'
