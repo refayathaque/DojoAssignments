@@ -5,7 +5,7 @@ public class Vehicle {
 
     public Vehicle() {
         // ^ OVERLOADING the constructor method so class will compile even if we don't pass in default parameter values
-        // * We can also put in default values
+        // * We can also put in DEFAULT values here
         this("Red", 10);
         // Will instantate 'Bus' and 'Truck', both Red with 10 wheels
     }
