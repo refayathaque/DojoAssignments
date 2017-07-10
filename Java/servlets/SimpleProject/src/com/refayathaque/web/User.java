@@ -20,10 +20,30 @@ public class User extends HttpServlet {
 
         response.setContentType("text/html");
         
+        if(fname == null) {
+        	fname = "Unknown";
+        }
+        if(lname == null) {
+        	lname = "Unknown";
+        }
+        if(lang == null) {
+        	lang = "Unknown";
+        }
+        if(hometown == null) {
+        	hometown = "Unknown";
+        }
+        else {
+        	fname = fname;
+        	lname = lname;
+        	lang = lang;
+        	hometown = hometown;
+        }
+        
         PrintWriter out = response.getWriter();
         out.write("<h1>Welcome, " + fname + " " + lname + "</h1>");
         out.write("<h2>Favorite Language : " + lang + "</h2>");
         out.write("<h2>Hometown : " + hometown + "</h2>");
+        
     }
 
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

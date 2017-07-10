@@ -35,3 +35,17 @@
 0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:23:30 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 84
 0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:23:34 -0400] "GET /SimpleProject/Home?fname=Refayat&lname=Haque HTTP/1.1" 200 88
 0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:23:51 -0400] "GET /SimpleProject/Home?fname=Refayat&lname=Haque&lang=JavaScript&hometown=Dhaka HTTP/1.1" 200 95
+127.0.0.1 - - [10/Jul/2017:14:44:44 -0400] "GET / HTTP/1.1" 404 1070
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:44:45 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 84
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:44:55 -0400] "GET /SimpleProject/Home?lname=Haque&lang=JavaScript&hometown=Dhaka HTTP/1.1" 200 92
+127.0.0.1 - - [10/Jul/2017:14:45:42 -0400] "GET / HTTP/1.1" 404 1070
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:45:42 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 87
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:45:46 -0400] "GET /SimpleProject/Home?lname=Haque&lang=JavaScript&hometown=Dhaka HTTP/1.1" 200 95
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:47:02 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 87
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:47:06 -0400] "GET /SimpleProject/Home?lname=Haque&lang=JavaScript&hometown=Dhaka HTTP/1.1" 200 95
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:47:17 -0400] "GET /SimpleProject/Home?lang=JavaScript&hometown=Dhaka HTTP/1.1" 200 94
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:47:46 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 87
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:47:53 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 87
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:48:06 -0400] "GET /SimpleProject/Home?hometown=London HTTP/1.1" 200 89
+127.0.0.1 - - [10/Jul/2017:14:50:16 -0400] "GET / HTTP/1.1" 404 1070
+0:0:0:0:0:0:0:1 - - [10/Jul/2017:14:50:17 -0400] "GET /SimpleProject/Home HTTP/1.1" 200 96
