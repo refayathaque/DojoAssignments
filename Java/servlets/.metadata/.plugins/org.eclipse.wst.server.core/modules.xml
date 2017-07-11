@@ -2,5 +2,6 @@
 <modules>
   <module moduleId="org.eclipse.jst.jee.server:SimpleProject" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:Pets" serverId="Tomcat v8.5 Server at localhost"/>
+  <module moduleId="org.eclipse.jst.jee.server:ButtonClicker" serverId="Tomcat v8.5 Server at localhost"/>
   <module moduleId="org.eclipse.jst.jee.server:Checkerboard" serverId="Tomcat v8.5 Server at localhost"/>
 </modules>
