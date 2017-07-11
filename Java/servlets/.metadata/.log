@@ -1307,3 +1307,65 @@ java.lang.StringIndexOutOfBoundsException: String index out of range: 43
 
 !ENTRY org.eclipse.jface.text 2 0 2017-07-10 15:20:45.330
 !MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-10 19:26:26.882
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.number'
+
+!ENTRY org.eclipse.jface.text 2 0 2017-07-10 19:26:26.883
+!MESSAGE Duplicate template id: 'org.eclipse.wst.xslt.templates.xpath.round'
+
+!ENTRY org.eclipse.recommenders.types.rcp 1 4 2017-07-10 19:41:17.973
+!MESSAGE Full project indexing required:
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/charsets.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/cldrdata.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/dnsns.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/jaccess.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/jfxrt.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/localedata.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/nashorn.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/sunec.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/sunjce_provider.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/sunpkcs11.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/ext/zipfs.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jce.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jfr.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/jsse.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/resources.jar
+  [+] /Library/Java/JavaVirtualMachines/jdk1.8.0_131.jdk/Contents/Home/jre/lib/rt.jar
+  [+] /System/Library/Java/Extensions/MRJToolkit.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/annotations-api.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/catalina-ant.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/catalina-ha.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/catalina-storeconfig.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/catalina-tribes.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/catalina.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/ecj-4.6.3.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/el-api.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/jasper-el.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/jasper.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/jaspic-api.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/jsp-api.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/jstl-1.2.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/servlet-api.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-api.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-coyote.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-dbcp.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-i18n-es.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-i18n-fr.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-i18n-ja.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-jdbc.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-jni.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-util-scan.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-util.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/tomcat-websocket.jar
+  [+] /Users/refayathaque1/Documents/apache-tomcat-8.5.16/lib/websocket-api.jar
+
+!STACK 0
+org.eclipse.recommenders.utils.Logs$LogTraceException
+	at org.eclipse.recommenders.utils.Logs$LogTraceException.newTrace(Logs.java:381)
+	at org.eclipse.recommenders.utils.Logs.log(Logs.java:134)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.needsRebuild(ProjectTypesIndex.java:169)
+	at org.eclipse.recommenders.internal.types.rcp.ProjectTypesIndex.startUp(ProjectTypesIndex.java:122)
+	at com.google.common.util.concurrent.AbstractIdleService$2$1.run(AbstractIdleService.java:54)
+	at com.google.common.util.concurrent.Callables$3.run(Callables.java:93)
+	at java.lang.Thread.run(Thread.java:748)
