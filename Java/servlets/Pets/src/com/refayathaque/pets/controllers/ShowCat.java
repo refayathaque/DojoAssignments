@@ -13,7 +13,7 @@ import com.refayathaque.pets.models.Cat;
 
 public class ShowCat extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		Cat cat = new Cat(
 		request.getParameter("name"),
@@ -24,7 +24,7 @@ public class ShowCat extends HttpServlet {
 		RequestDispatcher view = request.getRequestDispatcher("/WEB-INF/views/cat.jsp");
         view.forward(request, response);
 	}
-	
+
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
 		doGet(request, response);

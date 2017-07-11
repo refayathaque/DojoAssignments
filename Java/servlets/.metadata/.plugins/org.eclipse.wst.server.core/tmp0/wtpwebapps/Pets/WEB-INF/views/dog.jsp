@@ -8,6 +8,6 @@
 <title>Dog</title>
 </head>
 <body>
-	
+	<p><c:out value="${dog.showAffection()}"/></p>
 </body>
 </html>

@@ -5,7 +5,7 @@
   
   <servlet>
     <servlet-name>ShowCat</servlet-name>
-    <servlet-class>com.refayathaque.controllers.ShowCat</servlet-class>
+    <servlet-class>com.refayathaque.pets.controllers.ShowCat</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowCat</servlet-name>
@@ -14,7 +14,7 @@
   
   <servlet>
     <servlet-name>ShowDog</servlet-name>
-    <servlet-class>com.refayathaque.controllers.ShowDog</servlet-class>
+    <servlet-class>com.refayathaque.pets.controllers.ShowDog</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>ShowDog</servlet-name>
@@ -23,7 +23,7 @@
   
   <servlet>
     <servlet-name>Index</servlet-name>
-    <servlet-class>com.refayathaque.controllers.Index</servlet-class>
+    <servlet-class>com.refayathaque.pets.controllers.Index</servlet-class>
   </servlet>
   <servlet-mapping>
     <servlet-name>Index</servlet-name>
