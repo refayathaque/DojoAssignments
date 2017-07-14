@@ -1,6 +1,6 @@
 from flask import Flask, request, redirect, render_template, session, flash
 from mysqlconnection import MySQLConnector
-from flask_bcrypt import Bcrypt # from flask.ext.bcrypt import Bcrypt - if this doesn't work
+import bcrypt
 import re
 
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
@@ -10,7 +10,6 @@ password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$')
 
 app = Flask(__name__)
 mysql = MySQLConnector(app, 'LoginRegistration2') # CHANGE DB NAME
-bcrypt = Bcrypt(app)
 app.secret_key = 'NotSureWhyWeNeedThisButOkay'
 
 @app.route('/')
@@ -19,7 +18,7 @@ def index():
 
 @app.route('/create', methods = ['POST'])
 def create():
-    # Do all validations here...
+    # Validated containers
     validated_first_name = ""
     validated_last_name = ""
     validated_email = ""
@@ -27,31 +26,31 @@ def create():
     counter = 0
 
     # Validations
-    if name_regex.match(request.form['first_name']) && name_regex.match(request.form['first_name']):
+    if name_regex.match(request.form['first_name']) and name_regex.match(request.form['last_name']):
         validated_first_name = request.form['first_name']
         validated_last_name = request.form['last_name']
-        counter ++
-    elif not name_regex.match(request.form['first_name']) || name_regex.match(request.form['first_name']):
+        counter+=1
+    elif not name_regex.match(request.form['first_name']) or name_regex.match(request.form['first_name']):
         flash("Name invalid")
     else:
         flash("Name invalid")
 
     if email_regex.match(request.form['email']):
         validated_email = request.form['email']
-        counter ++
+        counter+=1
     else:
         flash("Email invalid")
-
     if password_regex.match(request.form['password']):
         if request.form['password'] == request.form['confirm_password']:
-            validated_hashed_password = bcrypt.generate_password_hash(request.form['confirm_password'])
-            counter++
+            validated_hashed_password = bcrypt.hashpw(request.form['confirm_password'].encode(), bcrypt.gensalt())
+            counter+=1
         else:
             flash("Passwords do not match")
     else:
         flash("Password invalid")
 
-    if counter == 3
+    # DB insertion
+    if counter == 3:
         query = "INSERT INTO users (first_name, last_name, email, password, updated_at, created_at) VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())"
         data = {
              'first_name' : validated_first_name,
@@ -59,8 +58,74 @@ def create():
              'email' : validated_email,
              'password' : validated_hashed_password,
         }
-        mysql.query_db(query, data)
-        return render_template('/success')
+        session['user_id'] = mysql.query_db(query, data) # Line executing data insertion AND setting session
+        # Passing in the logged in user's name
+        query = "SELECT * FROM users WHERE id = :user_id"
+        data = {
+        'user_id': session['user_id']
+        }
+        session_user = mysql.query_db(query, data)
+        return render_template('success.html', session_user = session_user)
+    else:
+        return redirect('/')
+
+# bcrypt.checkpw(request.form['password'].encode(), query) might have to .encode() query
+
+@app.route('/login', methods = ['POST'])
+def login():
+    counter = 0
+    query = "SELECT password FROM users"
+    passwords = mysql.query_db(query)
+    query = "SELECT email FROM users WHERE email = :email"
+    data = {
+        'email' : request.form['email']
+    }
+    res = mysql.query_db(query, data)
+    print res
+    if len(res) < 1:
+        flash("You are not registered")
+    else:
+        counter+=1
+        for i in range(0, len(passwords)):
+            if bcrypt.checkpw(request.form['password'].encode('utf8'), passwords[i]['password'].encode('utf8')):
+                counter+=1
+                print passwords[i]
+                print passwords[i]['password']
+                print 'PASSWORD PASSED'
+            else:
+                flash("Incorrect password")
+
+    # query = "SELECT email, password FROM users"
+    # emails_passwords = mysql.query_db(query)
+    # counter = 0
+    #
+    # # Checks
+    # for i in range(0, len(emails_passwords)):
+    #     if emails_passwords[i]['email'] == request.form['email']:
+    #         counter+=1
+    #     else:
+    #         flash("This email has not been registered")
+    #         break
+    #     if bcrypt.checkpw(request.form['password'].encode('utf8'), emails_passwords[i]['password'].encode('utf8')):
+    #         counter+=1
+    #     else:
+    #         flash("Incorrect password")
+    #         break
+    #
+    if counter == 2:
+        query = "SELECT id FROM users WHERE email = :email"
+        data = {
+        'email': request.form['email']
+        }
+        session['user_id'] = mysql.query_db(query, data)
+        query = "SELECT * FROM users WHERE id = :user_id"
+        data = {
+        'user_id': session['user_id']
+        }
+        session_user = mysql.query_db(query, data)
+        return render_template('success.html', session_user = session_user)
+    else:
+        return render_template('index.html')
 
 # @app.route('/friends/<friend_id>')
 # def show(friend_id):
