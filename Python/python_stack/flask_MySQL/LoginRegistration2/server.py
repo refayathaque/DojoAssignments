@@ -6,10 +6,10 @@ import re
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 name_regex = re.compile(r'^[a-zA-Z]+$')
 password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$')
-# Password matching expression.
+# Must be at least 8 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit
 
 app = Flask(__name__)
-mysql = MySQLConnector(app, 'LoginRegistration2') # CHANGE DB NAME
+mysql = MySQLConnector(app, 'LoginRegistration2') # Change db name for new projects
 app.secret_key = 'NotSureWhyWeNeedThisButOkay'
 
 @app.route('/')
@@ -23,9 +23,10 @@ def create():
     validated_last_name = ""
     validated_email = ""
     validated_hashed_password = ""
+
     counter = 0
 
-    # Validations
+    # Name validations
     if name_regex.match(request.form['first_name']) and name_regex.match(request.form['last_name']):
         validated_first_name = request.form['first_name']
         validated_last_name = request.form['last_name']
@@ -35,11 +36,14 @@ def create():
     else:
         flash("Name invalid")
 
+    # Email validation
     if email_regex.match(request.form['email']):
         validated_email = request.form['email']
         counter+=1
     else:
         flash("Email invalid")
+
+    # Password validation
     if password_regex.match(request.form['password']):
         if request.form['password'] == request.form['confirm_password']:
             validated_hashed_password = bcrypt.hashpw(request.form['confirm_password'].encode(), bcrypt.gensalt())
@@ -49,121 +53,68 @@ def create():
     else:
         flash("Password invalid")
 
-    # DB insertion
+    # Db insertion post validations
     if counter == 3:
         query = "INSERT INTO users (first_name, last_name, email, password, updated_at, created_at) VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())"
+        # MySQL 'INSERT' returns INTEGER w respect to ID, it's just a number. Not the case with 'SELECT', with 'SELECT' we get a DICTIONARY w KEY VALUE pair ( [{u'id': 1L}] )
         data = {
              'first_name' : validated_first_name,
              'last_name' :  validated_last_name,
              'email' : validated_email,
              'password' : validated_hashed_password,
         }
-        session['user_id'] = mysql.query_db(query, data) # Line executing data insertion AND setting session
-        # Passing in the logged in user's name
+        session['user_id'] = mysql.query_db(query, data) # Executing data insertion AND setting session
+
+        # Getting user data to display on success page
         query = "SELECT * FROM users WHERE id = :user_id"
         data = {
         'user_id': session['user_id']
         }
+        print session['user_id'] # 15
         session_user = mysql.query_db(query, data)
         return render_template('success.html', session_user = session_user)
     else:
         return redirect('/')
 
-# bcrypt.checkpw(request.form['password'].encode(), query) might have to .encode() query
-
 @app.route('/login', methods = ['POST'])
 def login():
     counter = 0
-    query = "SELECT password FROM users"
-    passwords = mysql.query_db(query)
+
+    # Checking to see if user input email in db
     query = "SELECT email FROM users WHERE email = :email"
     data = {
         'email' : request.form['email']
     }
     res = mysql.query_db(query, data)
-    print res
     if len(res) < 1:
         flash("You are not registered")
     else:
-        counter+=1
-        for i in range(0, len(passwords)):
-            if bcrypt.checkpw(request.form['password'].encode('utf8'), passwords[i]['password'].encode('utf8')):
-                counter+=1
-                print passwords[i]
-                print passwords[i]['password']
-                print 'PASSWORD PASSED'
-            else:
-                flash("Incorrect password")
+        # Checking password with bcrypt
+        query = "SELECT password FROM users WHERE email = :email"
+        data = {
+            'email' : request.form['email']
+        }
+        password = mysql.query_db(query, data)
+        if bcrypt.checkpw(request.form['password'].encode('utf8'), password[0]['password'].encode('utf8')):
+            counter+=1
+        else:
+            flash("Incorrect password")
 
-    # query = "SELECT email, password FROM users"
-    # emails_passwords = mysql.query_db(query)
-    # counter = 0
-    #
-    # # Checks
-    # for i in range(0, len(emails_passwords)):
-    #     if emails_passwords[i]['email'] == request.form['email']:
-    #         counter+=1
-    #     else:
-    #         flash("This email has not been registered")
-    #         break
-    #     if bcrypt.checkpw(request.form['password'].encode('utf8'), emails_passwords[i]['password'].encode('utf8')):
-    #         counter+=1
-    #     else:
-    #         flash("Incorrect password")
-    #         break
-    #
-    if counter == 2:
-        query = "SELECT id FROM users WHERE email = :email"
+    # Db query post validations pass
+    if counter == 1:
+        query = "SELECT * FROM users WHERE email = :email"
         data = {
         'email': request.form['email']
         }
-        session['user_id'] = mysql.query_db(query, data)
-        query = "SELECT * FROM users WHERE id = :user_id"
-        data = {
-        'user_id': session['user_id']
-        }
+        session['user_id'] = mysql.query_db(query, data)[0]['id'] # REQUIRED for 'SELECT' bc ID RETURNED is in DICT
         session_user = mysql.query_db(query, data)
         return render_template('success.html', session_user = session_user)
     else:
         return render_template('index.html')
 
-# @app.route('/friends/<friend_id>')
-# def show(friend_id):
-#     # Write query to select specific user by id. At every point where
-#     # we want to insert data, we write ":" and variable name.
-#     query = "SELECT * FROM users WHERE id = :specific_id"
-#     # Then define a dictionary with key that matches :variable_name in query.
-#     data = {'specific_id': friend_id}
-#     # Run query with inserted data.
-#     one_friend = mysql.query_db(query, data)
-#     # Friends should be a list with a single object,
-#     # so we pass the value at [0] to our template under alias one_friend.
-#     return render_template('index.html', one_friend = one_friend[0])
-
-# @app.route('/friends/edit/<friend_id>')
-# def edit(friend_id):
-#     query = "SELECT * FROM users WHERE id = {}".format(friend_id)
-#     user = mysql.query_db(query)
-#     print user
-#     return render_template('edit.html', friend = user)
-#
-# @app.route('/friends/update/<friend_id>', methods = ['POST'])
-# def update(friend_id):
-#     query = "UPDATE users SET first_name = :first_name, last_name = :last_name, email_address = :email_address WHERE id = :id"
-#     data = {
-#         'first_name' : request.form['first_name'],
-#         'last_name' : request.form['last_name'],
-#         'email_address' : request.form['email_address'],
-#         'id' : friend_id
-#     }
-#     user = mysql.query_db(query, data)
-#     return redirect('/')
-#
-# @app.route('/friends/remove/<friend_id>', methods = ['POST'])
-# def remove(friend_id):
-#     query = "DELETE FROM users WHERE id = :id"
-#     data = {'id' : friend_id}
-#     mysql.query_db(query, data)
-#     return redirect('/')
+@app.route('/logout', methods = ['POST'])
+def logout():
+    session.clear()
+    return redirect('/')
 
 app.run(debug=True)
