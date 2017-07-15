@@ -97,6 +97,10 @@ def login():
         password = mysql.query_db(query, data)
         if bcrypt.checkpw(request.form['password'].encode('utf8'), password[0]['password'].encode('utf8')):
             counter+=1
+
+            print g-recaptcha-response
+            print request.form['g-recaptcha-response']
+
         else:
             flash("Incorrect password")
 
