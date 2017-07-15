@@ -1,0 +1,27 @@
+/*
+<link rel="stylesheet" href=".css">
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js">
+  </script>
+<img src=".jpg" alt="">
+<img src='.png' data-alt-src='.png'/>
+$(document).ready(function() {});
+$(document).on('click', 'h3', function(){
+    alert('You clicked me!');
+  })
+*/
+* {
+	/*outline: 0.25px solid yellow;*/
+	padding: 0;
+	margin: 0;
+	border: 0;
+}
+#container {
+  color: black;
+  font-family: sans-serif;
+  margin-right: auto;
+  margin-left: auto;
+  margin-top: 10px;
+  margin-bottom: 10px;
+  width: 1000px;
+  text-align: center;
+}
