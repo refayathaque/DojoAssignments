@@ -151,7 +151,7 @@ def login():
 
 ### THREADS / RESPONSES  ###
 
-@app.route('/dashboard', methods = ['POST'])
+@app.route('/dashboard')
 def dashboard():
     query = "SELECT * FROM categories"
     categories = mysql.query_db(query)
@@ -167,7 +167,7 @@ def create_thread():
         'user_id': session['user_id'], # Foreign key
         'category_id': request.form['category'] # Foreign key
         }
-    mysql.query_db(query, data)
+    mysql.query_db(query, data) # Above insert query works in MySQL workbench, but not here
     return redirect('/dashboard')
 
 ### LOGOUT ###
