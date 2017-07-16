@@ -142,10 +142,7 @@ def login():
         'email': request.form['email']
         }
         session['user_id'] = mysql.query_db(query, data)[0]['id'] # REQUIRED for 'SELECT' bc ID RETURNED is in DICT
-        session_user = mysql.query_db(query, data)
-        query = "SELECT * FROM categories"
-        categories = mysql.query_db(query)
-        return render_template('dashboard.html', session_user = session_user, categories = categories)
+        return redirect('/dashboard')
     else:
         return redirect('/')
 
@@ -153,14 +150,18 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
+    query = "SELECT * FROM users WHERE id = :id"
+    data = {
+    'id': session['user_id']
+    }
+    session_user = mysql.query_db(query, data)
     query = "SELECT * FROM categories"
     categories = mysql.query_db(query)
-    # threads = mysql.query_db('SELECT threads.title, threads.content, threads.id AS thread_id, threads.created_at, threads.updated_at, users.first_name, users.last_name, users.id AS user_id FROM threads LEFT JOIN users ON threads.user_id = users.id')
-    return render_template('dashboard.html', categories = categories)
+    return render_template('dashboard.html', session_user = session_user, categories = categories)
 
 @app.route('/create_thread', methods = ['POST'])
 def create_thread():
-    query = "INSERT INTO threads (title, content, user_id, category_id, created_at, updated_at) VALUES (:title, :content :user_id, :category_id, NOW(), NOW())"
+    query = "INSERT INTO threads (title, content, created_at, updated_at, user_id, category_id) VALUES (:title, :content, NOW(), NOW(), :user_id, :category_id)"
     data = {
         'title': request.form['title'],
         'content': request.form['content'],

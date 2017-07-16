@@ -11,9 +11,6 @@
         <h3>Your account is registered to <em class = "user_info">{{ session_user[0].email }}</em></h3>
         <br>
         <h3>Begin a thread</h3>
-
-        {{ categories }}
-
         <form action="/create_thread" method="post">
             <select name="category">
                 {% for category in categories %}
