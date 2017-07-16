@@ -1,7 +1,13 @@
-from flask import Flask, request, redirect, render_template, session, flash
+from flask import Flask, request, redirect, render_template, session, flash, url_for
 from mysqlconnection import MySQLConnector
 import bcrypt
 import re
+import urllib2 # reCaptcha
+import json # reCaptcha
+
+# reCaptcha keys
+reCaptcha_site_key = "6LdTIykUAAAAABoyVWLN9CCxH6DokzBuCa38pD6B" # Not hard coded in HTML for security
+reCaptcha_secret_key = "6LdTIykUAAAAABxOyEVzC9vUE4Pdepm7fL5Tz9cP"
 
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 name_regex = re.compile(r'^[a-zA-Z]+$')
@@ -12,9 +18,24 @@ app = Flask(__name__)
 mysql = MySQLConnector(app, 'LoginRegistration2') # Change db name for new projects
 app.secret_key = 'NotSureWhyWeNeedThisButOkay'
 
+# reCaptcha check function
+def checkRecaptcha(response, secret_key):
+    url = 'https://www.google.com/recaptcha/api/siteverify?'
+    url = url + 'secret=' + secret_key
+    url = url + '&response=' + response
+    try:
+        jsonobj = json.loads(urllib2.urlopen(url).read())
+        if jsonobj['success']:
+            return True
+        else:
+            return False
+    except Exception as e:
+        print e
+        return False
+
 @app.route('/')
 def index():
-    return render_template('index.html')
+    return render_template('index.html', reCaptcha_site_key = reCaptcha_site_key) # Bc site_key needed on page load for reCaptcha box to appear
 
 @app.route('/create', methods = ['POST'])
 def create():
@@ -53,8 +74,15 @@ def create():
     else:
         flash("Password invalid")
 
+    # reCaptcha check
+    reCaptcha_res = request.form.get('g-recaptcha-response')
+    if checkRecaptcha(reCaptcha_res, reCaptcha_secret_key):
+        counter+=1
+    else:
+        flash("reCAPTCHA check incomplete")
+
     # Db insertion post validations
-    if counter == 3:
+    if counter == 4:
         query = "INSERT INTO users (first_name, last_name, email, password, updated_at, created_at) VALUES (:first_name, :last_name, :email, :password, NOW(), NOW())"
         # MySQL 'INSERT' returns INTEGER w respect to ID, it's just a number. Not the case with 'SELECT', with 'SELECT' we get a DICTIONARY w KEY VALUE pair ( [{u'id': 1L}] )
         data = {
@@ -81,28 +109,27 @@ def login():
     counter = 0
 
     # Checking to see if user input email in db
-    query = "SELECT email FROM users WHERE email = :email"
-    data = {
-        'email' : request.form['email']
-    }
-    res = mysql.query_db(query, data)
-    if len(res) < 1:
-        flash("You are not registered")
+    if len(request.form['email']) < 1:
+        flash("Enter email address")
     else:
-        # Checking password with bcrypt
-        query = "SELECT password FROM users WHERE email = :email"
+        query = "SELECT email FROM users WHERE email = :email"
         data = {
             'email' : request.form['email']
         }
-        password = mysql.query_db(query, data)
-        if bcrypt.checkpw(request.form['password'].encode('utf8'), password[0]['password'].encode('utf8')):
-            counter+=1
-
-            print g-recaptcha-response
-            print request.form['g-recaptcha-response']
-
+        res = mysql.query_db(query, data)
+        if len(res) < 1:
+            flash("You are not registered")
         else:
-            flash("Incorrect password")
+        # Checking password with bcrypt
+            query = "SELECT password FROM users WHERE email = :email"
+            data = {
+                'email' : request.form['email']
+            }
+            password = mysql.query_db(query, data)
+            if bcrypt.checkpw(request.form['password'].encode('utf8'),  password[0]['password'].encode('utf8')):
+                counter+=1
+            else:
+                flash("Incorrect password")
 
     # Db query post validations pass
     if counter == 1:
@@ -114,7 +141,7 @@ def login():
         session_user = mysql.query_db(query, data)
         return render_template('success.html', session_user = session_user)
     else:
-        return render_template('index.html')
+        return redirect('/')
 
 @app.route('/logout', methods = ['POST'])
 def logout():

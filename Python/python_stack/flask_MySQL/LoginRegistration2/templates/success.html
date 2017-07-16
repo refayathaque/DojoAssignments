@@ -8,7 +8,7 @@
     </head>
     <body>
         <h2>You are logged in {{ session_user[0].first_name }} {{ session_user[0].last_name }}</h2>
-        <h3>You have your account registered to {{ session_user[0].email }}</h3>
+        <h3>Your account is registered to <em>{{ session_user[0].email }}</em></h3>
         <br>
         <form class="" action="/logout" method="post">
             <input type="submit" name="submit" value="Log Out">
