@@ -15,8 +15,10 @@ password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$')
 # Must be at least 8 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit
 
 app = Flask(__name__)
-mysql = MySQLConnector(app, 'LoginRegistration2') # Change db name for new projects
+mysql = MySQLConnector(app, 'RadioTodayBangladeshInternalForum') # Change db name for new projects
 app.secret_key = 'NotSureWhyWeNeedThisButOkay'
+
+### LOGIN / REGISTRATION ###
 
 # reCaptcha check function
 def checkRecaptcha(response, secret_key):
@@ -93,14 +95,14 @@ def create():
         }
         session['user_id'] = mysql.query_db(query, data) # Executing data insertion AND setting session
 
-        # Getting user data to display on success page
+        # Getting user data to display on dashboard page
         query = "SELECT * FROM users WHERE id = :user_id"
         data = {
         'user_id': session['user_id']
         }
         print session['user_id'] # 15
         session_user = mysql.query_db(query, data)
-        return render_template('success.html', session_user = session_user)
+        return render_template('dashboard.html', session_user = session_user)
     else:
         return redirect('/')
 
@@ -139,9 +141,15 @@ def login():
         }
         session['user_id'] = mysql.query_db(query, data)[0]['id'] # REQUIRED for 'SELECT' bc ID RETURNED is in DICT
         session_user = mysql.query_db(query, data)
-        return render_template('success.html', session_user = session_user)
+        return render_template('dashboard.html', session_user = session_user)
     else:
         return redirect('/')
+
+### THREADS / RESPONSES  ###
+
+
+
+### LOGOUT ###
 
 @app.route('/logout', methods = ['POST'])
 def logout():

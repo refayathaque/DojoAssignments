@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="../static/css/style.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+    <body>
+        <h2>You are logged in <em class = "user_info">{{ session_user[0].first_name }} {{ session_user[0].last_name }}</em></h2>
+        <h3>Your account is registered to <em class = "user_info">{{ session_user[0].email }}</em></h3>
+        <br>
+        <h3>Begin a thread</h3>
+        <form action="/create_thread" method="post">
+          <input type="text" name="title" value="">
+          <p>Title</p>
+          <textarea name="content" cols="70" rows="5"></textarea>
+          <p>Content</p>
+          <input type="submit" value="Submit"/>
+        </form>
+        <br>
+        <form class="" action="/logout" method="post">
+            <input type="submit" name="submit" value="Log Out">
+        </form>
+    </body>
+</html>
