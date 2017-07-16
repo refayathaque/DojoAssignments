@@ -18,8 +18,6 @@ app = Flask(__name__)
 mysql = MySQLConnector(app, 'RadioTodayBangladeshInternalForum') # Change db name for new projects
 app.secret_key = 'NotSureWhyWeNeedThisButOkay'
 
-### LOGIN / REGISTRATION ###
-
 # reCaptcha check function
 def checkRecaptcha(response, secret_key):
     url = 'https://www.google.com/recaptcha/api/siteverify?'
@@ -35,11 +33,13 @@ def checkRecaptcha(response, secret_key):
         print e
         return False
 
+### LOGIN / REGISTRATION ###
+
 @app.route('/')
 def index():
     return render_template('index.html', reCaptcha_site_key = reCaptcha_site_key) # Bc site_key needed on page load for reCaptcha box to appear
 
-@app.route('/create', methods = ['POST'])
+@app.route('/create_user', methods = ['POST'])
 def create():
     # Validated containers
     validated_first_name = ""
@@ -102,7 +102,9 @@ def create():
         }
         print session['user_id'] # 15
         session_user = mysql.query_db(query, data)
-        return render_template('dashboard.html', session_user = session_user)
+        query = "SELECT * FROM categories"
+        categories = mysql.query_db(query)
+        return render_template('dashboard.html', session_user = session_user, categories = categories)
     else:
         return redirect('/')
 
@@ -141,13 +143,32 @@ def login():
         }
         session['user_id'] = mysql.query_db(query, data)[0]['id'] # REQUIRED for 'SELECT' bc ID RETURNED is in DICT
         session_user = mysql.query_db(query, data)
-        return render_template('dashboard.html', session_user = session_user)
+        query = "SELECT * FROM categories"
+        categories = mysql.query_db(query)
+        return render_template('dashboard.html', session_user = session_user, categories = categories)
     else:
         return redirect('/')
 
 ### THREADS / RESPONSES  ###
 
+@app.route('/dashboard', methods = ['POST'])
+def dashboard():
+    query = "SELECT * FROM categories"
+    categories = mysql.query_db(query)
+    # threads = mysql.query_db('SELECT threads.title, threads.content, threads.id AS thread_id, threads.created_at, threads.updated_at, users.first_name, users.last_name, users.id AS user_id FROM threads LEFT JOIN users ON threads.user_id = users.id')
+    return render_template('dashboard.html', categories = categories)
 
+@app.route('/create_thread', methods = ['POST'])
+def create_thread():
+    query = "INSERT INTO threads (title, content, user_id, category_id, created_at, updated_at) VALUES (:title, :content :user_id, :category_id, NOW(), NOW())"
+    data = {
+        'title': request.form['title'],
+        'content': request.form['content'],
+        'user_id': session['user_id'], # Foreign key
+        'category_id': request.form['category'] # Foreign key
+        }
+    mysql.query_db(query, data)
+    return redirect('/dashboard')
 
 ### LOGOUT ###
 

@@ -11,16 +11,35 @@
         <h3>Your account is registered to <em class = "user_info">{{ session_user[0].email }}</em></h3>
         <br>
         <h3>Begin a thread</h3>
+
+        {{ categories }}
+
         <form action="/create_thread" method="post">
-          <input type="text" name="title" value="">
-          <p>Title</p>
-          <textarea name="content" cols="70" rows="5"></textarea>
-          <p>Content</p>
-          <input type="submit" value="Submit"/>
+            <select name="category">
+                {% for category in categories %}
+                    <option value="{{ category.id }}">{{ category.name }}</option>
+                {% endfor %}
+            </select>
+            <p>Choose topic</p>
+            <input type="text" name="title" value="">
+            <p>Title</p>
+            <textarea name="content" cols="70" rows="5"></textarea>
+            <p>Content</p>
+            <input type="submit" value="Submit"/>
         </form>
         <br>
         <form class="" action="/logout" method="post">
             <input type="submit" name="submit" value="Log Out">
         </form>
+        <br>
+        {% for thread in threads %}
+            <p>{{ thread['title'] }}</p>
+            <p><em>Title</em></p>
+            <p>{{ thread['content'] }}</p>
+            <p><em>Content</em></p>
+            <p>{{thread['first_name']}} {{thread['last_name']}}</p>
+            <p><em>Author</em></p>
+            <p>{{ thread['created_at'] }}</p>
+        {% endfor %}
     </body>
 </html>
