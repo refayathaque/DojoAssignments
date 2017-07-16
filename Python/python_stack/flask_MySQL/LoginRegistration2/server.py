@@ -1,7 +1,7 @@
 from flask import Flask, request, redirect, render_template, session, flash, url_for
 from mysqlconnection import MySQLConnector
 import bcrypt
-import re
+import re # Regex
 import urllib2 # reCaptcha
 import json # reCaptcha
 
