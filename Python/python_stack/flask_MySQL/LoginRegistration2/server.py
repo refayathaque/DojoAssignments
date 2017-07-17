@@ -165,14 +165,17 @@ def dashboard():
     'user_id': session['user_id']
     }
     user_threads = mysql.query_db(query, data)
-    # All threads EXCEPT current user's
+    # All threads EXCEPT current user's (IMPORTANT)
     query = "SELECT * FROM threads WHERE user_id != :user_id"
     data = {
     'user_id': session['user_id']
     }
     all_threads = mysql.query_db(query, data)
+    # All users (to display authors of threads and responses)
+    query = "SELECT * FROM users"
+    all_users = mysql.query_db(query)
 
-    return render_template('dashboard.html', session_user = session_user, categories = categories, user_threads = user_threads, all_threads = all_threads)
+    return render_template('dashboard.html', session_user = session_user, categories = categories, user_threads = user_threads, all_threads = all_threads, all_users = all_users)
 
 @app.route('/create_thread', methods = ['POST'])
 def create_thread():

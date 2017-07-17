@@ -30,7 +30,13 @@
         {% endif %}
         <ol>
             {% for thread in user_threads %}
-                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em></p></li>
+                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ category:
+                    {% for category in categories %}
+                        {% if category['id'] == thread['category_id']%}
+                            {{ category['name'] }}
+                        {% endif %}
+                    {% endfor %}
+                </p></li>
             {% endfor %}
         </ol>
         {% if all_threads %}
@@ -38,10 +44,22 @@
         {% endif %}
         <ol>
             {% for thread in all_threads %}
-                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ thread['user_id'] }} \ category: {{ thread['category_id'] }}</p></li>
+                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by:
+                    {% for user in all_users %}
+                        {% if user['id'] == thread['user_id']%}
+                            {{ user['first_name'] }} {{ user['last_name'] }}
+                        {% endif %}
+                    {% endfor %}
+                \ category:
+                    {% for category in categories %}
+                        {% if category['id'] == thread['category_id']%}
+                            {{ category['name'] }}
+                        {% endif %}
+                    {% endfor %}
+                </p></li>
+
             {% endfor %}
         </ol>
-
         <form class="" action="/logout" method="post">
             <input type="submit" name="submit" value="Log Out">
         </form>
