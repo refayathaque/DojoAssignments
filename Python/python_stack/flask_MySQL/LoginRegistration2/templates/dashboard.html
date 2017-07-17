@@ -33,7 +33,7 @@
                 <li><p><span class = "green_text">{{ thread['title'] }}</span> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ category:
                     {% for category in categories %}
                         {% if category['id'] == thread['category_id']%}
-                            {{ category['name'] }}
+                            <strong>{{ category['name'] }}</strong>
                         {% endif %}
                     {% endfor %}
                 \ <a href="/show/{{ thread['id'] }}">Responses</a>
@@ -54,7 +54,7 @@
                 \ category:
                     {% for category in categories %}
                         {% if category['id'] == thread['category_id']%}
-                            {{ category['name'] }}
+                            <strong>{{ category['name'] }}</strong>
                         {% endif %}
                     {% endfor %}
                 \ <a href="/show/{{ thread['id'] }}">Responses</a>

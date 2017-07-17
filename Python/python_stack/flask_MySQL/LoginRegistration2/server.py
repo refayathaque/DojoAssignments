@@ -160,13 +160,13 @@ def dashboard():
     query = "SELECT * FROM categories"
     categories = mysql.query_db(query)
     # Threads written by current user
-    query = "SELECT * FROM threads WHERE user_id = :user_id"
+    query = "SELECT * FROM threads WHERE user_id = :user_id ORDER BY id DESC"
     data = {
     'user_id': session['user_id']
     }
     user_threads = mysql.query_db(query, data)
     # All threads EXCEPT current user's (IMPORTANT)
-    query = "SELECT * FROM threads WHERE user_id != :user_id"
+    query = "SELECT * FROM threads WHERE user_id != :user_id ORDER BY id DESC"
     data = {
     'user_id': session['user_id']
     }
@@ -198,24 +198,43 @@ def create_thread():
 
 @app.route('/show/<thread_id>')
 def show(thread_id):
+    # Showing thread
     query = "SELECT * FROM threads WHERE id = :thread_id"
     data = {
     'thread_id': thread_id
     }
     thread = mysql.query_db(query, data)
-    return render_template('show.html', thread = thread)
-
-@app.route('/create_response/<thread_id>')
-def create_response(thread_id):
-    query = "INSERT INTO responses (title, content, created_at, updated_at, user_id, category_id) VALUES (:title, :content, NOW(), NOW(), :user_id, :category_id)"
+    # Showing all responses for THIS thread
+    query = "SELECT * FROM responses WHERE thread_id = :thread_id"
     data = {
-        'title': request.form['title'],
+    'thread_id': thread_id
+    }
+    thread_responses = mysql.query_db(query, data)
+    # All users (to display authors of threads and responses)
+    query = "SELECT * FROM users"
+    all_users = mysql.query_db(query)
+    # Thread categories
+    query = "SELECT * FROM categories"
+    categories = mysql.query_db(query)
+    return render_template('show.html', thread = thread, thread_responses = thread_responses, all_users = all_users, categories = categories)
+
+@app.route('/create_response/<thread_id>', methods = ['POST'])
+def create_response(thread_id):
+    query = "SELECT id FROM users WHERE id = :id"
+    data = {
+    'id': session['user_id']
+    }
+    session_user_id = mysql.query_db(query, data)[0]['id']
+    # (IMPORTANT) 'INSERT' will ONLY take in user_id in the form after being pulled out of db with the session['user_id'], not sure why
+
+    query = "INSERT INTO responses (content, created_at, updated_at, thread_id, user_id) VALUES (:content, NOW(), NOW(), :thread_id, :user_id)"
+    data = {
         'content': request.form['content'],
-        'user_id': session_user_id, # Foreign key
-        'category_id': request.form['category'] # Foreign key
+        'thread_id': thread_id, # Foreign key
+        'user_id': session_user_id # Foreign key
         }
     mysql.query_db(query, data)
-    return redirect('/dashboard')
+    return redirect('/show/' + thread_id)
 
 ### LOGOUT ###
 
