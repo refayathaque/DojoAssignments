@@ -104,7 +104,7 @@ def create():
         session_user = mysql.query_db(query, data)
         query = "SELECT * FROM categories"
         categories = mysql.query_db(query)
-        return render_template('dashboard.html', session_user = session_user, categories = categories)
+        return redirect('/dashboard')
     else:
         return redirect('/')
 
@@ -150,25 +150,47 @@ def login():
 
 @app.route('/dashboard')
 def dashboard():
+    # Session user information
     query = "SELECT * FROM users WHERE id = :id"
     data = {
     'id': session['user_id']
     }
     session_user = mysql.query_db(query, data)
+    # All thread categories for form dropdown
     query = "SELECT * FROM categories"
     categories = mysql.query_db(query)
-    return render_template('dashboard.html', session_user = session_user, categories = categories)
+    # Threads written by current user
+    query = "SELECT * FROM threads WHERE user_id = :user_id"
+    data = {
+    'user_id': session['user_id']
+    }
+    user_threads = mysql.query_db(query, data)
+    # All threads EXCEPT current user's
+    query = "SELECT * FROM threads WHERE user_id != :user_id"
+    data = {
+    'user_id': session['user_id']
+    }
+    all_threads = mysql.query_db(query, data)
+
+    return render_template('dashboard.html', session_user = session_user, categories = categories, user_threads = user_threads, all_threads = all_threads)
 
 @app.route('/create_thread', methods = ['POST'])
 def create_thread():
+    query = "SELECT id FROM users WHERE id = :id"
+    data = {
+    'id': session['user_id']
+    }
+    session_user_id = mysql.query_db(query, data)[0]['id']
+    # (IMPORTANT) 'INSERT' will ONLY take in user_id in the form after being pulled out of db with the session['user_id'], not sure why
+
     query = "INSERT INTO threads (title, content, created_at, updated_at, user_id, category_id) VALUES (:title, :content, NOW(), NOW(), :user_id, :category_id)"
     data = {
         'title': request.form['title'],
         'content': request.form['content'],
-        'user_id': session['user_id'], # Foreign key
+        'user_id': session_user_id, # Foreign key
         'category_id': request.form['category'] # Foreign key
         }
-    mysql.query_db(query, data) # Above insert query works in MySQL workbench, but not here
+    mysql.query_db(query, data)
     return redirect('/dashboard')
 
 ### LOGOUT ###

@@ -7,8 +7,8 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
     </head>
     <body>
-        <h2>You are logged in <em class = "user_info">{{ session_user[0].first_name }} {{ session_user[0].last_name }}</em></h2>
-        <h3>Your account is registered to <em class = "user_info">{{ session_user[0].email }}</em></h3>
+        <h3>You are logged in <em class = "green_text">{{ session_user[0].first_name }} {{ session_user[0].last_name }}</em></h2>
+        <h4>Your account is registered to <em class = "green_text">{{ session_user[0].email }}</em></h3>
         <br>
         <h3>Begin a thread</h3>
         <form action="/create_thread" method="post">
@@ -24,19 +24,26 @@
             <p>Content</p>
             <input type="submit" value="Submit"/>
         </form>
-        <br>
+        {% if user_threads %}
+            <br>
+            <h3>Your threads</h3>
+        {% endif %}
+        <ol>
+            {% for thread in user_threads %}
+                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em></p></li>
+            {% endfor %}
+        </ol>
+        {% if all_threads %}
+            <h3>All threads</h3>
+        {% endif %}
+        <ol>
+            {% for thread in all_threads %}
+                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ thread['user_id'] }} \ category: {{ thread['category_id'] }}</p></li>
+            {% endfor %}
+        </ol>
+
         <form class="" action="/logout" method="post">
             <input type="submit" name="submit" value="Log Out">
         </form>
-        <br>
-        {% for thread in threads %}
-            <p>{{ thread['title'] }}</p>
-            <p><em>Title</em></p>
-            <p>{{ thread['content'] }}</p>
-            <p><em>Content</em></p>
-            <p>{{thread['first_name']}} {{thread['last_name']}}</p>
-            <p><em>Author</em></p>
-            <p>{{ thread['created_at'] }}</p>
-        {% endfor %}
     </body>
 </html>

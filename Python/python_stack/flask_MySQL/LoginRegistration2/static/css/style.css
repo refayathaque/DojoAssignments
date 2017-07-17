@@ -5,6 +5,9 @@ body {
 #error {
     color: red;
 }
-.user_info {
+.green_text {
     color: green;
+}
+.blue_text {
+    color: blue;
 }
