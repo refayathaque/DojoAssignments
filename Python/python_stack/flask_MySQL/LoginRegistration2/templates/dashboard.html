@@ -59,9 +59,17 @@
                     {% endfor %}
                 \ <a href="/show/{{ thread['id'] }}">Responses</a>
                 </p></li>
-
             {% endfor %}
         </ol>
+        {% if all_threads %}
+            <div class="btn-group" role="group" aria-label="Basic example">
+                {% for category in categories %}
+                    <button type="button" class="btn btn-secondary">{{ category['name'] }}</button>
+                {% endfor %}
+            </div>
+        {% endif %}
+        <br>
+        <br>
         <form class="" action="/logout" method="post">
             <input type="submit" name="submit" value="Log Out">
         </form>
