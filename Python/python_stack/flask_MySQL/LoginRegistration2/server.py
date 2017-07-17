@@ -196,6 +196,27 @@ def create_thread():
     mysql.query_db(query, data)
     return redirect('/dashboard')
 
+@app.route('/show/<thread_id>')
+def show(thread_id):
+    query = "SELECT * FROM threads WHERE id = :thread_id"
+    data = {
+    'thread_id': thread_id
+    }
+    thread = mysql.query_db(query, data)
+    return render_template('show.html', thread = thread)
+
+@app.route('/create_response/<thread_id>')
+def create_response(thread_id):
+    query = "INSERT INTO responses (title, content, created_at, updated_at, user_id, category_id) VALUES (:title, :content, NOW(), NOW(), :user_id, :category_id)"
+    data = {
+        'title': request.form['title'],
+        'content': request.form['content'],
+        'user_id': session_user_id, # Foreign key
+        'category_id': request.form['category'] # Foreign key
+        }
+    mysql.query_db(query, data)
+    return redirect('/dashboard')
+
 ### LOGOUT ###
 
 @app.route('/logout', methods = ['POST'])

@@ -30,12 +30,13 @@
         {% endif %}
         <ol>
             {% for thread in user_threads %}
-                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ category:
+                <li><p><span class = "green_text">{{ thread['title'] }}</span> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ category:
                     {% for category in categories %}
                         {% if category['id'] == thread['category_id']%}
                             {{ category['name'] }}
                         {% endif %}
                     {% endfor %}
+                \ <a href="/show/{{ thread['id'] }}">Responses</a>
                 </p></li>
             {% endfor %}
         </ol>
@@ -44,7 +45,7 @@
         {% endif %}
         <ol>
             {% for thread in all_threads %}
-                <li><p><em class = "green_text">{{ thread['title'] }}</em> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by:
+                <li><p><span class = "green_text">{{ thread['title'] }}</span> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by:
                     {% for user in all_users %}
                         {% if user['id'] == thread['user_id']%}
                             {{ user['first_name'] }} {{ user['last_name'] }}
@@ -56,6 +57,7 @@
                             {{ category['name'] }}
                         {% endif %}
                     {% endfor %}
+                \ <a href="/show/{{ thread['id'] }}">Responses</a>
                 </p></li>
 
             {% endfor %}

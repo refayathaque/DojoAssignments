@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="../static/css/style.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+    <body>
+        {% for thread in thread %}
+            <h3>{{ thread.title }}</h3>
+            <p>{{ thread.content }}</p>
+        {% endfor %}
+        <form class="" action="/create_response/{{ thread.id }}" method="post">
+            <textarea name="content" cols="70" rows="5"></textarea>
+            <p>Response</p>
+            <input type="submit" name="submit" value="Submit">
+        </form>
+        <br>
+        <form class="" action="/dashboard">
+            <input type="submit" name="submit" value="Return">
+        </form>
+    </body>
+</html>
