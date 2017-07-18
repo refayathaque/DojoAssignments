@@ -179,22 +179,45 @@ def dashboard():
 
 @app.route('/create_thread', methods = ['POST'])
 def create_thread():
-    query = "SELECT id FROM users WHERE id = :id"
-    data = {
-    'id': session['user_id']
-    }
-    session_user_id = mysql.query_db(query, data)[0]['id']
-    # (IMPORTANT) 'INSERT' will ONLY take in user_id in the form after being pulled out of db with the session['user_id'], not sure why
+    validated_title = ""
+    validated_content = ""
+    counter = 0
 
-    query = "INSERT INTO threads (title, content, created_at, updated_at, user_id, category_id) VALUES (:title, :content, NOW(), NOW(), :user_id, :category_id)"
-    data = {
-        'title': request.form['title'],
-        'content': request.form['content'],
-        'user_id': session_user_id, # Foreign key
-        'category_id': request.form['category'] # Foreign key
+    # Title validation
+    if len(request.form['title']) < 3:
+        flash("Title must be longer than 2 characters")
+    elif len(request.form['title']) > 60:
+        flash("Title cannot be longer than 60 characters")
+    else:
+        validated_title = request.form['title']
+        counter+=1
+
+    # Content validation
+    if len(request.form['content']) < 120:
+        flash("Content must be longer than 120 characters")
+    else:
+        validated_content = request.form['content']
+        counter+=1
+
+    if counter == 2:
+        query = "SELECT id FROM users WHERE id = :id"
+        data = {
+            'id': session['user_id']
         }
-    mysql.query_db(query, data)
-    return redirect('/dashboard')
+        session_user_id = mysql.query_db(query, data)[0]['id']
+        # (IMPORTANT) 'INSERT' will ONLY take in user_id in the form after being pulled out of db with the session['user_id'], not sure why
+
+        query = "INSERT INTO threads (title, content, created_at, updated_at, user_id, category_id) VALUES (:title, :content, NOW(), NOW(), :user_id, :category_id)"
+        data = {
+            'title': validated_title,
+            'content': validated_content,
+            'user_id': session_user_id, # Foreign key
+            'category_id': request.form['category'] # Foreign key
+        }
+        mysql.query_db(query, data)
+        return redirect('/dashboard')
+    else:
+        return redirect('/dashboard')
 
 @app.route('/show/<thread_id>')
 def show(thread_id):
@@ -220,21 +243,54 @@ def show(thread_id):
 
 @app.route('/create_response/<thread_id>', methods = ['POST'])
 def create_response(thread_id):
-    query = "SELECT id FROM users WHERE id = :id"
-    data = {
-    'id': session['user_id']
-    }
-    session_user_id = mysql.query_db(query, data)[0]['id']
-    # (IMPORTANT) 'INSERT' will ONLY take in user_id in the form after being pulled out of db with the session['user_id'], not sure why
+    validated_response = ""
+    counter = 0
 
-    query = "INSERT INTO responses (content, created_at, updated_at, thread_id, user_id) VALUES (:content, NOW(), NOW(), :thread_id, :user_id)"
-    data = {
-        'content': request.form['content'],
-        'thread_id': thread_id, # Foreign key
-        'user_id': session_user_id # Foreign key
+    # Response validation
+    if len(request.form['content']) < 30:
+        flash("Response must be longer than 30 characters")
+    else:
+        validated_response = request.form['content']
+        counter+=1
+
+    if counter == 1:
+        query = "SELECT id FROM users WHERE id = :id"
+        data = {
+            'id': session['user_id']
         }
-    mysql.query_db(query, data)
-    return redirect('/show/' + thread_id)
+        session_user_id = mysql.query_db(query, data)[0]['id']
+        # (IMPORTANT) 'INSERT' will ONLY take in user_id in the form after being pulled out of db with the session['user_id'], not sure why
+
+        query = "INSERT INTO responses (content, created_at, updated_at, thread_id, user_id) VALUES (:content, NOW(), NOW(), :thread_id, :user_id)"
+        data = {
+            'content': request.form['content'],
+            'thread_id': thread_id, # Foreign key
+            'user_id': session_user_id # Foreign key
+        }
+        mysql.query_db(query, data)
+        return redirect('/show/' + thread_id)
+    else:
+        return redirect('/show/' + thread_id)
+
+### CATEGORY ###
+
+@app.route('/show_category/<category_id>')
+def show_category(category_id):
+    # Threads in category
+    query = "SELECT threads.id, threads.title, threads.content, threads.created_at, users.first_name, users.last_name FROM threads JOIN users ON threads.user_id = users.id WHERE category_id = :category_id ORDER BY threads.id DESC"
+    data = {
+        'category_id': category_id
+    }
+    category_threads = mysql.query_db(query, data)
+
+    # Category name
+    query = "SELECT name FROM categories WHERE id = :category_id"
+    data = {
+        'category_id': category_id
+    }
+    category_name = mysql.query_db(query, data)[0]['name']
+
+    return render_template('category.html', category_threads = category_threads, category_name = category_name)
 
 ### LOGOUT ###
 

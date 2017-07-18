@@ -20,6 +20,13 @@
             <p>Choose topic</p>
             <input type="text" name="title" value="">
             <p>Title</p>
+            {% with messages = get_flashed_messages() %}
+                {% if messages %}
+                    {% for message in messages %}
+                    <h3 id = 'error'>{{ message }}</h3>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
             <textarea name="content" cols="70" rows="5"></textarea>
             <p>Content</p>
             <input type="submit" value="Submit"/>
@@ -30,7 +37,7 @@
         {% endif %}
         <ol>
             {% for thread in user_threads %}
-                <li><p><span class = "green_text">{{ thread['title'] }}</span> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ category:
+                <li><p><span class="green_text">{{ thread['title'] }}</span> \ {{ thread['content'] }} \ <em class = "blue_text">{{ thread['created_at'].strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ category:
                     {% for category in categories %}
                         {% if category['id'] == thread['category_id']%}
                             <strong>{{ category['name'] }}</strong>
@@ -40,6 +47,16 @@
                 </p></li>
             {% endfor %}
         </ol>
+
+        {% if all_threads %}
+            <h3>Select category to see specific threads</h3>
+            <div class="btn-group" role="group" aria-label="Basic example">
+                {% for category in categories %}
+                    <button onclick="window.location.href='/show_category/{{ category['id'] }}'" type="button" class="btn btn-secondary">{{ category['name'] }}</button>
+                {% endfor %}
+            </div>
+        {% endif %}
+
         {% if all_threads %}
             <h3>All threads</h3>
         {% endif %}
@@ -61,13 +78,6 @@
                 </p></li>
             {% endfor %}
         </ol>
-        {% if all_threads %}
-            <div class="btn-group" role="group" aria-label="Basic example">
-                {% for category in categories %}
-                    <button type="button" class="btn btn-secondary">{{ category['name'] }}</button>
-                {% endfor %}
-            </div>
-        {% endif %}
         <br>
         <br>
         <form class="" action="/logout" method="post">

@@ -16,6 +16,13 @@
             {% endfor %}
             <p class="green_text"><em>{{ thread.content }}</em></p>
             <form class="" action="/create_response/{{ thread.id }}" method="post">
+                {% with messages = get_flashed_messages() %}
+                    {% if messages %}
+                        {% for message in messages %}
+                        <h3 id = 'error'>{{ message }}</h3>
+                        {% endfor %}
+                    {% endif %}
+                {% endwith %}
                 <textarea name="content" cols="70" rows="5"></textarea>
                 <p>Response</p>
                 <input type="submit" name="submit" value="Submit">
@@ -36,8 +43,9 @@
             </ol>
         {% endif %}
         {% endfor %}
+        <br>
         <form class="" action="/dashboard">
-            <input type="submit" name="submit" value="Return">
+            <input type="submit" name="submit" value="Return to Dashboard">
         </form>
     </body>
 </html>

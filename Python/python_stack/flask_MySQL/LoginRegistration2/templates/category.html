@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Dashboard</title>
+        <link rel="stylesheet" href="../static/css/style.css"/>
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+    </head>
+    <body>
+    <h3>Threads on '{{ category_name }}'</h3>
+    <ol>
+        {% for thread in category_threads %}
+            <li><p><span class="green_text">{{ thread.title }}</span> \ {{ thread.content }} \ <em class="blue_text">{{ thread.created_at.strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ thread.first_name }} {{ thread.last_name }}</p></li>
+        {% endfor %}
+    </ol>
+    </body>
+</html>
