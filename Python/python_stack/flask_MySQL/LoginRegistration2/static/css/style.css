@@ -1,6 +1,7 @@
 body {
     padding: 20px;
     width: 1200px;
+    background-image: url("../images/background.png")
 }
 #error {
     color: red;

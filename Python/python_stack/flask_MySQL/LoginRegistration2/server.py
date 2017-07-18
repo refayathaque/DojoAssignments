@@ -51,9 +51,12 @@ def create():
 
     # Name validations
     if name_regex.match(request.form['first_name']) and name_regex.match(request.form['last_name']):
-        validated_first_name = request.form['first_name']
-        validated_last_name = request.form['last_name']
-        counter+=1
+        if len(request.form['first_name']) > 1 and len(request.form['last_name']) > 1:
+            validated_first_name = request.form['first_name']
+            validated_last_name = request.form['last_name']
+            counter+=1
+        else:
+            flash("Name invalid")
     elif not name_regex.match(request.form['first_name']) or name_regex.match(request.form['first_name']):
         flash("Name invalid")
     else:
@@ -289,6 +292,8 @@ def show_category(category_id):
         'category_id': category_id
     }
     category_name = mysql.query_db(query, data)[0]['name']
+
+    # Comments in Threads
 
     return render_template('category.html', category_threads = category_threads, category_name = category_name)
 

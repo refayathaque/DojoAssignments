@@ -8,10 +8,22 @@
     </head>
     <body>
     <h3>Threads on '{{ category_name }}'</h3>
-    <ol>
-        {% for thread in category_threads %}
-            <li><p><span class="green_text">{{ thread.title }}</span> \ {{ thread.content }} \ <em class="blue_text">{{ thread.created_at.strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ thread.first_name }} {{ thread.last_name }}</p></li>
-        {% endfor %}
-    </ol>
+    {% if category_threads %}
+        <ol>
+            {% for thread in category_threads %}
+                <li><p><span class="green_text">{{ thread.title }}</span> \ {{ thread.content }} \ <em class="blue_text">{{ thread.created_at.strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ thread.first_name }} {{ thread.last_name }}</p></li>
+            {% endfor %}
+        </ol>
+    {% else %}
+        <h4><em>***No threads on {{ category_name }}</em></h4>
+    {% endif %}
+    <br>
+    <form class="" action="/dashboard">
+        <input type="submit" name="submit" value="Return to Dashboard">
+    </form>
+    <br>
+    <form class="" action="/logout" method="post">
+        <input type="submit" name="submit" value="Log Out">
+    </form>
     </body>
 </html>
