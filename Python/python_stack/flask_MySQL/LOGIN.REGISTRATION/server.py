@@ -13,6 +13,63 @@ mysql = MySQLConnector(app,'login_registration')
 
 # print md5.new('password').hexdigest() # 5f4dcc3b5aa765d61d8327deb882cf99
 
+## WILL'S MODULAR FLASK GUIDE ## START
+
+class LoginRegistration(objects):
+    def create(self, first_name, last_name, email, password):
+		pass
+	def getAll(self):
+		pass
+	def getOne(self, id):
+		pass
+	def update(self, id, first_name, last_name, email, password):
+		pass
+	def delete(self, id):
+		pass
+
+User = UserModel()
+
+def create(self, name, email):
+	errors = []
+
+	if len(first_name) < 1:
+		errors.append('Name is required')
+	elif len(first_name < 3):
+		errors.append('Name must be 3 characters or more')
+
+    if len(last_name) < 1:
+		errors.append('Name is required')
+	elif len(last_name < 3):
+		errors.append('Name must be 3 characters or more')
+
+	if len(email) < 1:
+		errors.append('Email is required')
+	elif not EMAIL_REGEX.match(email):
+		errors.append('Not a valid email')
+
+	if len(errors) > 0:
+		return False, errors
+	else:
+		query = 'INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)'
+		data = {
+            'first_name': first_name,
+            'last_name': last_name,
+            'email': email,
+            'password': password
+        }
+		return True, mysql.query_db(query, data)
+
+@app.route('/new', methods=['POST'])
+def new():
+	new_user = User.create(request.form['first_name'], request.form['last_name'], request.form['email'], request.form['password'])
+
+	if new_user[0]:
+		# do something
+	else:
+		flash(errors)
+
+## WILL'S MODULAR FLASK GUIDE ## END
+
 @app.route('/')
 def index():
     return render_template('index.html')
