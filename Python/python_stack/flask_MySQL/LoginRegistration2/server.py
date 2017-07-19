@@ -293,9 +293,11 @@ def show_category(category_id):
     }
     category_name = mysql.query_db(query, data)[0]['name']
 
-    # Comments in Threads
+    # Responses in threads
+    query = "SELECT responses.content, responses.created_at, responses.thread_id, users.first_name, users.last_name FROM responses JOIN users ON responses.user_id = users.id"
+    all_responses = mysql.query_db(query)
 
-    return render_template('category.html', category_threads = category_threads, category_name = category_name)
+    return render_template('category.html', category_threads = category_threads, category_name = category_name, all_responses = all_responses)
 
 ### LOGOUT ###
 

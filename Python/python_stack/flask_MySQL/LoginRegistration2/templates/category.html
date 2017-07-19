@@ -12,6 +12,13 @@
         <ol>
             {% for thread in category_threads %}
                 <li><p><span class="green_text">{{ thread.title }}</span> \ {{ thread.content }} \ <em class="blue_text">{{ thread.created_at.strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ thread.first_name }} {{ thread.last_name }}</p></li>
+                    <ol>
+                        {% for response in all_responses %}
+                            {% if response.thread_id == thread.id %}
+                                <li><p><span class="green_text">{{ response.content }}</span> \ <em class="blue_text">{{ response.created_at.strftime('%a, %d %b %Y, %-I:%M %p') }}</em> \ by: {{ response.first_name }} {{ response.last_name }}</p></li>
+                            {% endif %}
+                        {% endfor %}
+                    </ol>
             {% endfor %}
         </ol>
     {% else %}
