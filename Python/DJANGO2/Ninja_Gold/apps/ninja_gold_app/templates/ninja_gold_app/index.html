@@ -43,10 +43,14 @@
         </fieldset>
         <fieldset>
             <h2>Your Gold:</h2>
+            <p>{{ request.session.gold }}</p>
         </fieldset>
         <fieldset>
             <h2>Activities</h2>
-            <p>Activities will go here</p>
+            {% for i in request.session.activities %}
+                <p>{{ i.dt }} \\\ At {{ i.place }} you {{ i.verb }} {{ i.gold }} gold!</p>
+            {% endfor %}
         </fieldset>
+        <a href="/clear">Clear</a>
     </body>
 </html>
