@@ -20,7 +20,8 @@ def process_money(request):
             'gold' : rand,
             'place' : 'farm',
             'dt' : dt,
-            'verb' : 'earned'
+            'verb' : 'earned',
+            'font_color' : 'green'
         }
         request.session['activities'].append(act_data)
         request.session['gold'] += rand
@@ -30,7 +31,8 @@ def process_money(request):
             'gold' : rand,
             'place' : 'cave',
             'dt' : dt,
-            'verb' : 'earned'
+            'verb' : 'earned',
+            'font_color' : 'green'
         }
         request.session['activities'].append(act_data)
         request.session['gold'] += rand
@@ -40,7 +42,8 @@ def process_money(request):
             'gold' : rand,
             'place' : 'house',
             'dt' : dt,
-            'verb' : 'earned'
+            'verb' : 'earned',
+            'font_color' : 'green'
         }
         request.session['activities'].append(act_data)
         request.session['gold'] += rand
@@ -52,7 +55,8 @@ def process_money(request):
                 'gold' : rand,
                 'place' : 'casino',
                 'dt' : dt,
-                'verb' : 'earned'
+                'verb' : 'earned',
+                'font_color' : 'green'
             }
             request.session['activities'].append(act_data)
             request.session['gold'] += rand
@@ -61,7 +65,8 @@ def process_money(request):
                 'gold' : rand,
                 'place' : 'casino',
                 'dt' : dt,
-                'verb' : 'lost'
+                'verb' : 'lost',
+                'font_color' : 'red'
             }
             request.session['activities'].append(act_data)
             request.session['gold'] -= rand

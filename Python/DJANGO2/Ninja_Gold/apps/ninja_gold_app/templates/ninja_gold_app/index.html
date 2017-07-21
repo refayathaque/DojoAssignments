@@ -48,7 +48,7 @@
         <fieldset>
             <h2>Activities</h2>
             {% for i in request.session.activities %}
-                <p>{{ i.dt }} \\\ At {{ i.place }} you {{ i.verb }} {{ i.gold }} gold!</p>
+                <p style='color: {{ i.font_color }};'>{{ i.dt }} \\\ At {{ i.place }} you {{ i.verb }} {{ i.gold }} gold!</p>
             {% endfor %}
         </fieldset>
         <a href="/clear">Clear</a>
