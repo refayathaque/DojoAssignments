@@ -28,7 +28,10 @@ class UserManager(models.Manager):
         if not email_regex.match(postData['email']) and len(postData['email']) > 0:
             errors.append("email must be valid")
         if email_regex.match(postData['email']):
-            counter += 1
+            if User.objects.filter(email = postData['email']): # returns list with objects inside so is 'truthy'
+                errors.append("email already registered")
+            else:
+                counter += 1
         # Password check
         if len(postData['password']) < 1:
             errors.append("password cannot be blank")
@@ -49,6 +52,35 @@ class UserManager(models.Manager):
         else:
             return (False, errors)
 
+    def login_validation(self, postData):
+        counter = 0
+        errors = []
+        # Email check
+        if len(postData['email']) < 1:
+            errors.append("email cannot be blank")
+        if not email_regex.match(postData['email']) and len(postData['email']) > 0:
+            errors.append("email must be valid")
+        if email_regex.match(postData['email']):
+            if User.objects.filter(email = postData['email']): # returns list with objects inside so is 'truthy'
+                counter += 1
+            else:
+                errors.append("email not registered")
+        # Password check
+        if len(postData['password']) < 1:
+            errors.append("password cannot be blank")
+        if not password_regex.match(postData['password']) and len(postData['password']) > 0:
+            errors.append("password doesn't meet requirements")
+        if password_regex.match(postData['password']) and User.objects.filter(email = postData['email']):
+            if bcrypt.checkpw(postData['password'].encode(), User.objects.get(email = postData['email']).password.encode()): # ORM METHOD to GET OTHER FIELD values IN ROW using value of ONE FIELD
+                counter += 1
+            else:
+                errors.append("password incorrect")
+        # Final check
+        if counter == 2:
+            return (True, postData['email'])
+        else:
+            return (False, errors)
+
 class User(models.Model):
     username = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
@@ -57,4 +89,4 @@ class User(models.Model):
     updated_at = models.DateTimeField(auto_now = True)
     objects = UserManager()
     def __repr__(self):
-        return "*** User Information : {} {} {} {}".format(self.id, self.username, self.email, self.password)
+        return "*** User - ID: {} USERNAME: {} EMAIL: {} PASSWORD: {}".format(self.id, self.username, self.email, self.password)
