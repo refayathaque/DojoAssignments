@@ -11,7 +11,7 @@
     <body>
         <h1>Welcome to Messages</h1>
         <h2>Login</h2>
-        <form class="" action="/login" method="post">
+        <form class="" action="{% url 'log_reg:login_processing' %}" method="post">
             {% csrf_token %}
             <input type="text" name="email" value="">
             <p>Email</p>
@@ -26,15 +26,14 @@
             {% endfor %}
         {% endif %}
         <h2>Register</h2>
-        <form class="" action="/registration" method="post">
+        <form class="" action="{% url 'log_reg:registration_processing' %}" method="post">
             {% csrf_token %}
             <input type="text" name="username" value="">
             <p>Username</p>
             <input type="text" name="email" value="">
             <p>Email</p>
             <input type="password" name="password" value="">
-            <p><em>must be at least 8 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit</em></p>
-            <p>Password</p>
+            <p>Password \ <em>must be at least 8 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit</em></p>
             <input type="password" name="c_password" value="">
             <p>Confirm Password</p>
             <input type="submit" name="submit" value="Register">
