@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Messages Login Registration</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'log_reg_app/css/style.css' %}" media="screen" title="no title"  charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+    </head>
+    <body>
+        <h1>Welcome to Messages</h1>
+        <h2>Login</h2>
+        <form class="" action="/login" method="post">
+            {% csrf_token %}
+            <input type="text" name="email" value="">
+            <p>Email</p>
+            <input type="text" name="password" value="">
+            <p>Password</p>
+            <input type="submit" name="submit" value="Login">
+        </form>
+        <br>
+        <h2>Register</h2>
+        <form class="" action="/registration" method="post">
+            {% csrf_token %}
+            <input type="text" name="username" value="">
+            <p>Username</p>
+            <input type="text" name="email" value="">
+            <p>Email</p>
+            <input type="password" name="password" value="">
+            <p><em>Must be at least 8 characters, no more than 15 characters, and must include at least one upper case letter, one lower case letter, and one numeric digit</em></p>
+            <p>Password</p>
+            <input type="password" name="c_password" value="">
+            <p>Confirm Password</p>
+            <input type="submit" name="submit" value="Register">
+        </form>
+    </body>
+</html>
