@@ -32,7 +32,7 @@ class UserManager(models.Manager):
         # Password check
         if len(postData['password']) < 1:
             errors.append("password cannot be blank")
-        if len(postData['c_password']):
+        if len(postData['c_password']) < 1 and len(postData['password']) > 0:
             errors.append("must confirm password")
         if postData['password'] == postData['c_password']:
             if not password_regex.match(postData['password']) and len(postData['password']) > 0:
@@ -40,7 +40,7 @@ class UserManager(models.Manager):
             else:
                 counter +=1
                 hashed_password = bcrypt.hashpw(postData['password'].encode(), bcrypt.gensalt())
-        if postData['password'] != postData['c_password']:
+        if postData['password'] != postData['c_password'] and len(postData['c_password']) > 0 and len(postData['password']) > 0:
             errors.append("passwords don't match")
         # Final check
         if counter == 3:
