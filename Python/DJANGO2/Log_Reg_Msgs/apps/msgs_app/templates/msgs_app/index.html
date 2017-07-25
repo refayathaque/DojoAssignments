@@ -9,6 +9,13 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
     </head>
     <body>
+    <div id="container">
         <h1>Messages Dashboard</h1>
+        <h3>Welcome {{ session_username }}, you are logged in</h3>
+        <form class="" action="{% url 'msgs:log_out' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning">Log Out</button>
+        </form>
     </body>
+    </div>
 </html>
