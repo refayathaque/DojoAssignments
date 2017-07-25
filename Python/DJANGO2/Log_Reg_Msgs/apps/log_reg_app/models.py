@@ -85,8 +85,8 @@ class User(models.Model):
     username = models.CharField(max_length=255)
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
-    created_at = models.DateTimeField(auto_now_add = True)
-    updated_at = models.DateTimeField(auto_now = True)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
     def __repr__(self):
         return "*** User - ID: {} USERNAME: {} EMAIL: {} PASSWORD: {}".format(self.id, self.username, self.email, self.password)
