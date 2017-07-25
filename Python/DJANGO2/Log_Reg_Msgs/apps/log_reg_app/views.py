@@ -14,7 +14,7 @@ def registration(request):
     else:
         for error in validation_tuple[1]:
             messages.error(request, error)
-    return redirect(reverse('log_reg:index'))
+    return redirect(reverse('msgs:index'))
 
 def login(request):
     validation_tuple = User.objects.login_validation(request.POST)
@@ -24,4 +24,4 @@ def login(request):
     else:
         for error in validation_tuple[1]:
             messages.error(request, error)
-    return redirect(reverse('log_reg:index'))
+    return redirect(reverse('msgs:index'))

@@ -2,7 +2,7 @@ from django.conf.urls import url
 from . import views
 
 urlpatterns = [
-    url(r'^msgs/$', views.index)
+    url(r'^$', views.index, name='index')
     # url(r'^new/$', views.new),
     # url(r'^create/$', views.create),
     # url(r'^(?P<number>\d+)/$', views.show),
