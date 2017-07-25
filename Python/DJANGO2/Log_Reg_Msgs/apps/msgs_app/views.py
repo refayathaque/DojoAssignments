@@ -13,3 +13,6 @@ def log_out(request):
     del request.session['user_id']
     print '*** IN SESSION? ', 'user_id' in request.session
     return redirect(reverse('log_reg:index'))
+
+def create(request):
+    return redirect('msgs:index')

@@ -12,6 +12,21 @@
     <div id="container">
         <h1>Messages Dashboard</h1>
         <h3>Welcome {{ session_username }}, you are logged in</h3>
+        <h2><em>New Message</em></h2>
+        <form class="" action="{% url 'msgs:send_message' %}" method="post">
+        {% csrf_token %}
+        <textarea name="message" rows="4" cols="80"></textarea>
+        <p>Your message</p>
+        <select class="" name="users_minus_self">
+            {% for user in users_minus_self %}
+                <option value="{{ user.id }}">{{ user.username }}</option>
+            {% endfor %}
+        </select>
+        <br>
+        <br>
+        <button type="submit" name="submit" class="btn btn-success">Send Message</button>
+        </form>
+        <br>
         <form class="" action="{% url 'msgs:log_out' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning">Log Out</button>
