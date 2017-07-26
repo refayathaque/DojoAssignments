@@ -5,7 +5,8 @@ from django.core.urlresolvers import reverse
 
 def index(request):
     context = {
-        'session_username' : User.objects.get(id = request.session['user_id']).username
+        'session_username' : User.objects.get(id = request.session['user_id']).username,
+        'users_minus_self' : User.objects.exclude(id = request.session['user_id'])
     }
     return render(request, 'msgs_app/index.html', context)
 
