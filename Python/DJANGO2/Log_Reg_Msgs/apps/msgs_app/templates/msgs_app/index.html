@@ -28,6 +28,11 @@
         <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-envelope" aria-hidden="true"></i> Send Message</button>
         </form>
         <br>
+        {% if messages %}
+            {% for message in messages %}
+                <h4 id='error_message'>{{ message }}</h4>
+            {% endfor %}
+        {% endif %}
         <br>
         <form class="" action="{% url 'msgs:log_out' %}" method="post">
             {% csrf_token %}

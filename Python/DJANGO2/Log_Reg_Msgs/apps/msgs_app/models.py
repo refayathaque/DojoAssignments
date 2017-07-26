@@ -6,7 +6,12 @@ from ..log_reg_app.models import User
 class MessageManager(models.Manager):
     # def message_validation(self, postData):
     def send(self, message, user_from, user_to):
-        return True
+        print 'MESSAGE: ', message, 'FROM USER_ID: ', user_from, 'TO USER_ID: ', user_to
+        if len(message) < 1:
+            return False, ['message cannot be blank'] # Tuple
+        else:
+            message = Message.messageManager.create(message = message, user_from_id = user_from, user_to_id = user_to)
+            return True, message # Tuple
 
 class Message(models.Model):
     message = models.TextField(max_length=1000)
@@ -17,6 +22,7 @@ class Message(models.Model):
     # objects = MessageManager()
     messageManager = MessageManager()
     def __repr__(self):
-        return "*** Message - ID: {} MESSAGE: {} FROM: {} TO: {}".format(self.id, self.message, self.user_from, self.user_to)
+        return "*** Message - ID: {} MESSAGE: {} FROM: {} TO: {}".format(self.id, self.message, self.user_from.username, self.user_to.username)
+        # ^ 'self.user_from.username' works because of FK
 
 # Related name userful for REVERSE LOOK UP

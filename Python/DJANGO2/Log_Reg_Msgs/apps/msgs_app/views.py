@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import User
+from .models import User, Message
 from django.contrib import messages
 from django.core.urlresolvers import reverse
 
@@ -16,4 +16,9 @@ def log_out(request):
     return redirect(reverse('log_reg:index'))
 
 def create(request):
+    validation_tuple = Message.messageManager.send(request.POST['message'], request.session['user_id'], request.POST['users_minus_self'])
+    print validation_tuple
+    if validation_tuple[0] == False:
+        for error in validation_tuple[1]:
+            messages.error(request, error)
     return redirect('msgs:index')
