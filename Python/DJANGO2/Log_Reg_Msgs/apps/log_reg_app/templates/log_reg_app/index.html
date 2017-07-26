@@ -13,6 +13,9 @@
     <div id="container">
         <h1>Welcome to Messages</h1>
         <br>
+        <div class="container">
+        <div class="row">
+        <div class="col-sm-6">
         <h2>Login</h2>
         <form class="" action="{% url 'log_reg:login_processing' %}" method="post">
             {% csrf_token %}
@@ -25,10 +28,13 @@
         <br>
         {% if messages %}
             {% for message in messages %}
-                <h3 id='error_message'>{{ message }}</h3>
+                <h4 id='error_message'>{{ message }}</h4>
             {% endfor %}
         {% endif %}
         <br>
+        <img src="{% static 'log_reg_app/images/RTDLogo.png' %}" class="img-fluid" alt="Responsive image">
+        </div>
+        <div class="col-sm-6">
         <h2>Register</h2>
         <form class="" action="{% url 'log_reg:registration_processing' %}" method="post">
             {% csrf_token %}
@@ -43,6 +49,9 @@
             <p>Confirm Password</p>
             <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-user-plus" aria-hidden="true"></i> Register</button>
         </form>
+        </div>
+        </div>
+        </div>
         </div>
         <hr id="page_bottom_line">
         <p style="text-align:center; margin-bottom:3px; margin-top:30px;">Designed and Developed by <a href="https://refayathaque.github.io/" target="_blank">Refayat Haque</a></p>

@@ -75,6 +75,7 @@ class UserManager(models.Manager):
                 counter += 1
             else:
                 errors.append("password incorrect")
+                print '*** WRONG PASSWORD'
         # Final check
         if counter == 2:
             return (True, postData['email'])
