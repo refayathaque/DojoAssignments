@@ -12,6 +12,9 @@ body {
     padding-right: 30px;
     border-radius: 5px;
 }
+#title {
+    text-align: center;
+}
 #error_message {
     color: #FFA500;
 }

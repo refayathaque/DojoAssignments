@@ -2,7 +2,7 @@
 <html>
     <head>
         <meta charset="utf-8">
-        <title>Messages Login Registration</title>
+        <title>RTD Messaging</title>
         {% load static %}
         <link rel="stylesheet" href="{% static 'log_reg_app/css/style.css' %}" media="screen" title="no title" charset="utf-8">
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
@@ -11,7 +11,7 @@
     </head>
     <body>
     <div id="container">
-        <h1>Welcome to Messages</h1>
+        <h1 id="title">RTD Bangladesh Messaging Application</h1>
         <br>
         <div class="container">
         <div class="row">
@@ -40,6 +40,8 @@
             {% csrf_token %}
             <input type="text" name="username" value="">
             <p>Username</p>
+            <input type="date" name="date_of_birth" value="">
+            <p>Date of Birth</p>
             <input type="text" name="email" value="">
             <p>Email</p>
             <input type="password" name="password" value="">
