@@ -2,6 +2,7 @@ from __future__ import unicode_literals
 from django.db import models
 import bcrypt
 import re # Regex
+from datetime import datetime # For date of birth check
 
 email_regex = re.compile(r'^[a-zA-Z0-9.+_-]+@[a-zA-Z0-9._-]+\.[a-zA-Z]+$')
 name_regex = re.compile(r'^[a-zA-Z]+$')
@@ -15,13 +16,25 @@ class UserManager(models.Manager):
         if len(postData['username']) < 1:
             errors.append("username cannot be blank")
         if len(postData['username']) < 8 and not name_regex.match(postData['username']) and len(postData['username']) > 0:
-            errors.append("username should be more than 8 letters, and cannot have numbers or symbols")
+            errors.append("username must be more than 8 letters, and cannot have numbers or symbols")
         if len(postData['username']) < 8 and len(postData['username']) >= 1:
-            errors.append("username should be more than 8 letters")
+            errors.append("username must be more than 8 letters")
         if not name_regex.match(postData['username']) and len(postData['username']) > 0:
             errors.append("username cannot have numbers or symbols")
         if len(postData['username']) > 8 and name_regex.match(postData['username']):
             counter += 1
+        # Date of birth check (python format: 2003-02-25)
+        if len(postData['date_of_birth']) < 1:
+            errors.append("date of birth cannot be blank")
+        else:
+            dob = postData['date_of_birth']
+            dob_converted = datetime.strptime(dob, '%Y-%m-%d')
+            age = '%d' % ((datetime.today() - dob_converted).days/365)
+            age_converted_to_int = int(age)
+            if age_converted_to_int >= 18:
+                counter +=1
+            else:
+                errors.append("must be over 18 to register")
         # Email check
         if len(postData['email']) < 1:
             errors.append("email cannot be blank")
@@ -46,8 +59,8 @@ class UserManager(models.Manager):
         if postData['password'] != postData['c_password'] and len(postData['c_password']) > 0 and len(postData['password']) > 0:
             errors.append("passwords don't match")
         # Final check
-        if counter == 3:
-            User.objects.create(username = postData['username'], email = postData['email'], password = hashed_password)
+        if counter == 4:
+            User.objects.create(username = postData['username'], date_of_birth = postData['date_of_birth'], email = postData['email'], password = hashed_password)
             return (True, postData['email'])
         else:
             return (False, errors)
@@ -84,10 +97,12 @@ class UserManager(models.Manager):
 
 class User(models.Model):
     username = models.CharField(max_length=255)
+    date_of_birth = models.DateTimeField(null=True)
+    # ^ set null to 'True' if getting 'non-nullable' errors when migrating
     email = models.CharField(max_length=255)
     password = models.CharField(max_length=255)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     objects = UserManager()
     def __repr__(self):
-        return "*** User - ID: {} USERNAME: {} EMAIL: {} PASSWORD: {}".format(self.id, self.username, self.email, self.password)
+        return "*** User - ID: {} USERNAME: {} DATE_OF_BIRTH: {} EMAIL: {} PASSWORD: {}".format(self.id, self.username, self.date_of_birth, self.email, self.password)

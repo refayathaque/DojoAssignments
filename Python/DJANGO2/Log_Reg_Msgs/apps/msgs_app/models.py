@@ -15,8 +15,8 @@ class MessageManager(models.Manager):
 
 class Message(models.Model):
     message = models.TextField(max_length=1000)
-    user_from = models.ForeignKey(User, related_name="from_user")
-    user_to = models.ForeignKey(User, related_name="to_user")
+    user_from = models.ForeignKey(User, related_name="from_user") # 'related_name' used to get from USER table to MESSAGE table, used in template's for loop getting 'SENT' messages
+    user_to = models.ForeignKey(User, related_name="to_user") # 'related_name' used to get from USER table to MESSAGE table, used in template's for loop getting 'RECEIVED' messages
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     # objects = MessageManager()

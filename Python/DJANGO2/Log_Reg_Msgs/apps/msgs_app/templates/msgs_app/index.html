@@ -12,8 +12,42 @@
     <body>
     <div id="container">
         <h1>Messages Dashboard</h1>
-        <h3>Welcome {{ session_username }}, you are logged in</h3>
+        <h3>Welcome {{ session_user.username }}, you are logged in</h3>
         <br>
+        {% if session_user.to_user.all %}
+        <h2>Received Messages</h2>
+        <table>
+            <tr>
+                <th>Sent from:</th>
+                <th>Message:</th>
+                <th>Sent on:</th>
+            </tr>
+            {% for message in session_user.to_user.all %}
+            <tr>
+                <td>{{ message.user_from.username }}</td>
+                <td>{{ message.message }}</td>
+                <td>{{ message.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
+        {% if session_user.from_user.all %}
+        <h2>Sent Messages</h2>
+        <table>
+            <tr>
+                <th>To:</th>
+                <th>Message:</th>
+                <th>Sent on:</th>
+            </tr>
+            {% for message in session_user.from_user.all %}
+            <tr>
+                <td>{{ message.user_to.username }}</td>
+                <td>{{ message.message }}</td>
+                <td>{{ message.created_at }}</td>
+            </tr>
+            {% endfor %}
+        </table>
+        {% endif %}
         <h2><em>New Message</em></h2>
         <form class="" action="{% url 'msgs:send_message' %}" method="post">
         {% csrf_token %}
