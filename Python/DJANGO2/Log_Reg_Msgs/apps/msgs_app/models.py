@@ -25,4 +25,4 @@ class Message(models.Model):
         return "*** Message - ID: {} MESSAGE: {} FROM: {} TO: {}".format(self.id, self.message, self.user_from.username, self.user_to.username)
         # ^ 'self.user_from.username' works because of FK
 
-# Related name userful for REVERSE LOOK UP
+# Related name useful for REVERSE LOOK UP
