@@ -19,8 +19,7 @@ def index(request):
         'session_user' : User.objects.get(id = request.session['user_id']),
         # REVERSE LOOK UP implemented here with 'received' and 'sent' messages
         # 'session_username' : User.objects.get(id = request.session['user_id']).username, if we wanted JUST the username
-        'users' : users,
-        'strftime':time.strftime
+        'users' : users
     }
     return render(request, 'msgs_app/index.html', context)
 
