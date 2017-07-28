@@ -13,8 +13,23 @@
     </head>
     <body>
         <h1>Messages</h1>
-        <p>{{ id }}</p>
+        <p>{{ user_id }}</p>
         <p>{{ conversation }}</p>
+        {% for i in conversation %}
+            {% if i.user_from.id == request.session.user_id %}
+                <p><em>You said: </em>{{ i.message }} - {{ i.created_at | date:'f A, D j N o'}}</p>
+            {% else %}
+                <p><em>{{i.user_from.username}} said: </em>{{ i.message }} ({{ i.created_at | date:'f A, D j N o'}})</p>
+            {% endif %}
+        {% endfor %}
+
+        <form class="" action="{% url 'msgs:send_msg_in_conversation' user_id=user_id %}" method="post">
+        {% csrf_token %}
+        <textarea name="message" rows="4" cols="80"></textarea>
+        <br>
+        <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-envelope" aria-hidden="true"></i> Send Message</button>
+        </form>
+
         <form class="" action="{% url 'msgs:log_out' %}" method="post">
             {% csrf_token %}
             <button type="submit" class="btn btn-warning"><i class="fa fa-power-off" aria-hidden="true"></i> Log Out</button>

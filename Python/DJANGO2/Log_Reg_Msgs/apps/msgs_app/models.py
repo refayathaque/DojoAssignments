@@ -26,3 +26,4 @@ class Message(models.Model):
         # ^ 'self.user_from.username' works because of FK
 
 # Related name useful for REVERSE LOOK UP
+# This is an excercise on SELF JOINs on the USER

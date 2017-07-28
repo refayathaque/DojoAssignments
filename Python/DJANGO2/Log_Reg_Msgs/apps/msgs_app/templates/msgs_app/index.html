@@ -32,7 +32,7 @@
                     <td>{{ message.user_from.username }}</td>
                     <td>{{ message.message }}</td>
                     <td>{{ message.created_at | date:'f A, D j N o'}}</td>
-                    <td><a href="{% url 'msgs:show_conversation' id=message.user_from.id %}"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
+                    <td><a href="{% url 'msgs:show_conversation' user_id=message.user_from.id %}"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -58,7 +58,7 @@
                     <td>{{ message.user_to.username }}</td>
                     <td>{{ message.message }}</td>
                     <td>{{ message.created_at | date:'f A, D j N o'}}</td>
-                    <td><a href="{% url 'msgs:show_conversation' id=message.user_to.id %}"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
+                    <td><a href="{% url 'msgs:show_conversation' user_id=message.user_to.id %}"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
