@@ -16,12 +16,12 @@ class UserManager(models.Manager):
         if len(postData['username']) < 1:
             errors.append("username cannot be blank")
         if len(postData['username']) < 8 and not name_regex.match(postData['username']) and len(postData['username']) > 0:
-            errors.append("username must be more than 8 letters, and cannot have numbers or symbols")
+            errors.append("username must 8 letters or more, and cannot have numbers or symbols")
         if len(postData['username']) < 8 and len(postData['username']) >= 1:
-            errors.append("username must be more than 8 letters")
+            errors.append("username must be 8 letters or more")
         if not name_regex.match(postData['username']) and len(postData['username']) > 0:
             errors.append("username cannot have numbers or symbols")
-        if len(postData['username']) > 8 and name_regex.match(postData['username']):
+        if len(postData['username']) >= 8 and name_regex.match(postData['username']):
             counter += 1
         # Date of birth check (python format: 2003-02-25)
         if len(postData['date_of_birth']) < 1:

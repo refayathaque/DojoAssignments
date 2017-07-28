@@ -34,4 +34,6 @@ def create(request):
     if validation_tuple[0] == False:
         for error in validation_tuple[1]:
             messages.error(request, error)
-    return redirect('msgs:index')
+    return redirect(reverse('msgs:index'))
+    # else:
+    #     return redirect(reverse('msgs:index'))

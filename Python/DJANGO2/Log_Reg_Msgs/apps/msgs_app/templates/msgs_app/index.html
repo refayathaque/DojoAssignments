@@ -14,40 +14,54 @@
         <h1>Messages Dashboard</h1>
         <h3>Welcome {{ session_user.username }}, you are logged in</h3>
         <br>
+
         {% if session_user.to_user.all %}
-        <h2>Received Messages</h2>
-        <table>
-            <tr>
-                <th>Sent from:</th>
-                <th>Message:</th>
-                <th>Sent on:</th>
-            </tr>
-            {% for message in session_user.to_user.all %}
-            <tr>
-                <td>{{ message.user_from.username }}</td>
-                <td>{{ message.message }}</td>
-                <td>{{ message.created_at | date:'f A, D j N o'}}</td>
-            </tr>
-            {% endfor %}
+        <div class="table">
+        <table class="table">
+            <thead class="thead-inverse">
+                <tr>
+                    <th>From</th>
+                    <th>Message</th>
+                    <th>Time / Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in session_user.to_user.all %}
+                <tr>
+                    <td>{{ message.user_from.username }}</td>
+                    <td>{{ message.message }}</td>
+                    <td>{{ message.created_at | date:'f A, D j N o'}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
+        </div>
         {% endif %}
+
         {% if session_user.from_user.all %}
+        <div class="table">
         <h2>Sent Messages</h2>
-        <table>
-            <tr>
-                <th>To:</th>
-                <th>Message:</th>
-                <th>Sent on:</th>
-            </tr>
-            {% for message in session_user.from_user.all %}
-            <tr>
-                <td>{{ message.user_to.username }}</td>
-                <td>{{ message.message }}</td>
-                <td>{{ message.created_at | date:'f A, D j N o'}}</td>
-            </tr>
-            {% endfor %}
+        <table class="table">
+            <thead class="thead-default">
+                <tr>
+                    <th>To</th>
+                    <th>Message</th>
+                    <th>Time / Date</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for message in session_user.from_user.all %}
+                <tr>
+                    <td>{{ message.user_to.username }}</td>
+                    <td>{{ message.message }}</td>
+                    <td>{{ message.created_at | date:'f A, D j N o'}}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
         </table>
+        </div>
         {% endif %}
+
         {% if users %}
         <h2><em>New Message</em></h2>
         <form class="" action="{% url 'msgs:send_message' %}" method="post">
@@ -63,12 +77,14 @@
         <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-envelope" aria-hidden="true"></i> Send Message</button>
         </form>
         {% endif %}
+
         {% if messages %}
         <br>
             {% for message in messages %}
                 <h4 id='error_message'>{{ message }}</h4>
             {% endfor %}
         {% endif %}
+
         <br>
         <form class="" action="{% url 'msgs:log_out' %}" method="post">
             {% csrf_token %}
