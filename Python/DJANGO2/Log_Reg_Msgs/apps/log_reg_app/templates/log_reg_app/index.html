@@ -8,6 +8,21 @@
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
         <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <script type="text/javascript">
+        var dateControler = {
+            currentDate : null
+        }
+        $(document).on("change", "#date_of_birth",function(event, ui) {
+            var now = new Date();
+            var selectedDate = new Date($(this).val());
+            if(selectedDate > now) {
+                $(this).val(dateControler.currentDate)
+            } else {
+                dateControler.currentDate = $(this).val();
+            }
+        });
+        </script>
     </head>
     <body>
     <div id="container">
@@ -40,7 +55,7 @@
             {% csrf_token %}
             <input type="text" name="username" value="">
             <p>Username</p>
-            <input type="date" name="date_of_birth" value="">
+            <input id="date_of_birth" type='date' min='1899-01-01' max='2000-13-13' name='date_of_birth'></input>
             <p>Date of Birth</p>
             <input type="text" name="email" value="">
             <p>Email</p>
