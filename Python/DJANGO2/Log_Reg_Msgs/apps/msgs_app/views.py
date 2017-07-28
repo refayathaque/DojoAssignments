@@ -38,6 +38,16 @@ def create(request):
     # else:
     #     return redirect(reverse('msgs:index'))
 
-def show(request, user_id):
-    print user_id
-    return redirect(reverse('msgs:index'))
+def show(request, conversation_id):
+    print conversation_id
+    sent_messages = Message.messageManager.filter(user_from.id = request.session['user_id']).filter(user_to.id = conversation_id)
+    received_messages = Message.messageManager.filter(user_to.id = request.session['user_id']).filter(user_from.id = conversation_id)
+    conversation = [msg for msg in sent_messages] + [msg for msg in received_messages]
+    # ^ PYTHON LIST CONSTRUCTOR - taking each message out of the two list and putting them together in another list
+    conversation.sort(key = lambda x: x.created_at)
+    # Lambda is an anonymous one line function in Python, here we are sorting messages by time
+    context = {
+        'id' : conversation_id,
+        'conversation' : conversation
+    }
+    return render(request, 'msgs_app/show.html', context)

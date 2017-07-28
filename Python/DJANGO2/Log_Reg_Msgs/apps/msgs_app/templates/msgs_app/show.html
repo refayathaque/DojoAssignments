@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>Messages</title>
+        <meta charset="utf-8">
+        <title>Messages Dashboard</title>
+        {% load static %}
+        <link rel="stylesheet" href="{% static 'msgs_app/css/style.css' %}" media="screen" title="no title" charset="utf-8">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/css/bootstrap.min.css" integrity="sha384-rwoIResjU2yc3z8GV/NPeZWAv56rSmLldC3R/AZzGRnGxQQKnKkoFVhFQhNUwEyJ" crossorigin="anonymous">
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-alpha.6/js/bootstrap.min.js" integrity="sha384-vBWWzlZJ8ea9aCX4pEW3rVHjgjt7zpkNpZk+02D9phzyeVkE+jo0ieGizqPLForn" crossorigin="anonymous"></script>
+        <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    </head>
+    <body>
+        <h1>Messages</h1>
+        <p>{{ id }}</p>
+        <p>{{ conversation }}</p>
+        <form class="" action="{% url 'msgs:log_out' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn btn-warning"><i class="fa fa-power-off" aria-hidden="true"></i> Log Out</button>
+        </form>
+        </div>
+        <hr id="page_bottom_line">
+        <p style="text-align:center; margin-bottom:3px; margin-top:30px;">Designed and Developed by <a href="https://refayathaque.github.io/" target="_blank">Refayat Haque</a></p>
+        <p style="text-align:center; margin-bottom:30px; margin-top:3px;">Hosted with <i class="fa fa-heart" aria-hidden="true"></i> on <i class="fa fa-github" aria-hidden="true"></i> and <i class="fa fa-amazon" aria-hidden="true"></i>WS</p>
+    </body>
+</html>
