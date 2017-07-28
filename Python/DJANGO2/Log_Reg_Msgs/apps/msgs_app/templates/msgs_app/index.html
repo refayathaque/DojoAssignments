@@ -23,14 +23,16 @@
                     <th>From</th>
                     <th>Message</th>
                     <th>Time / Date</th>
+                    <th>View</th>
                 </tr>
             </thead>
             <tbody>
-                {% for message in session_user.to_user.all %}
+                {% for message in session_user.to_user.all reversed %}
                 <tr>
                     <td>{{ message.user_from.username }}</td>
                     <td>{{ message.message }}</td>
                     <td>{{ message.created_at | date:'f A, D j N o'}}</td>
+                    <td><a href="{% url 'msgs:show_conversation' user_id=message.user_from.id %}"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>
@@ -47,14 +49,16 @@
                     <th>To</th>
                     <th>Message</th>
                     <th>Time / Date</th>
+                    <th>View</th>
                 </tr>
             </thead>
             <tbody>
-                {% for message in session_user.from_user.all %}
+                {% for message in session_user.from_user.all reversed %}
                 <tr>
                     <td>{{ message.user_to.username }}</td>
                     <td>{{ message.message }}</td>
                     <td>{{ message.created_at | date:'f A, D j N o'}}</td>
+                    <td><a href="{% url 'msgs:show_conversation' user_id=message.user_to.id %}"><i class="fa fa-comments-o" aria-hidden="true"></i></a></td>
                 </tr>
                 {% endfor %}
             </tbody>

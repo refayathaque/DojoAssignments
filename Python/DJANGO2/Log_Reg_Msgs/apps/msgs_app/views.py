@@ -37,3 +37,7 @@ def create(request):
     return redirect(reverse('msgs:index'))
     # else:
     #     return redirect(reverse('msgs:index'))
+
+def show(request, user_id):
+    print user_id
+    return redirect(reverse('msgs:index'))
