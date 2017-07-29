@@ -24,10 +24,8 @@ body {
 .conversation {
     font-size: 150%;
     text-indent: 3em;
+    margin-left: 3em;
 }
 .table-hover tbody tr:hover td {
-    background: #F0AD4E;
-}
-#css_test {
-    color: #F0AD4E;
+    background: #FBEAD2;
 }
