@@ -58,4 +58,11 @@ def show(request, user_id):
 
 def create_msg_in_conv(request, user_id):
     print user_id
+    validation_tuple = Message.messageManager.send(request.POST['message'], request.session['user_id'], user_id)
+    print validation_tuple
+    if validation_tuple[0] == False:
+        for error in validation_tuple[1]:
+            messages.error(request, error)
     return redirect(reverse('msgs:show_conversation', kwargs={'user_id':user_id}))
+    # else:
+    #     return redirect(reverse('msgs:show_conversation', kwargs={'user_id':user_id}))
