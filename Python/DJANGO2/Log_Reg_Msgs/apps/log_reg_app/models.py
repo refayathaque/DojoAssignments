@@ -22,7 +22,10 @@ class UserManager(models.Manager):
         if not name_regex.match(postData['username']) and len(postData['username']) > 0:
             errors.append("username cannot have numbers or symbols")
         if len(postData['username']) >= 8 and name_regex.match(postData['username']):
-            counter += 1
+            if User.objects.filter(username = postData['username']): # returns list with objects inside so is 'truthy'
+                errors.append("username already registered")
+            else:
+                counter += 1
         # Date of birth check (python format: 2003-02-25)
         if len(postData['date_of_birth']) < 1:
             errors.append("date of birth cannot be blank")

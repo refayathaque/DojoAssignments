@@ -14,11 +14,12 @@
     <body>
     <div id="container">
         <h1>Messages</h1>
+        <h3>{{ session_user.username }}, you are logged in</h3>
         <br>
         {% for i in conversation %}
             {% if i.user_from.id == request.session.user_id %}
                 <div class="bg-success text-white">
-                    <p class="conversation"><em>You </em>: {{ i.message }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{ i.created_at | date:'f A, D j N o'}}</p>
+                    <p class="conversation">{{ i.message }} &nbsp &nbsp &nbsp &nbsp &nbsp &nbsp {{ i.created_at | date:'f A, D j N o'}}</p>
                 </div>
             {% else %}
                 <div class="bg-info text-white">

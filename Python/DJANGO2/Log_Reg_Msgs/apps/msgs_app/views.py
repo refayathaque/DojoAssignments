@@ -52,7 +52,8 @@ def show(request, user_id):
     # Lambda is an anonymous one line function in Python, here we are sorting messages by time
     context = {
         'user_id' : user_id,
-        'conversation' : conversation
+        'conversation' : conversation,
+        'session_user' : User.objects.get(id = request.session['user_id'])
     }
     return render(request, 'msgs_app/show.html', context)
 
