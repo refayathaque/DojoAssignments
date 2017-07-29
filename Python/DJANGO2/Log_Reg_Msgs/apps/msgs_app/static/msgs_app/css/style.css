@@ -26,5 +26,8 @@ body {
     text-indent: 3em;
 }
 .table-hover tbody tr:hover td {
-    background: aqua;
+    background: #F0AD4E;
+}
+#css_test {
+    color: #F0AD4E;
 }
