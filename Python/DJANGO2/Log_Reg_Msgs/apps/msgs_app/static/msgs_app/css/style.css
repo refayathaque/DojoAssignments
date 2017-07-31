@@ -24,7 +24,8 @@ body {
 .conversation {
     font-size: 150%;
     text-indent: 3em;
-    margin-left: 3em;
+    margin-left: 1em;
+    margin-right: 1em;
 }
 .table-hover tbody tr:hover td {
     background: #FBEAD2;
