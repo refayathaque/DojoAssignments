@@ -38,7 +38,6 @@
         </table>
         </div>
         {% endif %}
-
         {% if session_user.from_user.all %}
         <div class="table">
         <h2>Sent Messages</h2>
@@ -64,7 +63,6 @@
         </table>
         </div>
         {% endif %}
-
         {% if users %}
         <h2><em>New Message</em></h2>
         <form class="" action="{% url 'msgs:send_message' %}" method="post">
@@ -80,14 +78,12 @@
         <button type="submit" name="submit" class="btn btn-success"><i class="fa fa-envelope" aria-hidden="true"></i> Send Message</button>
         </form>
         {% endif %}
-
         {% if messages %}
         <br>
             {% for message in messages %}
                 <h4 id='error_message'>{{ message }}</h4>
             {% endfor %}
         {% endif %}
-
         <br>
         <form class="" action="{% url 'msgs:log_out' %}" method="post">
             {% csrf_token %}

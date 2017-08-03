@@ -9,6 +9,7 @@ name_regex = re.compile(r'^[a-zA-Z]+$')
 password_regex = re.compile(r'^(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,15}$')
 
 class UserManager(models.Manager):
+
     def registration_validation(self, postData):
         counter = 0
         errors = []

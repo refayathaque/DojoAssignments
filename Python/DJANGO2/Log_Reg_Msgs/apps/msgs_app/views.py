@@ -47,7 +47,7 @@ def show(request, user_id):
     received_messages = Message.messageManager.filter(user_to__id = request.session['user_id']).filter(user_from__id = user_id)
     # When querying directly to model use DUNDERSCORE for FOREIGN KEYs!
     conversation = [msg for msg in sent_messages] + [msg for msg in received_messages]
-    # ^ PYTHON LIST CONSTRUCTOR - taking each message out of the two list and putting them together in another list
+    # ^ PYTHON LIST CONSTRUCTOR - taking each message out of the two lists and putting them together in another list
     conversation.sort(key = lambda x: x.created_at)
     # Lambda is an anonymous one line function in Python, here we are sorting messages by time
     context = {

@@ -15,58 +15,53 @@ mysql = MySQLConnector(app,'login_registration')
 
 ## WILL'S MODULAR FLASK GUIDE ## START
 
-class LoginRegistration(objects):
-    def create(self, first_name, last_name, email, password):
-		pass
-	def getAll(self):
-		pass
-	def getOne(self, id):
-		pass
-	def update(self, id, first_name, last_name, email, password):
-		pass
-	def delete(self, id):
-		pass
+class LoginRegistration(object): # What is objects?
+    def login(self, first_name, last_name, email, password):
+        pass
+    def register(self):
+        pass
 
-User = UserModel()
+User = LoginRegistration()
 
 def create(self, name, email):
-	errors = []
+    errors = []
 
-	if len(first_name) < 1:
-		errors.append('Name is required')
-	elif len(first_name < 3):
-		errors.append('Name must be 3 characters or more')
+    if len(first_name) < 1:
+        errors.append('Name is required')
+    elif len(first_name < 3):
+        errors.append('Name must be 3 characters or more')
 
     if len(last_name) < 1:
-		errors.append('Name is required')
-	elif len(last_name < 3):
-		errors.append('Name must be 3 characters or more')
+        errors.append('Name is required')
+    elif len(last_name < 3):
+        errors.append('Name must be 3 characters or more')
 
-	if len(email) < 1:
-		errors.append('Email is required')
-	elif not EMAIL_REGEX.match(email):
-		errors.append('Not a valid email')
+    if len(email) < 1:
+        errors.append('Email is required')
+    elif not EMAIL_REGEX.match(email):
+        errors.append('Not a valid email')
 
-	if len(errors) > 0:
-		return False, errors
-	else:
-		query = 'INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)'
-		data = {
+    if len(errors) > 0:
+        return False, errors
+    else:
+        query = 'INSERT INTO users (first_name, last_name, email, password) VALUES (:first_name, :last_name, :email, :password)'
+        data = {
             'first_name': first_name,
             'last_name': last_name,
             'email': email,
             'password': password
         }
-		return True, mysql.query_db(query, data)
+        return True, mysql.query_db(query, data)
 
 @app.route('/new', methods=['POST'])
 def new():
-	new_user = User.create(request.form['first_name'], request.form['last_name'], request.form['email'], request.form['password'])
+    new_user = User.create(request.form['first_name'], request.form['last_name'], request.form['email'], request.form['password'])
 
-	if new_user[0]:
-		# do something
-	else:
-		flash(errors)
+    if new_user[0]:
+        return render_template('success.html')
+    else:
+        flash(new_user[1].errors)
+        return redirect('/')
 
 ## WILL'S MODULAR FLASK GUIDE ## END
 
