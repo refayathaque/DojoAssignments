@@ -14,6 +14,10 @@
                 {{ firstname.errors | json }}
             </div>
 
+            <div *ngIf = 'firstname.errors.minlength'>
+                <p>Your name needs to be at least 2 characters long</p>
+            </div>
+
             <p><em>Last Name</em></p>
             <input type="text" name="lastname" required minlength="2" [(ngModel)]="user.lastname" #lastname='ngModel'>
 
