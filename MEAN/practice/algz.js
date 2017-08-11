@@ -26,3 +26,25 @@ function oddNumbers(l, r) {
 }
 
 console.log(oddNumbers(6, 14));
+
+function fizzbuzz() {
+    for(i = 1; i < 101; i++) {
+        if(i % 3 === 0 && i % 5 === 0){
+            console.log('fizzbuzz');
+            continue;
+        }
+        if(i % 3 === 0){
+            console.log('fizz');
+            continue;
+        }
+        if(i % 5 === 0){
+            console.log('buzz');
+            continue;
+        }
+        else{
+            console.log(i);
+        }
+    }
+}
+
+fizzbuzz();
