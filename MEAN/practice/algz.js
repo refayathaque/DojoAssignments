@@ -27,6 +27,8 @@ function oddNumbers(l, r) {
 
 console.log(oddNumbers(6, 14));
 
+console.log('---------------------------------------')
+
 function fizzbuzz() {
     for(i = 1; i < 101; i++) {
         if(i % 3 === 0 && i % 5 === 0){
@@ -49,7 +51,7 @@ function fizzbuzz() {
 
 fizzbuzz();
 
-console.log('----')
+console.log('---------------------------------------')
 
 function fizzbuzz2() {
     for(i = 1; i <= 100; i++) {
@@ -73,10 +75,10 @@ function fizzbuzz2() {
 
 fizzbuzz2();
 
-console.log('----')
+console.log('---------------------------------------')
 
 function fizzbuzz3() {
-    for(i = 0; i <= 100; i++) {
+    for(i = 1; i <= 100; i++) {
         if(i % 3 === 0 && i % 5 === 0) {
             console.log('fizzbuzz')
             continue;
